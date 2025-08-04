@@ -196,6 +196,12 @@
 
 <body>
 
+        <cfif session.auth.role eq "member">
+
+                        <cflocation  url="member_index.cfm" addtoken="no">
+
+        </cfif>
+
     <cfoutput>
 
          <cfset My_ID = "">

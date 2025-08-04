@@ -199,6 +199,8 @@ values (1,'PTI'),
 
 
 
+
+
 <!---
 
              <cfdump var="#session#"> 
@@ -235,6 +237,13 @@ FALSE
 
 
 <cfif structkeyExists(session,"auth") >
+
+        <cfif session.auth.role eq "admin">
+
+                        <cflocation  url="admin_index.cfm" addtoken="no">
+
+        </cfif>
+
         
                 <cfset myemail = #session.auth.email# >
     

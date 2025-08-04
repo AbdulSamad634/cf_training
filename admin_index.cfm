@@ -69,10 +69,18 @@ p{
 
 <cfoutput>
 
+
 <!--- <cfdump var="#session#"> --->
+
+
 
 <cfif structkeyExists(session,"auth") >
 
+        <cfif session.auth.role eq "member">
+
+                        <cflocation  url="member_index.cfm" addtoken="no">
+
+        </cfif>
 <!---
 <cfif isdefined ("username")>
 

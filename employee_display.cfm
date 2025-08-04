@@ -100,6 +100,14 @@ values (1,'PTI'),
 
 <body>
 
+
+        <cfif session.auth.role eq "member">
+
+                        <cflocation  url="member_index.cfm" addtoken="no">
+
+        </cfif>
+
+
     <cfoutput>
     
          <!--- #ID#-#Employee_Name#-#Gender#-#Email#-#Phone#-#DateFormat(#Joining_Date#,"yyyy-mm-dd")#-#Designation#-#Dept_Name#-#Experience#-#Salary# --->

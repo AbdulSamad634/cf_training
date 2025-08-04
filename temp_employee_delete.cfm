@@ -36,11 +36,17 @@
 
     <cfoutput>
 
+            <cfif session.auth.role eq "member">
+
+                        <cflocation  url="member_index.cfm" addtoken="no">
+
+        </cfif>
+
          <cfif isDefined("ID") >
 
              <cfset rowID = URL.ID > 
 
-             <cfquery name="update_employee_data" datasource ="my_office_ds">
+             <cfquery name="update_employee_data" datasource ="web_project">
 
                  update Employee_Data
                  set IsActive=0
@@ -50,7 +56,7 @@
 
              <!--- <cfdump var="#update_employee_data#"> --->
 
-             <cfquery name="update_allowance_record" datasource="my_office_ds" >
+             <cfquery name="update_allowance_record" datasource="web_project" >
 
                  update Allowances_Record
                  set IsActive=0
@@ -62,7 +68,7 @@
 
          </cfif>     
 
-             <cfquery name="display_temporary_record" datasource="my_office_ds" >
+             <cfquery name="display_temporary_record" datasource="web_project" >
 
                  select* 
                  from Employee_Data
@@ -128,7 +134,7 @@
                              #Designation#
                         </td>
 
-                        <cfquery name="GetDeptName" datasource="my_office_ds" >
+                        <cfquery name="GetDeptName" datasource="web_project" >
 
                              select Dept_Name
                              from Department

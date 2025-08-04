@@ -70,115 +70,18 @@ p{
 <cfoutput>
 
 
-<cfif isdefined ("session.client_fullName")>
 
-HELLO #session.client_fullName#
 
         <cfquery name="check_user" datasource="web_project">
 
              select*
              from user_form
-             where username="#username#" AND passwrd="#passwrd#"
+
 
         </cfquery>
 
-<cfif queryRecordCount(check_user) gte 1>
+        <Cfdump var="#check_user#">
 
-
-        <div class="heading">
-
-                <p>
-
-                        Welcome to Office Management
-
-
-                </p>
-
-
-
-        </div>
-
-
-        <!--- <cfdump var = "#server.coldfusion.productversion#" > --->
-
-         <div class="button1"> 
-         <a href="employee_form.cfm"><button class="btn btn-dark ">Add New Employee</button></a>
-
-         </div>
-
-         <div class="button2">
-
-         <a href="employee_display.cfm"><button class="btn btn-dark ">Display Employees</button></a>
-
-         </div>
-
-         <div class="button3">
-
-         <a href="allowance_form.cfm"><button class="btn btn-dark ">Add New Allowance</button></a>
-
-         </div>
-
-
-         <div class="button3">
-
-         <a href="allowance_display.cfm"><button class="btn btn-dark ">Display Allowances</button></a>
-
-         </div>
-
-         <div class="button3">
-
-         <a href="temp_employee_delete.cfm"><button class="btn btn-dark ">Recycle Bin</button></a>
-
-         </div>
-
-         <!---
-
-         <cfajaximport tags="cfmessagebox">
-
-         <cfform name="test">
-
-         <cfinput type="button" name="x" value="Create Message Box"
-
-         onClick="ColdFusion.MessageBox.create('Messagebox1', 'confirm','Confirm',
-
-         'Do you want to save the file?',
-
-         onfinish, {width:200, modal:false})">
-
-         </cfform>
-
-         <script language="JavaScript" type="text/javascript">
-
-         function onfinish()
-
-
-         {
-
-          alert('Button clicked');
-
-         };
-
-        </script>
-
---->
-
-<cfelse>
-
-Incorrect Values.
-
-
-</cfif>
-
-
-<cfelse>
-
-<div class="button3">
-
-         <a href="index.cfm"><button class="btn btn-dark ">Sign Up</button></a>
-
-         </div>
-
-</cfif>
 
 
 
