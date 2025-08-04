@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,56 +59,59 @@ p{
 
 }
 
-
-
 </style>
 
 </head>
-
 
 <body>
 
 <cfoutput>
 
-<!--- <cfdump var="#session#"> --->
+<cfif isdefined("role")>
 
-<cfif isdefined("session.auth.ID") >
+<cfquery name="Insert_user" datasource="my_office_ds" >
 
-<!---
-<cfif isdefined ("username")>
+insert into user_form (fullname,email,role,username,passwrd)
+values("#fullname#","#email#","#role#","#username#","#passwrd#");
 
+</cfquery>
 
-        <cfquery name="check_user" datasource="my_office_ds">
-
-             select*
-             from user_form
-             where username="#username#"
-
-        </cfquery>
-
-         <cfset session.client_fullName=check_user.Fullname>
+</cfif>
 
 
 
+<cfif isdefined ("page_logout")>
 
-HELLO #session.client_fullName#
+    <cfset StructClear(Session)>
 
-        <cfquery name="check_user" datasource="my_office_ds">
+</cfif>  
 
-             select*
-             from user_form
-             where username="#username#" AND passwrd="#passwrd#"
+<!--- <cfdump var="#session#" > --->
 
-        </cfquery>
+<!--- <cfif structKeyExists(session, "#session.auth.ID#") > --->
 
-<cfif queryRecordCount(check_user) gte 1>
+<cfif isdefined("session.auth.id")>
 
---->
+<cfif #session.auth.role# eq 'admin'>
+
+<cflocation  url="admin_index.cfm" addtoken="no">
+
+<cfelse>
+
+<cflocation  url="member_index.cfm" addtoken="no">
+
+</cfif>
+
+</cfif>
+
+
+  
+
         <div class="heading">
 
                 <p>
 
-                        Welcome to Office Management
+                        Welcome
 
 
                 </p>
@@ -116,81 +120,25 @@ HELLO #session.client_fullName#
 
         </div>
 
-
         <!--- <cfdump var = "#server.coldfusion.productversion#" > --->
 
          <div class="button1"> 
-         <a href="employee_form.cfm"><button class="btn btn-dark ">Add New Employee</button></a>
+         <a href="sign_up.cfm"><button class="btn btn-dark ">Sign Up</button></a>
 
          </div>
 
          <div class="button2">
 
-         <a href="employee_display.cfm"><button class="btn btn-dark ">Display Employees</button></a>
+         <a href="admin_login.cfm"><button class="btn btn-dark ">Admin Log In</button></a>
 
          </div>
 
-         <div class="button3">
+         <div class="button2">
 
-         <a href="allowance_form.cfm"><button class="btn btn-dark ">Add New Allowance</button></a>
+         <a href="member_login.cfm"><button class="btn btn-dark ">Member Log In</button></a>
 
-         </div>
+         </div>         
 
-
-         <div class="button3">
-
-         <a href="allowance_display.cfm"><button class="btn btn-dark ">Display Allowances</button></a>
-
-         </div>
-
-         <div class="button3">
-
-         <a href="temp_employee_delete.cfm"><button class="btn btn-dark ">Recycle Bin</button></a>
-
-         </div>
-
-         
-         <div class="button3">
-
-         <a href="menu.cfm?page_logout=#1#"><button class="btn btn-dark ">Log Out</button></a>
-
-         </div>
-
-         <!---
-
-         <cfajaximport tags="cfmessagebox">
-
-         <cfform name="test">
-
-         <cfinput type="button" name="x" value="Create Message Box"
-
-         onClick="ColdFusion.MessageBox.create('Messagebox1', 'confirm','Confirm',
-
-         'Do you want to save the file?',
-
-         onfinish, {width:200, modal:false})">
-
-         </cfform>
-
-         <script language="JavaScript" type="text/javascript">
-
-         function onfinish()
-
-
-         {
-
-          alert('Button clicked');
-
-         };
-
-        </script>
-
---->
-
-<cfelse>
-
-<cflocation  url="menu.cfm">
-</cfif>
 
 
 </cfoutput>

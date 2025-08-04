@@ -69,8 +69,26 @@ p{
 
 <cfoutput>
 
+<!--- <cfdump var="#session#"> --->
 
-<cfif isdefined ("session.client_fullName")>
+<cfif isdefined("session.auth.ID") >
+
+<!---
+<cfif isdefined ("username")>
+
+
+        <cfquery name="check_user" datasource="my_office_ds">
+
+             select*
+             from user_form
+             where username="#username#"
+
+        </cfquery>
+
+         <cfset session.client_fullName=check_user.Fullname>
+
+
+
 
 HELLO #session.client_fullName#
 
@@ -84,7 +102,7 @@ HELLO #session.client_fullName#
 
 <cfif queryRecordCount(check_user) gte 1>
 
-
+--->
         <div class="heading">
 
                 <p>
@@ -131,6 +149,13 @@ HELLO #session.client_fullName#
 
          </div>
 
+         
+         <div class="button3">
+
+         <a href="menu.cfm?page_logout=#1#"><button class="btn btn-dark ">Log Out</button></a>
+
+         </div>
+
          <!---
 
          <cfajaximport tags="cfmessagebox">
@@ -164,23 +189,8 @@ HELLO #session.client_fullName#
 
 <cfelse>
 
-Incorrect Values.
-
-
+<cflocation  url="menu.cfm" addtoken="no">
 </cfif>
-
-
-<cfelse>
-
-<div class="button3">
-
-         <a href="index.cfm"><button class="btn btn-dark ">Sign Up</button></a>
-
-         </div>
-
-</cfif>
-
-
 
 
 </cfoutput>

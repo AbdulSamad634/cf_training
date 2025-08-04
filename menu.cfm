@@ -11,8 +11,8 @@
 .heading
 {
 
-        margin-top: 0;
-        padding-top: 0;
+margin-top: 0;
+padding-top: 0;
 background-color: black;
 color: white;
 font-size:small;
@@ -69,12 +69,44 @@ p{
 
 <cfoutput>
 
+
+
+<!--- 
+HELLO WORLD
+<cfdump var = "#session#" > --->
+
+
+<cfif isdefined("role")>
+
+
+
+        <cfquery name="Insert_user" datasource="my_office_ds" >
+
+                insert into user_form (fullname,email,role,username,passwrd)
+                values("#fullname#","#email#","#role#","#username#","#passwrd#");
+
+        </cfquery>
+
+</cfif>
+
+
 <cfif isdefined ("page_logout")>
+
 
 <cfset StructClear(Session)>
 
 </cfif>
 
+<!--- <cfdump var = #session# > --->
+
+<!---
+<cfif isdefined("doLogin") >
+
+<cflocation  url="/employee_portal/member_index.cfm" addtoken="no">
+
+</cfif>
+
+--->
 
 <!--- <cfdump var ="#session#" >
  --->
@@ -103,7 +135,7 @@ p{
 
                 <p>
 
-                        Welcome.
+                        Welcome
 
 
                 </p>
@@ -115,15 +147,21 @@ p{
         <!--- <cfdump var = "#server.coldfusion.productversion#" > --->
 
          <div class="button1"> 
-         <a href="sign_up.cfm"><button class="btn btn-dark ">Sign Up</button></a>
+         <a href="/employee_portal/sign_up.cfm"><button class="btn btn-dark ">Sign Up</button></a>
 
          </div>
 
          <div class="button2">
 
-         <a href="login.cfm"><button class="btn btn-dark ">Log In</button></a>
+         <a href="/login/admin_login.cfm"><button class="btn btn-dark ">Admin Log In</button></a>
 
          </div>
+
+         <div class="button2">
+
+         <a href="/login/member_login.cfm"><button class="btn btn-dark ">Member Log In</button></a>
+
+         </div>         
 
 
          <!---
@@ -156,6 +194,8 @@ p{
         </script>
 
 --->
+
+
 
 </cfoutput>
 </body>

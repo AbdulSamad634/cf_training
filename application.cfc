@@ -31,7 +31,7 @@
 
         --->
   
-  
+
     </cffunction> 
 
 
@@ -44,109 +44,137 @@
       <cfset session.auth.Email   = "">
       <cfset session.auth.Username    = "">
       <cfset session.auth.Passwrd    = "">
+      <cfset session.auth.Role = "" >
 
   </cffunction>
 
     <cffunction name="onSessionStart" returntype="void">
       <!--- define all session variables, so they will always exist ---->
-
-  
-
       <cfset clearSessionVariables()>
 
     </cffunction>
 
-    <cffunction name="onRequestStart">
 
-     <cfargument type="String" name="targetPage" required="true" /> 
-
-     <!--- All of these folders/top level files require a login, specific roles are addressed below ---->  
-
-     <cfset var securefolders = "admin">  
-
-     <cfset var currentFolder = listFirst(cgi.script_name,"/")>
-
-     <cfif currentFolder contains ".">
-
-        <cfset currentFolder = "root">
-
-     </cfif> <!--- the user's current location ---->  
-
-
-     <!--- process login credentials --->
-
-     <!--- begin cfif isDefined("form.UserEmail") and isDefined("form.UserPassword") ---> 
-
-     <cfif isDefined("form.Username") and isDefined("form.Passwrd") and isDefined("form.doLogin")>
-
+ <!--- Pre-request processing ---> 
+ <cffunction name="onRequestStart" returnType="void" output="false" >
+    <!--- Perform any necessary pre-request processing here --->
+    <!---<cfset stringurl = CGI.SCRIPT_NAME>
+    <cfset searchString = 'Employee_Portal'> --->
+    <cfif structKeyExists(session, 'auth.isLoggedIn')>
+        <cfif structKeyExists(url, 'page_logout')>
+            <!---  <cfset createObject("component", '\components.user_authentication').user_logout() /> --->
+            <cflocation  url="menu.cfm" addtoken='no'>  
+        </cfif>
+        <cfif session.auth.role eq "admin" > <!--- and findNoCase(searchString, stringurl) eq 0> --->
+            <cflocation  url="admin_index.cfm">
+        </cfif>
+        <cfif session.auth.role eq "member" >
+            <cflocation url="member_index.cfm">
+        </cfif>
+    </cfif>
+    <!--- /process login credentials --->
+    <cfargument type="String" name="targetPage" required="true" /> 
+    <cfif isDefined("form.Username") and isDefined("form.Passwrd") and isDefined("form.doLogin")>
         <!--- user is attempting to log in, so process the login request ----> 
         <cfif NOT checkLogin(form.Username, form.Passwrd)> 
            <cfinclude template="menu.cfm"> <!--- login failed, so show login error form ----> 
-        <cfreturn false>  
-           <!--- close cfif NOT checkLogin(form.UserEmail, form.UserPassword) ---> 
-        <cfelse>
-           <cfinclude template="index.cfm">
+           <cfreturn false>
+        <cfelseif session.auth.role eq "admin">
+            <cfinclude template="admin_index.cfm">
+         <cfelseif session.auth.role eq "member">
+            <cfinclude template="member_index.cfm">
+
         </cfif> 
-    <!--- close cfif isDefined("form.UserEmail") and isDefined("form.UserPassword") and isDefined("form.doLogin") ---> 
-
-    </cfif> 
- 
-<!--- /process login credentials --->
-    
-
-   </cffunction>
+        <!--- close cfif isDefined("form.UserEmail") and isDefined("form.UserPassword") and isDefined("form.doLogin") ---> 
+    </cfif>
+ </cffunction>
 
 
         
-<!--- begin function checkLogin --->
-<cffunction name="checkLogin">
+ <!--- begin function checkLogin ---> 
+ <cffunction name="checkLogin">
 
-  <cfargument name="p_Username" required=false default="" />
-  <cfargument name="p_passwrd" required=false default="" />
-
-  <cfset var passwrd = trim(arguments.p_passwrd)>
-  <cfset var Username     = trim(arguments.p_Username)>
-  <cfset var getUser = "">
-
-  <cftry>
-      <cfif len(Passwrd) eq 0 or len(Username) eq 0>
-         <cfthrow message="Please enter Email and Password">
-      </cfif> 
+    <cfargument name="p_Username" required=false default="" />
+    <cfargument name="p_password" required=false default="" />
+    <cfset var input_Password = trim(arguments.p_password)>
+    <cfset var input_Username = trim(arguments.p_Username)>
+    <cfset var getUser = "">
+    <cfif len(input_Password) eq 0>
+         <cfthrow message="Please enter Password">
+    <cfelseif len(input_Username) eq 0>
+         <cfthrow message="Please enter Username">
+    </cfif>
+    <cfquery name="getUser" datasource="my_office_ds">
+        SELECT ID, FullName, email,role, Username, Passwrd
+         FROM user_form
+        WHERE Username = <cfqueryparam cfsqltype="cf_sql_varchar" value="#input_Username#" maxlength="255"> 
+    </cfquery>
+    <cfif getuser.recordCount eq 0>
+    <cfthrow message="Incorrect email address and/or password. Be sure to enter the correct, original email address with which you registered. Please type your password carefully.">
+    <cfelseif getUser.Passwrd is not Passwrd>
+    <cfthrow message="Invalid Password.">
+    </cfif>
+    <cfset clearSessionVariables()>
+    <cfset SESSION.auth.isLoggedIn = "Yes">
+    <cfset SESSION.auth.ID     = getUser.ID>
+    <cfset SESSION.auth.FullName  = getUser.fullName>
+    <cfset SESSION.auth.Username  = getUser.Username>
+    <cfset SESSION.auth.Email = getUser.Email>
+    <cfset SESSION.auth.Role      = getUser.Role>
+    <!--- Now that user is logged in, send her to web root --->
+    <!--- close cfif NOT checkLogin(form.UserEmail, form.UserPassword) ---> 
+    <cfif Session.auth.Role eq 'admin' >
+         <cflocation url="admin_index.cfm">
+    <cfelse>   
+        <cflocation url="member_index.cfm">
+    </cfif>
+    <cfreturn true>
     
-      <cfquery name="getUser" datasource="my_office_ds">
-       SELECT ID, FullName, email, Username, Passwrd
-        FROM user_form
-       WHERE Username = <cfqueryparam cfsqltype="cf_sql_varchar" value="#Username#" maxlength="255"> 
-      </cfquery>
-      <cfif getuser.recordCount eq 0>
-        <cfthrow message="Incorrect email address and/or password. Be sure to enter the correct, original email address with which you registered. Please type your password carefully.">
-      <cfelseif getUser.Passwrd is not Passwrd>
-        <cfthrow message="Invalid Password.">
-       </cfif>
-    
-      <cfset clearSessionVariables()>
-      <cfset SESSION.auth.isLoggedIn = "Yes">
-      <cfset SESSION.auth.ID     = getUser.ID>
-      <cfset SESSION.auth.FullName  = getUser.fullName>
-      <cfset SESSION.auth.Username  = getUser.Username>
-      
-
- <!--- Now that user is logged in, send her to web root --->
-
- <cflocation url="index.cfm">
-
-      
-      <cfreturn true>
-      
-      
-  <cfcatch>
-      <cfset clearSessionVariables()>
-    <cfreturn false>
-  </cfcatch>
-  </cftry>
     
 </cffunction>
 <!--- close function checkLogin --->
 
+<!---
+<cffunction name="onRequest" returnType="void" output="true">
+  
+  <!---
+  #CGI.SCRIPT_NAME#
 
+  
+    <cfif not structKeyExists(session, 'auth.isLoggedIn') and CGI.SCRIPT_NAME neq '/employee_portal/admin_index.cfm' and  CGI.SCRIPT_NAME neq '/employee_portal/member_index.cfm'>
+       <cflocation  url="/login/menu.cfm" addtoken = 'no'>
+    </cfif>
+
+    --->
+
+ 
+<!---
+// I HAVE THIS IDEA IN MIND THAT When a button is clicked, we should updae CGI.SCRIPT with whaterever it wants to go 
+and then cflocation to that cgi script.
+--->    
+<!---     <cftransaction>      --->
+<!---
+
+        <cfif structKeyExists(session, 'auth.isLoggedIn')>
+          <cfinclude  template="\includes\header.cfm">
+        </cfif>
+        <cfinclude template="#CGI.SCRIPT_NAME#">
+        <cfif structKeyExists(session, 'auth.isLoggedIn')>
+          <cfinclude  template="\includes\footer.cfm">
+        </cfif>
+<!---     </cftransaction> --->
+
+--->
+</cffunction>
+--->
+
+
+  <!--- Post-request processing --->
+  <cffunction name="onRequestEnd" returnType="void" output="false">
+    <!--- Perform any necessary post-request processing here --->
+  </cffunction>
+  <!--- Cleanup and finalization --->
+  <cffunction name="onApplicationEnd" returnType="void" output="false">
+    <!--- Perform any necessary cleanup or finalization tasks here --->
+  </cffunction>
 </cfcomponent>

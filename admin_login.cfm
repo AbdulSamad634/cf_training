@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+
+ <html>
+
 <head>
             <title>  </title>
 
@@ -190,89 +194,53 @@
 
 </head>
 
-<!---
-<cfinclude template="header.cfm">
---->
+<body>
 
-    <cfoutput>
-    
-    <!--- <cfdump var="#session#"> --->
-
+<cfoutput>
 
          <div class="form-container">
 
-            <form action="index.cfm" method="POST">
+            <form name="LoginForm" method="post" >
 
                  <div style="margin-bottom: 2rem">
-                 <h2 class="form-title">Sign Up</h2>
+                 <h2 class="form-title">Log In</h2>
                  </div>  
 
-                 <label for="" class="form-label">Full Name</label>
+                 <label for="UserName" class="form-label">UserName:</label>
                  <input
                  type="text"
-                 name="FullName"
-                 id="full_name"
-                 autocomplete="off"
-                 class="form-input"
-                 placeholder="Name....."
-                 required
-                 />
- 
-                 <label for="" class="form-label">Email</label>
-                 <input
-                 type="text"
-                 name="Email"
-                 id="email"
-                 autocomplete="off"
-                 class="form-input"
-                 placeholder="Email...."
-                 required
-                 />
-                
-
-                 <label for="country" class="form-label">Role</label>
-                 <select name="Role" id="role" class="form-select" autocomplete="off" placeholder="Role...." required>
-                 <option value="member">Member</option>
-                 <option value="admin">Admin</option> <!--- It means Male is displayed as option and value="Male" means when this option is selected, this value (i.e. Male is sanded to POST Method) --->
-                 </select>                 
-
-                 <label for="" class="form-label">Username</label>
-                 <input
-                 type="text"
-                 name="Username"
+                 name="username"
                  id="username"
                  autocomplete="off"
                  class="form-input"
-                 placeholder="Username..."
-                 required
-                 />                 
-
-                 <label for="" class="form-label">Password</label>
-                 <input
-                 type="text"
-                 name="Passwrd"
-                 id="Passwrd"
-                 autocomplete="off"
-                 class="form-input"
+                 placeholder="Name....."
+                 size="30"
+                 value=""
+                 maxlength="256"
+                 tabindex="1"
                  required
                  />
-
-
-                 <button class="form-btn">Submit</button>
-
-          
+ 
+                 <label for="Password" class="form-label">Password:</label>
+                 <input
+                 type="text"
+                 name="passwrd"
+                 id="Passwrd"
+                 size="30"
+                 value=""
+                 maxlength="256"
+                 tabindex="2"
+                 />
+              
+                 <button name="doLogin" type="submit" class="form-btn" tabindex="3">Click to log in.</button>
             
+        
             </form>
-
-               
 
          </div>
 
-    </cfoutput>
+</cfoutput>
 
- <!---   
-<cfinclude template="footer.cfm">
---->
 
 
 

@@ -27,6 +27,15 @@
 
                 }
 
+                .button3
+                {
+                    
+                        margin-left: 10px;
+
+                }
+
+                
+
 
         </style>
 
@@ -98,15 +107,12 @@ values (1,'PTI'),
 
 --->
 
-<body>
-
-    <cfoutput>
     
          <!--- #ID#-#Employee_Name#-#Gender#-#Email#-#Phone#-#DateFormat(#Joining_Date#,"yyyy-mm-dd")#-#Designation#-#Dept_Name#-#Experience#-#Salary# --->
 
          <!--- <cfdump var ="#Query_Status#"> --->
          
-
+<!---
          <cfif isDefined("ID_Active") >
 
             <cfquery name="update_employee_data" datasource ="my_office_ds">
@@ -183,22 +189,40 @@ values (1,'PTI'),
 
                   </cfif> 
 
+                  --->
+
+
+
+<body>
+
+    <cfoutput>
+
+<cfif isdefined("session.auth.id")>
+
+        <!---   <cfdump var="#session#"> 
+
+                #session.auth.email#
+--->
+        
+                <cfset myemail = #session.auth.email# >
+    
 
          <cfquery name="Query_Status" datasource="my_office_ds">
 
                           select*
                           from Employee_Data Inner Join Department On Employee_Data.Department_ID = Department.Dept_ID
-                          where IsActive=1
-                          order by Employee_Data.ID asc          
-    
+                          where Email="#myemail#";
+                    
          </cfquery>
+
+     <!---    <cfdump var = "#Query_Status#" > --->
     
-         <table class="table table-dark table-striped-columns">
+         <table class="table table-danger table-striped-columns">
 
             <thead class="heading">
 
                 <tr>
-                <th colspan = "11">
+                <th colspan = "10">
                 Employee
                 </th>
                 <tr>
@@ -212,43 +236,40 @@ values (1,'PTI'),
                 <th>Department Name</th>
                 <th>Experience</th>
                 <th>Salary</th>
-                <th>Action</th>
+    
             
             </thead>
 
             <tbody>
 
-
-                <cfloop query="Query_Status">
-
                     <tr>
                     <td>
-                    #ID#
+                    #Query_Status.ID#
                     </td>
                     <td>
-                    #Employee_Name#
+                    #Query_Status.Employee_Name#
                     </td>
                     <td>
-                    #Gender#
+                    #Query_Status.Gender#
                     </td>
                     <td>
-                    #Email#
+                    #Query_Status.Email#
                     </td>
                     <td>
-                    #Phone#
+                    #Query_Status.phone#
                     </td>
                     <td>
-                    #DateFormat(#Joining_Date#, "ddd dd mmmm, yyyy")# 
+                    #DateFormat(#Query_Status.Joining_Date#, "ddd dd mmmm, yyyy")# 
                     </td>
                     <td>
-                    #Designation#
+                    #Query_Status.Designation#
                     </td>
 
                   <cfquery name="GetDeptName" datasource="my_office_ds" >
 
                     select Dept_Name
                     from Department
-                    where Dept_ID = #Department_ID#
+                    where Dept_ID = #Query_Status.Department_ID#
 
                     </cfquery>
 
@@ -257,26 +278,32 @@ values (1,'PTI'),
                     </td>
 
                     <td>
-                    #Experience#
+                    #Query_Status.Experience#
                     </td>
                     <td>
-                    #Salary#
+                    #Query_Status.Salary#
                     </td>
-                    <td>
-
-                    <!--- <input class="btn btn-danger" type="button" value="Edit" onclick="location.href='form.cfm'"> --->
-
-                     <a href="employee_form.cfm?ID=#ID#"><button class="btn btn-success">Edit</button></a>
-                     <a href="temp_employee_delete.cfm?ID=#ID#"><button class="btn btn-danger">Delete</button></a>
-            
-                    </td>
+         
                     </tr>
 
-                </cfloop>
+            
 
             </tbody>
         
          </table>
+
+  <div class="button3">
+
+         <a href="index.cfm?page_logout=#1#"><button class="btn btn-dark ">Log Out</button></a>
+
+         </div>
+
+
+
+<cfelse>
+
+<cflocation  url="index.cfm" addtoken="no">
+</cfif>
 
     </cfoutput>
 
