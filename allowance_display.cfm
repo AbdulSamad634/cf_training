@@ -43,7 +43,7 @@
 
          <cfif isDefined("Allowance_ID")> 
 
-             <cfquery name="Query_One" datasource="my_office_ds">
+             <cfquery name="Query_One" datasource="web_project">
 
                  select*
                  from Allowances
@@ -55,7 +55,7 @@
 
              <cfif queryRecordCount(Query_One) gte 1>
 
-                 <cfquery name="Update" datasource="my_office_ds" >
+                 <cfquery name="Update" datasource="web_project" >
 
                      Update Allowances
                      Set Allowance_ID ="#Allowance_ID#", Allowance_Name="#Allowance_Name#",Payment="#Payment#"
@@ -65,7 +65,7 @@
 
              <cfelse>
 
-                 <cfquery datasource="my_office_ds" name ="Insert_Data">
+                 <cfquery datasource="web_project" name ="Insert_Data">
 
                     insert into Allowances (Allowance_ID, Allowance_Name, Payment)
                     values("#Allowance_ID#","#Allowance_Name#","#Payment#")
@@ -76,7 +76,7 @@
                           
          </cfif>
 
-         <cfquery name="Query_Status" datasource="my_office_ds">
+         <cfquery name="Query_Status" datasource="web_project">
 
                           select*
                           from Allowances
@@ -132,5 +132,3 @@
 
 </body>
   
-
-

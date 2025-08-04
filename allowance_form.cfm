@@ -208,7 +208,7 @@
 
              <cfset rowID = URL.Allowance_ID > 
 
-             <cfquery name="Allowance_Query" datasource ="my_office_ds">
+             <cfquery name="Allowance_Query" datasource ="web_project">
                  select *
                  from Allowances
                  where Allowance_ID=#rowID#

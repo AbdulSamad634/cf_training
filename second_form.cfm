@@ -216,7 +216,7 @@
 
              <cfset rowID = URL.ID > 
 
-             <cfquery name="EmployeeQuery" datasource ="my_office_ds">
+             <cfquery name="EmployeeQuery" datasource ="web_project">
                  select *
                  from Employee_Data 
                  where ID=#rowID#
@@ -332,7 +332,7 @@
                  required
                  />
 
-                 <cfquery name ="GetDeptID" datasource="my_office_ds" >
+                 <cfquery name ="GetDeptID" datasource="web_project" >
 
                             select *
                             from Department 
@@ -371,7 +371,7 @@
                  required
                  />
   
-                 <cfquery name ="GetPolitics" datasource ="my_office_ds" >
+                 <cfquery name ="GetPolitics" datasource ="web_project" >
 
                         select *
                         from Politics;

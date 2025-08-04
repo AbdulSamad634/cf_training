@@ -196,7 +196,7 @@
 
 
 <!---
-        <cfquery name="Update_Employees" datasource="my_office_ds">
+        <cfquery name="Update_Employees" datasource="web_project">
 
             Update Employee_Data
             Set Employee_Name ="#Employee_Name#",Gender="#Gender#",Email="#Email#",Phone="#Phone#",Joining_Date="#Joining_Date#",Designation="#Designation#",Department_ID=#Department_ID#,Experience=#Experience#,Salary=#Salary#
@@ -228,7 +228,7 @@
 
                  <cfset rowID = URL.ID > 
 
-                 <cfquery name="EmployeeQuery" datasource ="my_office_ds">
+                 <cfquery name="EmployeeQuery" datasource ="web_project">
 
                      select *
                      from Employee_Data 

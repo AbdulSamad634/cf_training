@@ -30,7 +30,7 @@
 <cfif first_check eq "True">
 
 
-        <cfquery name="Input" datasource="my_office_ds">
+        <cfquery name="Input" datasource="web_project">
 
             insert into Employee_Data (ID, Employee_Name,Gender,Email,Phone,Joining_Date,Designation,Department_ID,Experience,Salary)
             values(#ID#,'#Employee_Name#','#Gender#','#Email#',#Phone#,'#Joining_Date#','#Designation#',#Department_ID#,#Experience#,#Salary#)
@@ -41,7 +41,7 @@
 
     <cfset rowID = URL.ID > 
 
-    <cfquery name="Update" datasource ="my_office_ds">
+    <cfquery name="Update" datasource ="web_project">
 
     
             Update Employee_Data
@@ -61,7 +61,7 @@
          <cfif isDefined("ID")> 
 
 
-        <cfquery name="Query_Status" datasource="my_office_ds">
+        <cfquery name="Query_Status" datasource="web_project">
 
             select*
             from Employee_Data
@@ -73,7 +73,7 @@
 
         <cfif queryRecordCount(Query_Status) gte 1 >
 
-        <cfquery name="Update" datasource="my_office_ds" >
+        <cfquery name="Update" datasource="web_project" >
 
         Update Employee_Data
         Set Employee_Name ="#Employee_Name#",Gender="#Gender#",Email="#Email#",Phone="#Phone#",Joining_Date="#Joining_Date#",Designation="#Designation#",Department_ID=#Department_ID#,Experience=#Experience#,Salary=#Salary#
@@ -83,7 +83,7 @@
 
         <cfelse>
 
-        <cfquery name="Insert" datasource="my_office_ds">
+        <cfquery name="Insert" datasource="web_project">
 
         insert into Employee_Data (ID, Employee_Name,Gender,Email,Phone,Joining_Date,Designation,Department_ID,Experience,Salary)
             values(#ID#,'#Employee_Name#','#Gender#','#Email#',#Phone#,'#Joining_Date#','#Designation#',#Department_ID#,#Experience#,#Salary#)
@@ -102,7 +102,7 @@ Form Operation = #form_operation#
 <cfabort>
 --->
 
-   <cfquery name="EmployeeQuery" datasource="my_office_ds">
+   <cfquery name="EmployeeQuery" datasource="web_project">
 
             select*
             from Employee_Data

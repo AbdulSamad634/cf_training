@@ -71,13 +71,13 @@ p{
 
 <!--- <cfdump var="#session#"> --->
 
-<cfif isdefined("session.auth.ID") >
+<cfif structkeyExists(session,"auth") >
 
 <!---
 <cfif isdefined ("username")>
 
 
-        <cfquery name="check_user" datasource="my_office_ds">
+        <cfquery name="check_user" datasource="web_project">
 
              select*
              from user_form
@@ -92,7 +92,7 @@ p{
 
 HELLO #session.client_fullName#
 
-        <cfquery name="check_user" datasource="my_office_ds">
+        <cfquery name="check_user" datasource="web_project">
 
              select*
              from user_form
@@ -103,6 +103,7 @@ HELLO #session.client_fullName#
 <cfif queryRecordCount(check_user) gte 1>
 
 --->
+<!---
         <div class="heading">
 
                 <p>
@@ -118,6 +119,8 @@ HELLO #session.client_fullName#
 
 
         <!--- <cfdump var = "#server.coldfusion.productversion#" > --->
+
+        
 
          <div class="button1"> 
          <a href="employee_form.cfm"><button class="btn btn-dark ">Add New Employee</button></a>
@@ -152,9 +155,11 @@ HELLO #session.client_fullName#
          
          <div class="button3">
 
-         <a href="menu.cfm?page_logout=#1#"><button class="btn btn-dark ">Log Out</button></a>
+         <a href="index.cfm?page_logout=#1#"><button class="btn btn-dark ">Log Out</button></a>
 
-         </div>
+         </div> --->
+
+         <img src="images/admin.jpeg" alt="Girl in a jacket" width="850" height="500"> 
 
          <!---
 
@@ -189,7 +194,8 @@ HELLO #session.client_fullName#
 
 <cfelse>
 
-<cflocation  url="menu.cfm" addtoken="no">
+<cflocation  url="index.cfm?page_logout=#1#" addtoken="no">
+
 </cfif>
 
 

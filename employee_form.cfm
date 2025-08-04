@@ -215,7 +215,7 @@
 
              <cfset rowID = URL.ID > 
 
-             <cfquery name="EmployeeQuery" datasource ="my_office_ds">
+             <cfquery name="EmployeeQuery" datasource ="web_project">
 
                  select *
                  from Employee_Data 
@@ -339,7 +339,7 @@
                  required
                  />
 
-                 <cfquery name ="GetDeptID" datasource="my_office_ds" >
+                 <cfquery name ="GetDeptID" datasource="web_project" >
 
                             select*
                             from Department
@@ -384,7 +384,7 @@
                  required
                  />
   
-                 <cfquery name ="Get_All_Allowances" datasource ="my_office_ds" >
+                 <cfquery name ="Get_All_Allowances" datasource ="web_project" >
 
                         select *
                         from Allowances
@@ -401,7 +401,7 @@
 
                      <cfif mycheck eq true>
                  
-                        <cfquery name ="Get_Employees_Allowances" datasource ="my_office_ds" >
+                        <cfquery name ="Get_Employees_Allowances" datasource ="web_project" >
 
                              select *
                              from Allowances_record join Allowances on Allowances.Allowance_ID = Allowances_Record.Allowance_ID

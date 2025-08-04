@@ -195,7 +195,6 @@
 </head>
 
 <body>
-
 <cfoutput>
 
          <div class="form-container">
@@ -206,7 +205,7 @@
                  <h2 class="form-title">Log In</h2>
                  </div>  
 
-                 <label for="UserName" class="form-label">UserName:</label>
+                 <label for="UserName" class="form-label"></label>
                  <input
                  type="text"
                  name="username"
@@ -223,7 +222,7 @@
  
                  <label for="Password" class="form-label">Password:</label>
                  <input
-                 type="password"
+                 type="text"
                  name="passwrd"
                  id="Passwrd"
                  size="30"

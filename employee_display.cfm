@@ -38,7 +38,7 @@
 
 
          <!---
-         <cfquery name="EmployeeQuery" datasource="my_office_ds">
+         <cfquery name="EmployeeQuery" datasource="web_project">
 
          select*
          from Employee_Data
@@ -55,7 +55,7 @@
           <!---<cfset mycheck = #isDefined("ID")# > --->
 <!---
 
-         <cfquery name="showpolitics" datasource="my_office_ds">
+         <cfquery name="showpolitics" datasource="web_project">
 
 select* 
 from Department;
@@ -69,7 +69,7 @@ from Department;
 
 
 
-          <cfquery name="insertpolitics" datasource="my_office_ds">
+          <cfquery name="insertpolitics" datasource="web_project">
 
 
          insert into Politics (Party_ID, Party_Name )
@@ -81,7 +81,7 @@ values (1,'PTI'),
 
           </cfquery>
 
-                <cfquery name="droppolitics" datasource="my_office_ds">
+                <cfquery name="droppolitics" datasource="web_project">
 
                 drop table politics;
 
@@ -89,7 +89,7 @@ values (1,'PTI'),
 
 
 
-  <cfquery name="getpolitics" datasource="my_office_ds">
+  <cfquery name="getpolitics" datasource="web_project">
 
   select* from Politics
 </cfquery>
@@ -109,7 +109,7 @@ values (1,'PTI'),
 
          <cfif isDefined("ID_Active") >
 
-            <cfquery name="update_employee_data" datasource ="my_office_ds">
+            <cfquery name="update_employee_data" datasource ="web_project">
 
                  update Employee_Data
                  set IsActive=1
@@ -121,7 +121,7 @@ values (1,'PTI'),
          
              <cfif isDefined("ID")> 
 
-                 <cfquery name="Query_One" datasource="my_office_ds">
+                 <cfquery name="Query_One" datasource="web_project">
 
                      select*
                      from Employee_Data
@@ -134,7 +134,7 @@ values (1,'PTI'),
 
                  <cfif queryRecordCount(Query_One) gte 1>
 
-                     <cfquery name="Update" datasource="my_office_ds" >
+                     <cfquery name="Update" datasource="web_project" >
 
                          Update Employee_Data
                          Set Employee_Name ="#Employee_Name#",Gender="#Gender#",Email="#Email#",Phone="#Phone#",Joining_Date="#Joining_Date#",Designation="#Designation#",Department_ID=#Department_ID#,Experience=#Experience#,Salary=#Salary#
@@ -144,7 +144,7 @@ values (1,'PTI'),
 
                  <cfelse>
 
-                     <cfquery datasource="my_office_ds" name ="Insert_Data">
+                     <cfquery datasource="web_project" name ="Insert_Data">
 
                          insert into Employee_Data (ID, Employee_Name,Gender,Email,Phone,Joining_Date,Designation,Department_ID,Experience,Salary)
                          values(#ID#,'#Employee_Name#','#Gender#','#Email#','#Phone#','#Joining_Date#','#Designation#',#Department_ID#,#Experience#,#Salary#)
@@ -161,7 +161,7 @@ values (1,'PTI'),
 
                <!---     #Form.Allowance_ID# --->
 
-                    <cfquery name="Delete_Previous_Record" datasource="my_office_ds" >
+                    <cfquery name="Delete_Previous_Record" datasource="web_project" >
 
                         delete
                         from Allowances_Record
@@ -172,7 +172,7 @@ values (1,'PTI'),
                     <cfloop list = "#Form.Allowance_ID#" index="i">
                         
 
-                             <cfquery name="Allowences_Record" datasource ="my_office_ds" >
+                             <cfquery name="Allowences_Record" datasource ="web_project" >
 
                                         insert into Allowances_Record(Employee_ID,Allowance_ID)
                                         values(#ID#,#i#)
@@ -184,7 +184,7 @@ values (1,'PTI'),
                   </cfif> 
 
 
-         <cfquery name="Query_Status" datasource="my_office_ds">
+         <cfquery name="Query_Status" datasource="web_project">
 
                           select*
                           from Employee_Data Inner Join Department On Employee_Data.Department_ID = Department.Dept_ID
@@ -244,7 +244,7 @@ values (1,'PTI'),
                     #Designation#
                     </td>
 
-                  <cfquery name="GetDeptName" datasource="my_office_ds" >
+                  <cfquery name="GetDeptName" datasource="web_project" >
 
                     select Dept_Name
                     from Department

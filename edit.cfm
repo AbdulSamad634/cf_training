@@ -74,7 +74,7 @@ p{
 
 HELLO #session.client_fullName#
 
-        <cfquery name="check_user" datasource="my_office_ds">
+        <cfquery name="check_user" datasource="web_project">
 
              select*
              from user_form

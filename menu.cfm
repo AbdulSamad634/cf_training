@@ -80,7 +80,7 @@ HELLO WORLD
 
 
 
-        <cfquery name="Insert_user" datasource="my_office_ds" >
+        <cfquery name="Insert_user" datasource="web_project" >
 
                 insert into user_form (fullname,email,role,username,passwrd)
                 values("#fullname#","#email#","#role#","#username#","#passwrd#");

@@ -38,7 +38,7 @@
 
 
          <!---
-         <cfquery name="EmployeeQuery" datasource="my_office_ds">
+         <cfquery name="EmployeeQuery" datasource="web_project">
 
          select*
          from Employee_Data
@@ -55,7 +55,7 @@
           <!---<cfset mycheck = #isDefined("ID")# > --->
 <!---
 
-         <cfquery name="showpolitics" datasource="my_office_ds">
+         <cfquery name="showpolitics" datasource="web_project">
 
 select* 
 from Department;
@@ -69,7 +69,7 @@ from Department;
 
 
 
-          <cfquery name="insertpolitics" datasource="my_office_ds">
+          <cfquery name="insertpolitics" datasource="web_project">
 
 
          insert into Politics (Party_ID, Party_Name )
@@ -81,7 +81,7 @@ values (1,'PTI'),
 
           </cfquery>
 
-                <cfquery name="droppolitics" datasource="my_office_ds">
+                <cfquery name="droppolitics" datasource="web_project">
 
                 drop table politics;
 
@@ -89,7 +89,7 @@ values (1,'PTI'),
 
 
 
-  <cfquery name="getpolitics" datasource="my_office_ds">
+  <cfquery name="getpolitics" datasource="web_project">
 
   select* from Politics
 </cfquery>
@@ -111,7 +111,7 @@ values (1,'PTI'),
 
              <cfset rowID = URL.ID > 
 
-             <cfquery name="EmployeeQuery" datasource ="my_office_ds">
+             <cfquery name="EmployeeQuery" datasource ="web_project">
 
                  select *
                  from Employee_Data 
@@ -134,14 +134,14 @@ values (1,'PTI'),
 
              </cfloop>    
 
-             <cfquery name="backup_insert" datasource="my_office_ds" >
+             <cfquery name="backup_insert" datasource="web_project" >
 
                  insert into deleted_Employees(ID, Employee_Name,Gender,Email,Phone,Joining_Date,Designation,Department_ID,Experience,Salary)
                  values(#My_ID#,'#My_Employee_Name#','#My_Gender#','#My_Email#','#My_Phone#','#My_Joining_Date#','#My_Designation#','#My_Department_ID#','#My_Experience#',#My_Salary#);
 
              </cfquery>
 
-            <cfquery name="update_deleted_emp" datasource="my_office_ds" >
+            <cfquery name="update_deleted_emp" datasource="web_project" >
 
              update deleted_Employees
              set IsDeleted=1
@@ -149,7 +149,7 @@ values (1,'PTI'),
 
              </cfquery>
 
-             <cfquery name="show_backup_result" datasource = "my_office_ds">
+             <cfquery name="show_backup_result" datasource = "web_project">
 
                  select*
                  from deleted_Employees;
@@ -159,7 +159,7 @@ values (1,'PTI'),
 
          <!--- <cfdump var="#show_backup_result#"> --->
 
-         <cfquery name="backup_allowances_record_1" datasource="my_office_ds" >
+         <cfquery name="backup_allowances_record_1" datasource="web_project" >
 
             select allowance_id 
             from allowances_Record
@@ -173,14 +173,14 @@ values (1,'PTI'),
          
              <cfloop query="backup_allowances_record_1">
 
-                 <cfquery name="backup_allowances_record_2" datasource="my_office_ds" >
+                 <cfquery name="backup_allowances_record_2" datasource="web_project" >
 
                      insert into deleted_allowances_Record (employee_id,allowance_id)
                      values(#My_ID#,#backup_allowances_record_1.allowance_id#)
 
                  </cfquery>
 
-                 <cfquery name="update_deleted_allowances_record" datasource="my_office_ds">
+                 <cfquery name="update_deleted_allowances_record" datasource="web_project">
 
                     update deleted_allowances_record
                     set isdeleted=1
@@ -188,7 +188,7 @@ values (1,'PTI'),
 
                  </cfquery>
 
-                 <cfquery name="show_backup_record" datasource="my_office_ds" >
+                 <cfquery name="show_backup_record" datasource="web_project" >
 
                      select* 
                      from deleted_allowances_record
@@ -197,7 +197,7 @@ values (1,'PTI'),
 
                  <!--- <cfdump var="#show_backup_record#"> --->
 
-                 <cfquery name="backup_allowances_record_3" datasource="my_office_ds" >
+                 <cfquery name="backup_allowances_record_3" datasource="web_project" >
 
                     delete 
                     from allowances_record
@@ -209,7 +209,7 @@ values (1,'PTI'),
 
              </cfif>
 
-             <cfquery name="show_deleted_record" datasource="my_office_ds" >
+             <cfquery name="show_deleted_record" datasource="web_project" >
 
                  select* 
                  from allowances_record;
@@ -218,7 +218,7 @@ values (1,'PTI'),
 
              <!--- <cfdump var="#show_deleted_record#"> --->
     
-             <cfquery name="delete_temp" datasource="my_office_ds" >
+             <cfquery name="delete_temp" datasource="web_project" >
 
                  delete
                  from employee_data
@@ -228,7 +228,7 @@ values (1,'PTI'),
 
              </cfif>
     
-             <cfquery name="Query_Status" datasource="my_office_ds">
+             <cfquery name="Query_Status" datasource="web_project">
 
                  select* 
                  from deleted_employees;    
@@ -289,7 +289,7 @@ values (1,'PTI'),
                     #Designation#
                     </td>
 
-                  <cfquery name="GetDeptName" datasource="my_office_ds" >
+                  <cfquery name="GetDeptName" datasource="web_project" >
 
                     select Dept_Name
                     from Department
