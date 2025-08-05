@@ -197,10 +197,6 @@ values (1,'PTI'),
 
     <cfoutput>
 
-
-
-
-
 <!---
 
              <cfdump var="#session#"> 
@@ -235,18 +231,17 @@ FALSE
 </cfif>
 --->
 
-
 <cfif structkeyExists(session,"auth") >
 
         <cfif session.auth.role eq "admin">
 
-                        <cflocation  url="admin_index.cfm" addtoken="no">
+                <cflocation  url="admin_index.cfm" addtoken="no">
 
         </cfif>
 
+</cfif>
         
-                <cfset myemail = #session.auth.email# >
-    
+         <cfset myemail = #session.auth.email# >
 
          <cfquery name="Query_Status" datasource="web_project">
 
@@ -256,7 +251,7 @@ FALSE
                     
          </cfquery>
 
-     <!---    <cfdump var = "#Query_Status#" > --->
+         <!--- <cfdump var = "#Query_Status#" > --->
     
          <table class="table table-danger table-striped-columns">
 
@@ -312,7 +307,9 @@ FALSE
                     from Department
                     where Dept_ID = #Query_Status.Department_ID#
 
-                    </cfquery>
+                  </cfquery>
+
+                  <!--- <cfdump var = "#GetDeptName#" > --->
 
                     <td>
                     #GetDeptName.Dept_Name#
@@ -333,19 +330,11 @@ FALSE
         
          </table>
 
-  <div class="button3">
+            <div class="button3">
 
-         <a href="index.cfm?page_logout=#1#"><button class="btn btn-dark ">Log Out</button></a>
+                 <a href="index.cfm?page_logout=#1#"><button class="btn btn-dark ">Log Out</button></a>
 
-         </div>
-
-
-
-<cfelse>
-
-<cflocation  url="index.cfm?page_logout=#1#" addtoken="no">
-
-</cfif>
+             </div>
 
 
     </cfoutput>

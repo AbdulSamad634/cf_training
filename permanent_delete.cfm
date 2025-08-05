@@ -227,7 +227,10 @@ values (1,'PTI'),
              </cfquery>
 
              </cfif>
-    
+
+
+             <cflocation  url="temp_employee_delete.cfm" addtoken="no">
+    <!---
              <cfquery name="Query_Status" datasource="web_project">
 
                  select* 
@@ -314,6 +317,7 @@ values (1,'PTI'),
         
          </table>
         
+        --->
 
     </cfoutput>
 

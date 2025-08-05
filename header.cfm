@@ -228,180 +228,19 @@ body {
 </head>
 <body>
   
-
 <div class="container">
 
 <!--- <cfdump var="#CGI.SCRIPT_NAME#"> --->
 
+
 <cfset currentpage= "#CGI.SCRIPT_NAME#">
 
+<cfif structkeyExists(session,"auth") >
 
- 
-
-
-<cfif #CGI.SCRIPT_NAME# eq '/index.cfm'>
-
-
+        <cfif session.auth.role eq "admin">
+              
 	<div class="row">
-		<h2>BJS Soft Solutions</h2>
-		<hr/>
-		
-		 <div id="wrapper">
-        
-    
 
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav" style="margin-left:0;">
-                <li class="sidebar-brand">
-                    
-                        <a href="#menu-toggle"  id="menu-toggle" style="margin-top:20px;float:right;" > <i class="fa fa-bars " style="font-size:20px !Important;" aria-hidden="true" aria-hidden="true">
-                        
-                        </i> 
-                    
-                </li>
-                <li>
-                    <a href="sign_up.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Sign Up</span>  </a>
-                </li>
-    
-                <li>
-                    <a href="admin_login.cfm"> <i class="fa fa-play-circle-o " aria-hidden="true"> </i> <span style="margin-left:10px;"> Admin Log In</span> </a>
-                </li>
-                <li>
-                    <a href="member_login.cfm"> <i class="fa fa-puzzle-piece" aria-hidden="true"> </i> <span style="margin-left:10px;"> Member Log In</span> </a>
-                </li>
-          
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                  
-                             
-        
-        <!-- /#page-content-wrapper -->
-
-   
-    <!-- /#wrapper -->
-</a>
-
-</cfif>
-
-
-<cfif #CGI.SCRIPT_NAME# eq '/sign_up.cfm'>
-
-
-	<div class="row">
-		<h2>Signup</h2>
-		<hr/>
-		
-		 <div id="wrapper">
-        
-    
-
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav" style="margin-left:0;">
-                <li class="sidebar-brand">
-                    
-                        <a href="#menu-toggle"  id="menu-toggle" style="margin-top:20px;float:right;" > <i class="fa fa-bars " style="font-size:20px !Important;" aria-hidden="true" aria-hidden="true">
-                        
-                        </i> 
-                    
-                </li>
-                <li>
-                    <a href="index.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Menu</span>  </a>
-                </li>
-    
-    <!---
-                <li>
-                    <a href="admin_login.cfm"> <i class="fa fa-play-circle-o " aria-hidden="true"> </i> <span style="margin-left:10px;"> Admin Log In</span> </a>
-                </li>
-                <li>
-                    <a href="member_login.cfm"> <i class="fa fa-puzzle-piece" aria-hidden="true"> </i> <span style="margin-left:10px;"> Member Log In</span> </a>
-                </li> --->
-          
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                  
-                             
-        
-        <!-- /#page-content-wrapper -->
-
-   
-    <!-- /#wrapper -->
-</a>
-
-</cfif>
-
-<cfif #CGI.SCRIPT_NAME# eq '/admin_login.cfm'>
-
-
-	<div class="row">
-		<h2>Admin Log In</h2>
-		<hr/>
-		
-		 <div id="wrapper">
-        
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav" style="margin-left:0;">
-                <li class="sidebar-brand">
-                    
-                        <a href="#menu-toggle"  id="menu-toggle" style="margin-top:20px;float:right;" > <i class="fa fa-bars " style="font-size:20px !Important;" aria-hidden="true" aria-hidden="true">
-                        
-                        </i> 
-                    
-                </li>
-                <li>
-                    <a href="index.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Menu</span>  </a>
-                </li>
-           
-    
-    
-    <!---
-                <li>
-                    <a href="admin_login.cfm"> <i class="fa fa-play-circle-o " aria-hidden="true"> </i> <span style="margin-left:10px;"> Admin Log In</span> </a>
-                </li>
-                <li>
-                    <a href="member_login.cfm"> <i class="fa fa-puzzle-piece" aria-hidden="true"> </i> <span style="margin-left:10px;"> Member Log In</span> </a>
-                </li> --->
-          
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                  
-                             
-        
-        <!-- /#page-content-wrapper -->
-
-   
-    <!-- /#wrapper -->
-</a>
-
-</cfif>
-
-<cfif #CGI.SCRIPT_NAME# eq '/admin_index.cfm'>
-
-
-	<div class="row">
 		<h2>Admin Log In</h2>
 		<hr/>
 		
@@ -443,14 +282,7 @@ body {
                     <a href="index.cfm?page_logout=#1#"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Log Out</span>  </a>
                 </li>
     
-    
-    <!---
-                <li>
-                    <a href="admin_login.cfm"> <i class="fa fa-play-circle-o " aria-hidden="true"> </i> <span style="margin-left:10px;"> Admin Log In</span> </a>
-                </li>
-                <li>
-                    <a href="member_login.cfm"> <i class="fa fa-puzzle-piece" aria-hidden="true"> </i> <span style="margin-left:10px;"> Member Log In</span> </a>
-                </li> --->
+
           
             </ul>
         </div>
@@ -470,322 +302,8 @@ body {
     <!-- /#wrapper -->
 </a>
 
-</cfif>
 
-<cfif #CGI.SCRIPT_NAME# eq '/employee_form.cfm'>
-
-
-	<div class="row">
-		<h2>Add New Employee</h2>
-		<hr/>
-		
-		 <div id="wrapper">
-        
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav" style="margin-left:0;">
-                <li class="sidebar-brand">
-                    
-                        <a href="#menu-toggle"  id="menu-toggle" style="margin-top:20px;float:right;" > <i class="fa fa-bars " style="font-size:20px !Important;" aria-hidden="true" aria-hidden="true">
-                        
-                        </i> 
-                    
-                </li>
-                <li>
-                    <a href="index.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Menu</span>  </a>
-                </li>
-           
-    
-    
-    <!---
-                <li>
-                    <a href="admin_login.cfm"> <i class="fa fa-play-circle-o " aria-hidden="true"> </i> <span style="margin-left:10px;"> Admin Log In</span> </a>
-                </li>
-                <li>
-                    <a href="member_login.cfm"> <i class="fa fa-puzzle-piece" aria-hidden="true"> </i> <span style="margin-left:10px;"> Member Log In</span> </a>
-                </li> --->
-          
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                  
-                             
-        
-        <!-- /#page-content-wrapper -->
-
-   
-    <!-- /#wrapper -->
-</a>
-</cfif>
-
-<cfif #CGI.SCRIPT_NAME# eq '/employee_display.cfm'>
-
-
-	<div class="row">
-		<h2>Employee Display</h2>
-		<hr/>
-		
-		 <div id="wrapper">
-        
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav" style="margin-left:0;">
-                <li class="sidebar-brand">
-                    
-                        <a href="#menu-toggle"  id="menu-toggle" style="margin-top:20px;float:right;" > <i class="fa fa-bars " style="font-size:20px !Important;" aria-hidden="true" aria-hidden="true">
-                        
-                        </i> 
-                    
-                </li>
-                <li>
-                    <a href="admin_index.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Admin LogIn</span>  </a>
-                </li>
-           
-    
-    
-    <!---
-                <li>
-                    <a href="admin_login.cfm"> <i class="fa fa-play-circle-o " aria-hidden="true"> </i> <span style="margin-left:10px;"> Admin Log In</span> </a>
-                </li>
-                <li>
-                    <a href="member_login.cfm"> <i class="fa fa-puzzle-piece" aria-hidden="true"> </i> <span style="margin-left:10px;"> Member Log In</span> </a>
-                </li> --->
-          
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                  
-                             
-        
-        <!-- /#page-content-wrapper -->
-
-   
-    <!-- /#wrapper -->
-</a>
-</cfif>
-
-<cfif #CGI.SCRIPT_NAME# eq '/allowance_form.cfm'>
-
-
-	<div class="row">
-		<h2>Add New Allowance</h2>
-		<hr/>
-		
-		 <div id="wrapper">
-        
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav" style="margin-left:0;">
-                <li class="sidebar-brand">
-                    
-                        <a href="#menu-toggle"  id="menu-toggle" style="margin-top:20px;float:right;" > <i class="fa fa-bars " style="font-size:20px !Important;" aria-hidden="true" aria-hidden="true">
-                        
-                        </i> 
-                    
-                </li>
-                <li>
-                    <a href="index.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Admin Login</span>  </a>
-                </li>
-           
-    
-    
-    <!---
-                <li>
-                    <a href="admin_login.cfm"> <i class="fa fa-play-circle-o " aria-hidden="true"> </i> <span style="margin-left:10px;"> Admin Log In</span> </a>
-                </li>
-                <li>
-                    <a href="member_login.cfm"> <i class="fa fa-puzzle-piece" aria-hidden="true"> </i> <span style="margin-left:10px;"> Member Log In</span> </a>
-                </li> --->
-          
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                  
-                             
-        
-        <!-- /#page-content-wrapper -->
-
-   
-    <!-- /#wrapper -->
-</a>
-</cfif>
-
-<cfif #CGI.SCRIPT_NAME# eq '/allowance_display.cfm'>
-
-
-	<div class="row">
-		<h2>Allowance Display</h2>
-		<hr/>
-		
-		 <div id="wrapper">
-        
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav" style="margin-left:0;">
-                <li class="sidebar-brand">
-                    
-                        <a href="#menu-toggle"  id="menu-toggle" style="margin-top:20px;float:right;" > <i class="fa fa-bars " style="font-size:20px !Important;" aria-hidden="true" aria-hidden="true">
-                        
-                        </i> 
-                    
-                </li>
-                <li>
-                    <a href="admin_index.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Admin LogIn</span>  </a>
-                </li>
-           
-    
-    
-    <!---
-                <li>
-                    <a href="admin_login.cfm"> <i class="fa fa-play-circle-o " aria-hidden="true"> </i> <span style="margin-left:10px;"> Admin Log In</span> </a>
-                </li>
-                <li>
-                    <a href="member_login.cfm"> <i class="fa fa-puzzle-piece" aria-hidden="true"> </i> <span style="margin-left:10px;"> Member Log In</span> </a>
-                </li> --->
-          
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                  
-                             
-        
-        <!-- /#page-content-wrapper -->
-
-   
-    <!-- /#wrapper -->
-</a>
-</cfif>
-
-<cfif #CGI.SCRIPT_NAME# eq '/temp_employee_delete.cfm'>
-
-
-	<div class="row">
-		<h2>Recycle Bin</h2>
-		<hr/>
-		
-		 <div id="wrapper">
-        
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav" style="margin-left:0;">
-                <li class="sidebar-brand">
-                    
-                        <a href="#menu-toggle"  id="menu-toggle" style="margin-top:20px;float:right;" > <i class="fa fa-bars " style="font-size:20px !Important;" aria-hidden="true" aria-hidden="true">
-                        
-                        </i> 
-                    
-                </li>
-                <li>
-                    <a href="admin_index.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Admin LogIn</span>  </a>
-                </li>
-           
-    
-    
-    <!---
-                <li>
-                    <a href="admin_login.cfm"> <i class="fa fa-play-circle-o " aria-hidden="true"> </i> <span style="margin-left:10px;"> Admin Log In</span> </a>
-                </li>
-                <li>
-                    <a href="member_login.cfm"> <i class="fa fa-puzzle-piece" aria-hidden="true"> </i> <span style="margin-left:10px;"> Member Log In</span> </a>
-                </li> --->
-          
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                  
-                             
-        
-        <!-- /#page-content-wrapper -->
-
-   
-    <!-- /#wrapper -->
-</a>
-</cfif>
-
-<cfif #CGI.SCRIPT_NAME# eq '/member_login.cfm'>
-
-
-	<div class="row">
-		<h2>Member LogIn</h2>
-		<hr/>
-		
-		 <div id="wrapper">
-        
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav" style="margin-left:0;">
-                <li class="sidebar-brand">
-                    
-                        <a href="#menu-toggle"  id="menu-toggle" style="margin-top:20px;float:right;" > <i class="fa fa-bars " style="font-size:20px !Important;" aria-hidden="true" aria-hidden="true">
-                        
-                        </i> 
-                    
-                </li>
-                <li>
-                    <a href="index.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Menu</span>  </a>
-                </li>
-           
-    
-    
-    <!---
-                <li>
-                    <a href="admin_login.cfm"> <i class="fa fa-play-circle-o " aria-hidden="true"> </i> <span style="margin-left:10px;"> Admin Log In</span> </a>
-                </li>
-                <li>
-                    <a href="member_login.cfm"> <i class="fa fa-puzzle-piece" aria-hidden="true"> </i> <span style="margin-left:10px;"> Member Log In</span> </a>
-                </li> --->
-          
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                  
-                             
-        
-        <!-- /#page-content-wrapper -->
-
-   
-    <!-- /#wrapper -->
-</a>
-</cfif>
-
-<cfif #CGI.SCRIPT_NAME# eq '/member_index.cfm'>
-
+        <cfelseif session.auth.role eq "member">
 
 	<div class="row">
 		<h2>Member Display</h2>
@@ -803,11 +321,15 @@ body {
                         </i> 
                     
                 </li>
+
+
                 <li>
-                    <a href="index.cfm?page_logout=#1#"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Menu</span>  </a>
+                    <a href="member_index.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Member Details</span>  </a>
                 </li>
-           
-    
+
+                <li>
+                    <a href="member_allowance.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Allowance</span>  </a>
+                </li>           
     
     <!---
                 <li>
@@ -827,13 +349,15 @@ body {
                 <div class="row">
                     <div class="col-lg-12">
                   
-                             
-        
         <!-- /#page-content-wrapper -->
 
-   
     <!-- /#wrapper -->
 </a>
+
+<cfelse>
+
+</cfif>
+
 </cfif>
 
 

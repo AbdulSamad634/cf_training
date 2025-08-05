@@ -210,6 +210,30 @@
 
 <cfoutput>
 
+<cfif structKeyExists(url, "page_logout")>
+<cfset StructClear(Session)>
+<cflocation  url="index.cfm" addtoken="no">
+</cfif>
+
+<cfif structkeyExists(session,"auth") >
+
+        <cfif session.auth.role eq "admin">
+
+                <cflocation  url="admin_index.cfm" addtoken="no">
+
+        </cfif>
+
+        <cfif session.auth.role eq "member">
+
+                <cflocation  url="member_index.cfm" addtoken="no">
+
+        </cfif>
+
+</cfif>
+
+
+      <!---  <cfdump var="#session#"> --->
+
          <div class="form-container">
 
             <form name="LoginForm" method="post" action="login.cfm">
