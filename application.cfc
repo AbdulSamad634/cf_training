@@ -41,7 +41,7 @@
       <cfset session.auth.FullName   = "">
       <cfset session.auth.Email   = "">
       <cfset session.auth.Username    = "">
-      <cfset session.auth.Passwrd    = "">
+      <cfset session.auth.Password    = "">
       <cfset session.auth.Role = "" >
       <cfset session.currentpage= "#CGI.SCRIPT_NAME#">
   
@@ -76,34 +76,43 @@
     <cfelseif len(input_Username) eq 0>
          <cfthrow message="Please enter Username">
     </cfif>
-    <cfquery name="getUser" datasource="web_project">
-        SELECT ID, FullName, email,role, Username, Passwrd
-         FROM user_form
-        WHERE Username = <cfqueryparam cfsqltype="cf_sql_varchar" value="#input_Username#" maxlength="255"> 
+    <cfquery name="getadmin" datasource="web_project">
+        SELECT ID, FullName, email, Username,Password, Role
+        FROM admin_users
+        WHERE Username = <cfqueryparam cfsqltype="cf_sql_varchar" value="#input_Username#" maxlength="255" > and password = <cfqueryparam cfsqltype="cf_sql_varchar" value="#input_Password#" maxlength="255">
     </cfquery>
-    <cfif getuser.recordCount eq 0>
+    <cfif getadmin.recordCount eq 1>
+      <cfset clearSessionVariables()>
+      <cfset SESSION.auth.isLoggedIn = "Yes">
+      <cfset SESSION.auth.ID     = getadmin.ID>
+      <cfset SESSION.auth.FullName  = getadmin.fullName>
+      <cfset SESSION.auth.Email = getadmin.Email>
+      <cfset SESSION.auth.Username  = getadmin.Username>
+      <cfset Session.auth.Password= getadmin.Password>
+      <cfset SESSION.auth.Role      = getadmin.Role>
+      <cflocation url="admin_index.cfm">
+      <cfreturn true>
+    </cfif>
+     <cfquery name="getmember" datasource="web_project">
+        SELECT ID, Employee_Name, email, Username, Password, Role
+         FROM member_users
+        WHERE  Username = <cfqueryparam cfsqltype="cf_sql_varchar" value="#input_Username#" maxlength="255" > and password = <cfqueryparam cfsqltype="cf_sql_varchar" value="#input_Password#" maxlength="255">
+    </cfquery>
+    <cfif getmember.recordCount eq 1>
+      <cfset clearSessionVariables()>
+      <cfset SESSION.auth.isLoggedIn = "Yes">
+      <cfset SESSION.auth.ID     = getmember.ID>
+      <cfset SESSION.auth.FullName  = getmember.employee_name>
+      <cfset SESSION.auth.Email = getmember.Email>
+      <cfset SESSION.auth.Username  = getmember.Username>
+      <cfset Session.auth.Password= getmember.Password>
+      <cfset SESSION.auth.Role      = getmember.Role>
+      <cflocation url="member_index.cfm">
+      <cfreturn true>
+    </cfif>
     <cfthrow message="Incorrect email address and/or password. Be sure to enter the correct, original email address with which you registered. Please type your password carefully.">
-    </cfif>
-    <!---
-      <cfif getuser.recordCount eq 1>
-    <cfthrow message="found correct email address and/or password.">
-    </cfif>
-    --->
-    <cfset clearSessionVariables()>
-    <cfset SESSION.auth.isLoggedIn = "Yes">
-    <cfset SESSION.auth.ID     = getUser.ID>
-    <cfset SESSION.auth.FullName  = getUser.fullName>
-    <cfset SESSION.auth.Username  = getUser.Username>
-    <cfset SESSION.auth.Email = getUser.Email>
-    <cfset SESSION.auth.Role      = getUser.Role>
-    <!--- Now that user is logged in, send her to web root --->
-    <!--- <cfdump var="#session#" label="SESSION in checkLogin()"> --->
-     <cfif Session.auth.Role eq 'admin' >
-         <cflocation url="admin_index.cfm">
-    <cfelse>   
-        <cflocation url="member_index.cfm">
-    </cfif>
     <cfreturn true>
+  
 </cffunction>
 <!--- close function checkLogin --->
 
@@ -128,7 +137,7 @@
 <!--- close function OnRequest --->
 
 
-<!--- My Earlier OnRequestStart Function
+<!--- My OWN / Previous OnRequestStart Function
 
 <!--- Pre-request processing ---> 
  <cffunction name="onRequestStart"  returnType="boolean" output="false" >
@@ -181,77 +190,15 @@
 
 </cffunction>
 
-
-
 --->
 
-
-
-<!--- close function checkLogin --->
-
-
-<!---
-<cffunction name="onRequestStart" returnType="boolean" output="true">
-    <cfif structKeyExists(form, "doLogin")>
-        <cfoutput><h2>Form Data</h2></cfoutput>
-        <cfdump var="#form#">
-        <cfabort>
-    </cfif>
-    <cfreturn true>
-</cffunction>
-
---->
-<!---
-
-<cffunction name="onRequest" returnType="void" output="true">
-    <cfargument name="targetPage" type="string" required="true">
-    
-    <!--- Skip footer/header when login page is being loaded --->
-    <cfif listLast(arguments.targetPage, "/") neq "login.cfm">
-        <cfinclude template="header.cfm">
-    </cfif>
-
-    <!--- Load requested page --->
-    <cfinclude template="#arguments.targetPage#">
-
-    <cfif listLast(arguments.targetPage, "/") neq "login.cfm">
-        <cfinclude template="footer.cfm">
-    </cfif>
-</cffunction>
---->
+<!--- My OWN /Previous OnRequest Function
 
 <cffunction name="onRequest" returnType="void" output="true">
 
-
-    <!--- If not logged in and not on login page, redirect to login --->
-    <cfif NOT structKeyExists(session, "auth") OR NOT session.auth.isLoggedIn>
-        <cfif CGI.SCRIPT_NAME neq "/index.cfm">
-            <cflocation url="index.cfm" addtoken="false">
-        </cfif>
-    </cfif>
-
-    <!--- Only show header/footer if NOT login page --->
-    <cfif CGI.SCRIPT_NAME neq "/index.cfm" AND structKeyExists(session, "auth") AND session.auth.isLoggedIn>
-        <cfinclude template="header.cfm">
-    </cfif>
-
-    <cfinclude template="#CGI.SCRIPT_NAME#">
-
-    <cfif CGI.SCRIPT_NAME neq "/index.cfm" AND structKeyExists(session, "auth") AND session.auth.isLoggedIn>
-        <cfinclude template="footer.cfm">
-    </cfif>
-</cffunction>
-
-
-
-
-<!---
-
-<cffunction name="onRequest" returnType="void" output="true">
-<!---
-<cfif not structKeyExists(session, 'auth.isloggedIn') and CGI.SCRIPT_NAME neq '/login.cfm'>
+<cfif not structKeyExists(session, 'auth.isloggedIn') and CGI.SCRIPT_NAME neq '/index.cfm'>
 TRUE
-            <cflocation  url="login.cfm" addtoken="false">
+            <cflocation  url="index.cfm" addtoken="false">
     <cfelse>
 <!---     <cftransaction>      --->
 
@@ -266,7 +213,7 @@ TRUE
 
         </cfif>
 
-        --->
+        <!---
 
        <cfif not structKeyExists(session, 'auth.isloggedIn') and CGI.SCRIPT_NAME neq '/login.cfm'>
             <cflocation  url="login.cfm" addtoken="false" >
@@ -279,8 +226,9 @@ TRUE
         <cfif structKeyExists(session, 'auth.isloggedIn')>
           <cfinclude  template="footer.cfm">
         </cfif>
-     
 
+        --->
+     
 </cffunction>
 
 --->
