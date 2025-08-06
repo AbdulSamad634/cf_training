@@ -256,6 +256,18 @@ body {
                         </i> 
                 </li>
                 <li>
+                    <a href="employee_display.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Show Employees</span>  </a>
+                </li>
+                <li>
+                    <a href="employee_form.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Add Employee</span>  </a>
+                </li>
+                <li>
+                    <a href="allowance_display.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Show Allowances</span>  </a>
+                </li>
+                <li>
+                    <a href="allowance_form.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Add Allowance</span>  </a>
+                </li>
+                <li>
                     <a href="new_user_form.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">New User</span>  </a>
                 </li>
                 <li>
@@ -263,7 +275,7 @@ body {
                 </li>
                 <li>
                 <li>
-                    <a href="admin_password.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Change Password</span>  </a>
+                    <a href="change_password.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Change Password</span>  </a>
                 </li>
                 <li>
                     <a href="index.cfm?page_logout=#1#"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Log Out</span>  </a>
@@ -299,7 +311,10 @@ body {
                     <a href="member_allowance.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Allowance</span>  </a>
                 </li>
                 <li>
-                    <a href="change_password.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Settings</span>  </a>
+                    <a href="change_member_password.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Settings</span>  </a>
+                </li>
+                <li>
+                    <a href="index.cfm?page_logout=#1#"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Log Out</span>  </a>
                 </li>           
              </ul>
              </div>

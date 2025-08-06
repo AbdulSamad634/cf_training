@@ -240,6 +240,27 @@ FALSE
 
 </cfif>
 
+
+
+<cfif isdefined("Old_Password")>
+        <cfif #session.auth.password# eq #Old_Password#>
+                <cfif #New_Password# eq #Confirm_Password#>
+                        <cfquery name="update_password" datasource="web_project">
+                                update member_users
+                                set password="#New_Password#"
+                                where username="#Session.auth.username#"
+                        </cfquery>
+                        <cfset session.auth.password = New_Password> 
+                         #session.auth.password#
+                <cfelse>
+                <cfthrow message="New Password does not match with Current Password">
+                </cfif>
+        <cfelse>
+                <cfthrow message="InCorrect Old Password">
+        </cfif>
+</cfif>
+
+
 <!---
 
 

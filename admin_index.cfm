@@ -100,14 +100,6 @@ p{
         </cfif>
 </cfif>
 
-
-
-
-
-
-
-
-
 <!---
 <cfif isdefined ("username")>
 
