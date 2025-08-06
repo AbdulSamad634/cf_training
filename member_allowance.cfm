@@ -49,7 +49,7 @@
      <cfquery name="Query_One" datasource="web_project">
 
                  select allowances.allowance_id, allowances.allowance_name, allowances.payment
-                 from user_form join employee_data on user_form.email = employee_data.email 
+                 from member_users join employee_data on member_users.email = employee_data.email 
                  join allowances_record on employee_Data.id = allowances_record.employee_id
                  join allowances on allowances_record.allowance_id = allowances.allowance_id            
                  where  employee_data.email = "#member_email#"

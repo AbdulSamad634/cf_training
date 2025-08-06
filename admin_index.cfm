@@ -73,14 +73,41 @@ p{
 <!--- <cfdump var="#session#"> --->
 
 
-
 <cfif structkeyExists(session,"auth") >
 
         <cfif session.auth.role eq "member">
 
-                        <cflocation  url="member_index.cfm" addtoken="no">
+                <cflocation  url="member_index.cfm" addtoken="no">
 
+</cfif>
+
+
+<cfif isdefined("Old_Password")>
+        <cfif #session.auth.password# eq #Old_Password#>
+                <cfif #New_Password# eq #Confirm_Password#>
+                        <cfquery name="update_password" datasource="web_project">
+                                update admin_users
+                                set password="#New_Password#"
+                                where username="#Session.auth.username#"
+                        </cfquery>
+                        <cfset session.auth.password = New_Password> 
+                        <!--- #session.auth.password# --->
+                <cfelse>
+                <cfthrow message="New Password does not match with Current Password">
+                </cfif>
+        <cfelse>
+                <cfthrow message="InCorrect Old Password">
         </cfif>
+</cfif>
+
+
+
+
+
+
+
+
+
 <!---
 <cfif isdefined ("username")>
 

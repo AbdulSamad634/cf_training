@@ -76,6 +76,8 @@
 
              </cfquery>
 
+             
+
              <!--- <cfdump var="#display_temporary_record#"> --->
 
                <table class="table table-success table-striped-columns">

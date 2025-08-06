@@ -249,10 +249,9 @@
                  class="form-input"
                  value=#My_Allowance_ID#
                  readonly
-                 placeholder="Enter Allowance ID"
+                 <!--- placeholder="Enter Allowance ID" --->
                  <!--- value=#My_ID#
                  readonly  --->
-                 
                  required
                  />
  
@@ -264,7 +263,7 @@
                  autocomplete="off"
                  class="form-input"
                  value=#My_Allowance_Name#
-                 placeholder="Enter allowance name"
+                 <!--- placeholder="Enter allowance name" --->
                  required
                  />
 

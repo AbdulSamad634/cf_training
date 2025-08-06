@@ -196,11 +196,6 @@
 
 <body>
 
-        <cfif session.auth.role eq "member">
-
-                        <cflocation  url="member_index.cfm" addtoken="no">
-
-        </cfif>
 
     <cfoutput>
 
@@ -208,7 +203,7 @@
 
          <div class="form-container">
 
-            <form action="allowance_display.cfm" method="POST">
+            <form action="admin_index.cfm" method="POST">
 
                  <div style="margin-bottom: 2rem">
                  <h2 class="form-title">Reset Your Password</h2>
@@ -217,46 +212,39 @@
                  </p>
                  </div>  
 
-                 <label for="" class="form-label">Enter new password</label>
+                 <label for="" class="form-label">Enter your old password</label>
                  <input
                  type="text"
-                 name="password"
+                 name="Old_Password"
                  id="id"
                  autocomplete="off"
                  class="form-input"
-                 value=#My_Allowance_ID#
-                 readonly
-                 placeholder="Enter Allowance ID"
+                 placeholder="Enter Old Password"
                  <!--- value=#My_ID#
                  readonly  --->
                  
                  required
                  />
  
-                 <label for="" class="form-label">Allowance Name</label>
+                 <label for="" class="form-label">New Password</label>
                  <input
                  type="text"
-                 name="Allowance_Name"
+                 name="New_Password"
                  id="Full Name"
                  autocomplete="off"
                  class="form-input"
-                 value=#My_Allowance_Name#
-                 placeholder="Enter allowance name"
+                 placeholder="Enter New Password"
                  required
                  />
 
-   
- 
-
-                 <label for="phone" class="form-label">Payment</label>
+                 <label for="Confirm_Password" class="form-label">Confirm Password</label>
                  <input
-                 type="number"
-                 name="Payment"
+                 type="text"
+                 name="Confirm_Password"
                  id="phone"
                  autocomplete="off"
                  class="form-input"
-                 value=#My_Payment#
-                 placeholder="Enter Payment"
+                 placeholder="Confirm Password"
                  <!--- value=#My_Phone# --->
                  required
                  />
@@ -264,7 +252,6 @@
 
                  <button class="form-btn">Submit</button>
 
-            
             </form>
 
                

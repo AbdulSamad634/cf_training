@@ -197,16 +197,17 @@ values (1,'PTI'),
 
     <cfoutput>
 
-<!---
+
+<!--- 
 
              <cfdump var="#session#"> 
 
             #session.auth.email#
             #session.auth.id#
 
-            --->
+            
 
-<!---            
+           
 
 <cfif structKeyExists(session, "auth" ) >
 TRUE
@@ -240,7 +241,7 @@ FALSE
 
 </cfif>
 
-<!---
+
 
 
         
@@ -338,9 +339,7 @@ FALSE
                  <a href="index.cfm?page_logout=#1#"><button class="btn btn-dark ">Log Out</button></a>
 
              </div>
---->
 
-        <img src="images/admin.jpeg" alt="Girl in a jacket" width="850" height="500">
 
     </cfoutput>
 

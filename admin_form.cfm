@@ -253,7 +253,7 @@
                  autocomplete="off"
                  class="form-input"
                  placeholder="Enter your ID"
-                 value=#My_ID#
+                 value="#My_ID#"
                  readonly
                  required
                  />
@@ -266,7 +266,7 @@
                  autocomplete="off"
                  class="form-input"
                  placeholder="Enter your full name"
-                 value=#My_FullName#
+                 value="#My_FullName#"
                  required
                  />
    
@@ -279,7 +279,7 @@
                  autocomplete="off"
                  class="form-input"
                  placeholder="Enter your email"
-                 value=#My_username#
+                 value="#My_username#"
                  required
                  />
 
@@ -291,7 +291,7 @@
                  autocomplete="off"
                  class="form-input"
                  placeholder="Enter your email"
-                 value=#My_Password#
+                 value="#My_Password#"
                  required
                  />
 

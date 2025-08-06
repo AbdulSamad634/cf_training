@@ -293,10 +293,13 @@ body {
                         </i> 
                 </li>
                 <li>
-                    <a href="member_index.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Member Details</span>  </a>
+                    <a href="member_display.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Member Details</span>  </a>
                 </li>
                 <li>
                     <a href="member_allowance.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Allowance</span>  </a>
+                </li>
+                <li>
+                    <a href="change_password.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Settings</span>  </a>
                 </li>           
              </ul>
              </div>

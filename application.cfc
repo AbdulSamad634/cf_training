@@ -94,7 +94,7 @@
       <cfreturn true>
     </cfif>
      <cfquery name="getmember" datasource="web_project">
-        SELECT ID, Employee_Name, email, Username, Password, Role
+        SELECT ID, FullName, email, Username, Password, Role
          FROM member_users
         WHERE  Username = <cfqueryparam cfsqltype="cf_sql_varchar" value="#input_Username#" maxlength="255" > and password = <cfqueryparam cfsqltype="cf_sql_varchar" value="#input_Password#" maxlength="255">
     </cfquery>
@@ -102,7 +102,7 @@
       <cfset clearSessionVariables()>
       <cfset SESSION.auth.isLoggedIn = "Yes">
       <cfset SESSION.auth.ID     = getmember.ID>
-      <cfset SESSION.auth.FullName  = getmember.employee_name>
+      <cfset SESSION.auth.FullName  = getmember.FullName>
       <cfset SESSION.auth.Email = getmember.Email>
       <cfset SESSION.auth.Username  = getmember.Username>
       <cfset Session.auth.Password= getmember.Password>
