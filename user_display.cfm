@@ -170,7 +170,7 @@ values (1,'PTI'),
 
                           select*
                           from member_users
-                          where admin_id = "#session.auth.ID#"
+                          where admin_id = "#session.auth.ID#" and isactive = 1
          </cfquery>
     
          <table class="table table-dark table-striped-columns">

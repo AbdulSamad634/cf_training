@@ -94,9 +94,9 @@
       <cfreturn true>
     </cfif>
      <cfquery name="getmember" datasource="web_project">
-        SELECT ID, FullName, email, Username, Password, Role
+        SELECT ID, FullName, email, Username, Password, Role, IsActive
          FROM member_users
-        WHERE  Username = <cfqueryparam cfsqltype="cf_sql_varchar" value="#input_Username#" maxlength="255" > and password = <cfqueryparam cfsqltype="cf_sql_varchar" value="#input_Password#" maxlength="255">
+        WHERE  Username = <cfqueryparam cfsqltype="cf_sql_varchar" value="#input_Username#" maxlength="255" > and password = <cfqueryparam cfsqltype="cf_sql_varchar" value="#input_Password#" maxlength="255"> and IsActive = 1
     </cfquery>
     <cfif getmember.recordCount eq 1>
       <cfset clearSessionVariables()>

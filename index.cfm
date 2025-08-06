@@ -242,14 +242,14 @@
                  <h2 class="form-title">Log In</h2>
                  </div>  
 
-                 <label for="UserName" class="form-label"></label>
+                 <label for="UserName" class="form-label">Username</label>
                  <input
                  type="text"
                  name="username"
                  id="username"
                  autocomplete="off"
                  class="form-input"
-                 placeholder="Name....."
+                 placeholder="username....."
                  size="30"
                  value=""
                  maxlength="256"
@@ -257,7 +257,7 @@
                  required
                  />
  
-                 <label for="Password" class="form-label">Password:</label>
+                 <label for="Password" class="form-label">Password</label>
                  <input
                  type="text"
                  name="passwrd"

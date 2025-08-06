@@ -273,7 +273,9 @@ body {
                 <li>
                     <a href="user_display.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Show All Users</span>  </a>
                 </li>
-                <li>
+                 <li>
+                    <a href="temp_user_delete.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Recycle Bin Users</span>  </a>
+                </li>
                 <li>
                     <a href="change_password.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Change Password</span>  </a>
                 </li>
