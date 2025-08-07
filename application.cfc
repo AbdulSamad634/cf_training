@@ -43,6 +43,7 @@
       <cfset session.auth.Username    = "">
       <cfset session.auth.Password    = "">
       <cfset session.auth.Role = "" >
+      <cfset session.auth.admin_id = "" >
       <cfset session.currentpage= "#CGI.SCRIPT_NAME#">
   
       </cffunction>
@@ -90,6 +91,7 @@
       <cfset SESSION.auth.Username  = getadmin.Username>
       <cfset Session.auth.Password= getadmin.Password>
       <cfset SESSION.auth.Role      = getadmin.Role>
+      <cfset session.auth.admin_id = getadmin.ID>
       <cflocation url="admin_index.cfm">
       <cfreturn true>
     </cfif>
@@ -107,6 +109,7 @@
       <cfset SESSION.auth.Username  = getmember.Username>
       <cfset Session.auth.Password= getmember.Password>
       <cfset SESSION.auth.Role      = getmember.Role>
+      <cfset session.auth.admin_id = getmember.admin_id>
       <cflocation url="member_index.cfm">
       <cfreturn true>
     </cfif>

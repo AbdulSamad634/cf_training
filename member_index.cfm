@@ -239,6 +239,10 @@ FALSE
         </cfif>
 
 </cfif>
+     <cfdump var="#session#">
+
+         <cfabort>
+
 
 
 

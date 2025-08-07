@@ -82,6 +82,18 @@
             </ol>
           </nav>
           <!-- /Breadcrumb -->
+
+          <cfdump var="#session#">
+        
+          <cfset full_name= "#session.auth.FullName#">
+          <cfoutput>
+        <h4>#full_name#</h4>
+        </cfoutput>
+          <cfabort>
+
+          --->
+
+          <!---
     
           <div class="row gutters-sm">
             <div class="col-md-4 mb-3">
@@ -90,15 +102,15 @@
                   <div class="d-flex flex-column align-items-center text-center">
                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
                     <div class="mt-3">
-                      <h4>John Doe</h4>
-                      <p class="text-secondary mb-1">Full Stack Developer</p>
-                      <!--- <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p> --->
-                      <!---<button class="btn btn-primary">Follow</button>
-                      <button class="btn btn-outline-primary">Message</button>--->
+                     <cfset full_name= "#session.auth.FullName#">
+                     <cfoutput>
+                     <h4>#full_name#</h4>
+                     </cfoutput>
                     </div>
                   </div>
                 </div>
               </div>
+              
                <div class="card mt-3">
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
@@ -124,6 +136,7 @@
                 </ul>
               </div>
             </div>
+        
             
             <div class="col-md-8">
               <div class="card mb-3">
@@ -133,7 +146,10 @@
                       <h6 class="mb-0">Full Name</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      Kenneth Valdez
+                       <cfset full_name= "#session.auth.FullName#">
+                     <cfoutput>
+                     <h4>#full_name#</h4>
+                     </cfoutput>
                     </div>
                   </div>
                   <hr>
@@ -142,7 +158,10 @@
                       <h6 class="mb-0">Email</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      fip@jukmuh.al
+                       <cfset email= "#session.auth.Email#">
+                     <cfoutput>
+                     <h4>#email#</h4>
+                     </cfoutput>
                     </div>
                   </div>
                   <hr>
@@ -151,7 +170,10 @@
                       <h6 class="mb-0">Username</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      (239) 816-9029
+                       <cfset username= "#session.auth.username#">
+                     <cfoutput>
+                     <h4>#username#</h4>
+                     </cfoutput>
                     </div>
                   </div>
                   <hr>
@@ -160,7 +182,10 @@
                       <h6 class="mb-0">Admin ID</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      (320) 380-4539
+                       <cfset adminid = "#session.auth.admin_id#">
+                     <cfoutput>
+                     <h4>#adminid#</h4>
+                     </cfoutput>
                     </div>
                   </div>
                   <hr>
@@ -169,7 +194,10 @@
                       <h6 class="mb-0">Role</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      Bay Area, San Francisco, CA
+                       <cfset full_name= "#session.auth.role#">
+                     <cfoutput>
+                     <h4>#role#</h4>
+                     </cfoutput>
                     </div>
                   </div>
                   <hr>
@@ -180,7 +208,7 @@
                   </div>
                 </div>
               </div>
-
+                <!---
               <div class="row gutters-sm">
                 <div class="col-sm-6 mb-3">
                   <div class="card h-100">
@@ -238,6 +266,7 @@
                 </div>
               </div>
 
+                --->
 
 
             </div>
@@ -245,5 +274,8 @@
 
         </div>
     </div>
+
+
+--->
 
 </body>

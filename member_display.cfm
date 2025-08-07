@@ -243,6 +243,9 @@ FALSE
 
 
 
+         <cfdump var="#session#">
+
+         <cfabort>
 
         
          <cfset myemail = #session.auth.email# >

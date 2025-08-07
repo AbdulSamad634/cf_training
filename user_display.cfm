@@ -156,7 +156,7 @@ values (1,'PTI'),
                      <cfquery datasource="web_project" name ="Insert_Data">
 
                         insert into member_users(id,fullname,email,username,password,admin_id)
-                        values("#ID#","#fullname#","#email#","#username#","#password#","#session.auth.ID#");
+                        values("#ID#","#fullname#","#email#","#username#","#password#","#session.auth.admin_ID#");
 
                      </cfquery>
 
