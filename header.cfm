@@ -280,7 +280,7 @@ body {
                     <a href="change_password.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Change Password</span>  </a>
                 </li>
                 <li>
-                    <a href="index.cfm?page_logout=#1#"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Log Out</span>  </a>
+                    <a href="index.cfm?page_logout=1" addtoken="no"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Log Out</span>  </a>
                 </li>
               </ul>
                 </div>
@@ -316,7 +316,10 @@ body {
                     <a href="change_member_password.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Settings</span>  </a>
                 </li>
                 <li>
-                    <a href="index.cfm?page_logout=#1#"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Log Out</span>  </a>
+                    <a href="member_profile.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Profile</span>  </a>
+                </li>
+                <li>
+                    <a href="index.cfm?page_logout=1"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Log Out</span>  </a>
                 </li>           
              </ul>
              </div>
