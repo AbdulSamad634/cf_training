@@ -6,8 +6,8 @@
             <title>  </title>
 
             <link href=	"https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" >
-        
-        <style>
+         
+         <style>
 
                 /* General Body Styles */
                 body {
@@ -190,95 +190,112 @@
                 }
                 }
 
-        </style>
+         </style>
 
 </head>
 
 <body>
 
-<!---
-<cfoutput>
-<h2>Login Page</h2>
-<form name="loginform" method="post" action="login.cfm">
-    Username: <input type="text" name="Username"><br>
-    Password: <input type="password" name="Passwrd"><br>
-    <input type="submit" name="doLogin" value="Login">
-</form>
-</cfoutput>
+      <cfoutput>
 
---->
+         <cfif structkeyExists(session,"auth")>
 
-<cfoutput>
+               <cfif session.auth.role eq "admin">
+               
+         <cfset My_ID ="#session.auth.ID#">
+         <cfset My_FullName = "#session.auth.fullname#">
+         <cfset My_Email = "#session.auth.email#">
+         <cfset My_UserName = "#session.auth.username#">
+         <cfset My_Password = "#session.auth.password#">
 
-
-<cfif structKeyExists(url, "page_logout")>
-<cfdump var="session">
-<cfset StructClear(Session)>
-<cflocation  url="index.cfm" addtoken="no">
-</cfif>
-
-<cfif structkeyExists(session,"auth") >
-
-        <cfif session.auth.role eq "admin">
-
-                <cflocation  url="admin/admin_index.cfm" addtoken="no">
-
-        </cfif>
-
-        <cfif session.auth.role eq "member">
-
-                <cflocation  url="\member\member_index.cfm" addtoken="no">
-
-        </cfif>
-
-</cfif>
-
-
-      <!---  <cfdump var="#session#"> --->
 
          <div class="form-container">
 
-            <form name="LoginForm" method="post" action="login.cfm">
+            <form enctype="multipart/form-data" action="/admin/update_admin_profile.cfm" method="POST">
 
                  <div style="margin-bottom: 2rem">
-                 <h2 class="form-title">Log In</h2>
+                 <h2 class="form-title">Profile</h2>
+                 <p class="form-desc">
+                    Member Profile
+                 </p>
                  </div>  
 
-                 <label for="UserName" class="form-label">Username</label>
+                    please upload an image
+                    <input type="file" name="fileUpload" onchange="loadFile(event)" >
+                    <img src="profile_pics/#session.auth.id#.jpg" alt="error" width=200px height 200px>
+                 
+
+                 <label for="" class="form-label">ID</label>
+                 <input
+                 type="number"
+                 name="ID"
+                 id="id"
+                 autocomplete="off"
+                 class="form-input"
+                 placeholder="Enter ID"
+                 value=#My_ID#
+                 readonly
+                 />
+
+                 <label for="" class="form-label">Full Name</label>
+                 <input
+                 type="text"
+                 name="fullname"
+                 id="Full Name"
+                 autocomplete="off"
+                 class="form-input"
+                 placeholder="Enter full name"
+                 value=#My_FullName#
+                 >
+ 
+                 <label for="email" class="form-label">Email Address</label>
+                 <input
+                 type="email"
+                 name="email"
+                 id="email"
+                 autocomplete="off"
+                 class="form-input"
+                 placeholder="Enter email"
+                 value=#My_Email#
+                 >
+
+                 <label for="email" class="form-label">Username</label>
                  <input
                  type="text"
                  name="username"
-                 id="username"
+                 id="email"
                  autocomplete="off"
                  class="form-input"
-                 placeholder="username....."
-                 size="30"
-                 value=""
-                 maxlength="256"
-                 tabindex="1"
-                 required
-                 />
- 
-                 <label for="Password" class="form-label">Password</label>
+                 placeholder="Enter username"
+                 value=#My_username#
+                 >
+
+                 <label for="email" class="form-label">Password</label>
                  <input
                  type="text"
-                 name="passwrd"
-                 id="Passwrd"
-                 size="30"
+                 name="password"
+                 id="email"
+                 autocomplete="off"
+                 class="form-input"
+                 placeholder="Enter password"
                  value=""
-                 maxlength="256"
-                 tabindex="2"
-                 />
-              
-                 <button name="doLogin" type="submit" class="form-btn" tabindex="3">Click to log in.</button>
+                 >
+
+
             
-        
+                 <button class="form-btn">Submit</button>
+            
             </form>
 
          </div>
 
-</cfoutput>
+         </cfif>
+
+   </cfif>
 
 
+    </cfoutput>
+
+</body>
 
 

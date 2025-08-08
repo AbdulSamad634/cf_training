@@ -250,7 +250,7 @@
 
       <div class="col-3">
           <div class="row">
-          <img src="/admin/profile_pics/#session.auth.id#.jpg" alt="error" width=50px height=240px>
+          <img src="profile_pics/#session.auth.id#.jpg" alt="error" width=50px height=240px>
           </div>
           <div>
           <h5 class="card-title">#session.auth.fullname#</h5>
@@ -338,7 +338,7 @@
 
                   <div class="row">
                     <div class="col-sm-12">
-                      <a class="btn btn-info " target="__blank" href="/member/member_profile_edit.cfm">Edit</a>
+                      <a class="btn btn-info " target="__blank" href="admin_profile_edit.cfm">Edit</a>
                     </div>
                   </div>
 
@@ -513,7 +513,8 @@ where admin_id = #session.auth.admin_id#
 
      <div class="col-3">
           <div class="row">
-          <img src="/member/profile_pics/#get_users.id#.jpg" alt="error" width=50px height=240px>
+          <img src="../member/profile_pics/#get_users.id#.jpg" alt="error" width=50px height=240px>
+
           </div>
           <div>
           <h5 class="card-title">"#get_users.fullname#"</h5>
@@ -601,7 +602,7 @@ where admin_id = #session.auth.admin_id#
 
                   <div class="row">
                     <div class="col-sm-12">
-                      <a class="btn btn-info " target="__blank" href="/member/member_profile_edit.cfm">Edit</a>
+                      <a class="btn btn-info " target="__blank" href="member_profile_edit.cfm?ID=#get_users.ID#">Edit</a>
                     </div>
                   </div>
 

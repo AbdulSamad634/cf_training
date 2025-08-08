@@ -196,66 +196,41 @@
 
 <body>
 
-        <cfif session.auth.role eq "member">
+      <cfoutput>
 
-                        <cflocation  url="\member\member_index.cfm" addtoken="no">
+         <cfif structKeyExists(session, "auth") AND session.auth.role eq "admin">
 
-        </cfif>
+         <cfif isdefined("ID")>
 
-    <cfoutput>
+            <cfquery name="find_member" datasource="web_project">
+                select*
+                from member_users
+                where ID=#ID#
+            </cfquery>
 
+         <cfloop query="find_member">
+            <cfset My_ID ="#ID#">
+            <cfset My_FullName = "#fullname#">
+            <cfset My_Email = "#email#">
+            <cfset My_UserName = "#username#">
+            <cfset My_Password = "#password#">
+         </cfloop>
 
+        <div class="form-container">
 
-            <cfdump var="#session#">
-
-         <cfset My_ID ="">
-         <cfset My_FullName = "">
-         <cfset My_Email = "">
-         <cfset My_UserName = "">
-         <cfset My_Password = "">
-
-         <cfset mycheck = #structKeyExists(url,"ID")# >
-
-         <cfif mycheck eq true>
-
-             <cfset rowID = URL.ID > 
-
-             <cfquery name="User_Query" datasource ="web_project">
-
-                 select *
-                 from member_users
-                 where ID=#rowID#
-
-             </cfquery>  
-
-             <cfloop query="User_Query">
-
-                    <cfset My_ID ="#ID#">
-                    <cfset My_FullName = "#fullname#">
-                    <cfset My_Email = "#email#">
-                    <cfset My_UserName = "#username#">
-                    <cfset My_Password = "#password#">
-
-
-                   <!--------------------------------------------------------------------
-                         Department ID : #Department_ID#
-                    --------------------------------------------------------------------- --->
-
-             </cfloop> 
-
-         </cfif>
-
-         <div class="form-container">
-
-            <form action="/admin/admin_users/user_display.cfm" method="POST">
+            <form enctype="multipart/form-data" action="update_member_profile.cfm" method="POST">
 
                  <div style="margin-bottom: 2rem">
-                 <h2 class="form-title">User Data Input Form</h2>
+                 <h2 class="form-title">Profile</h2>
                  <p class="form-desc">
-                    Please provide required details below.
+                    Member Profile
                  </p>
                  </div>  
 
+                    please upload an image
+                    <input type="file" name="fileUpload" onchange="loadFile(event)" >
+                    <img src="../member/profile_pics/#session.auth.id#.jpg" alt="error" width=200px height 200px>
+                 
 
                  <label for="" class="form-label">ID</label>
                  <input
@@ -264,12 +239,10 @@
                  id="id"
                  autocomplete="off"
                  class="form-input"
-                 placeholder="Enter your ID"
+                 placeholder="Enter ID"
                  value=#My_ID#
                  readonly
-                 required
                  />
-
 
                  <label for="" class="form-label">Full Name</label>
                  <input
@@ -278,12 +251,9 @@
                  id="Full Name"
                  autocomplete="off"
                  class="form-input"
-                 placeholder="Enter your full name"
+                 placeholder="Enter full name"
                  value=#My_FullName#
-                 required
-                 />
-
-   
+                 >
  
                  <label for="email" class="form-label">Email Address</label>
                  <input
@@ -292,10 +262,9 @@
                  id="email"
                  autocomplete="off"
                  class="form-input"
-                 placeholder="Enter your email"
+                 placeholder="Enter email"
                  value=#My_Email#
-                 required
-                 />
+                 >
 
                  <label for="email" class="form-label">Username</label>
                  <input
@@ -304,10 +273,9 @@
                  id="email"
                  autocomplete="off"
                  class="form-input"
-                 placeholder="Enter your email"
-                 value=#My_Email#
-                 required
-                 />
+                 placeholder="Enter username"
+                 value=#My_username#
+                 >
 
                  <label for="email" class="form-label">Password</label>
                  <input
@@ -316,10 +284,9 @@
                  id="email"
                  autocomplete="off"
                  class="form-input"
-                 placeholder="Enter your email"
+                 placeholder="Enter password"
                  value=""
-                 required
-                 />
+                 >
 
 
             
@@ -328,6 +295,11 @@
             </form>
 
          </div>
+
+   </cfif>
+
+   </cfif>
+
 
     </cfoutput>
 
