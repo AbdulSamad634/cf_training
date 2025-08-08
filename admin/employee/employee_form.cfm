@@ -198,16 +198,22 @@
 
         <cfif session.auth.role eq "member">
 
-                        <cflocation  url="member_index.cfm" addtoken="no">
+                        <cflocation  url="\member\member_index.cfm" addtoken="no">
 
         </cfif>
 
     <cfoutput>
-         <cfset My_ID ="">
-         <cfset My_FullName = "">
+
+         <cfset My_ID = "">
+         <cfset My_Employee_Name = "">
+         <cfset My_Gender = "">
          <cfset My_Email = "">
-         <cfset My_UserName = "">
-         <cfset My_Password = "">
+         <cfset My_Phone = "">
+         <cfset My_Joining_Date = "">
+         <cfset My_Designation = "">
+         <cfset My_Department_ID = "">
+         <cfset My_Experience = "">
+         <cfset My_Salary = "">
 
          <cfset mycheck = #structKeyExists(url,"ID")# >
 
@@ -215,21 +221,26 @@
 
              <cfset rowID = URL.ID > 
 
-             <cfquery name="User_Query" datasource ="web_project">
+             <cfquery name="EmployeeQuery" datasource ="web_project">
 
                  select *
-                 from member_users
+                 from Employee_Data 
                  where ID=#rowID#
 
              </cfquery>  
 
-             <cfloop query="User_Query">
+             <cfloop query="EmployeeQuery">
 
-                    <cfset My_ID ="#ID#">
-                    <cfset My_FullName = "#fullname#">
-                    <cfset My_Email = "#email#">
-                    <cfset My_UserName = "#username#">
-                    <cfset My_Password = "#password#">
+                 <cfset My_ID = #ID#>
+                 <cfset My_Employee_Name = #Employee_Name#>
+                 <cfset My_Gender = #Gender#>
+                 <cfset My_Email = #Email#>
+                 <cfset My_Phone = #Phone#>
+                 <cfset My_Joining_Date = #DateFormat(#Joining_Date#,"yyyy-mm-dd")#>
+                 <cfset My_Designation = #Designation#>
+                 <cfset My_Department_ID = #Department_ID#>
+                 <cfset My_Experience = #Experience#>
+                 <cfset My_Salary = #Salary#>
 
 
                    <!--------------------------------------------------------------------
@@ -242,15 +253,14 @@
 
          <div class="form-container">
 
-            <form action="user_display.cfm" method="POST">
+            <form action="/admin/employee/employee_display.cfm" method="POST">
 
                  <div style="margin-bottom: 2rem">
-                 <h2 class="form-title">User Data Input Form</h2>
+                 <h2 class="form-title">Employee Data Input Form</h2>
                  <p class="form-desc">
-                    Please provide required details below.
+                    Please provide your details below.
                  </p>
                  </div>  
-
 
                  <label for="" class="form-label">ID</label>
                  <input
@@ -264,26 +274,31 @@
                  readonly
                  required
                  />
-
-
+ 
                  <label for="" class="form-label">Full Name</label>
                  <input
                  type="text"
-                 name="fullname"
+                 name="Employee_Name"
                  id="Full Name"
                  autocomplete="off"
                  class="form-input"
                  placeholder="Enter your full name"
-                 value=#My_FullName#
+                 value=#My_Employee_Name#
                  required
                  />
+
+                 <label for="country" class="form-label">Gender</label>
+                 <select name="Gender" id="gender" class="form-select" autocomplete="off" value=#My_Gender# required>
+                 <option value="Male">Male</option> <!--- It means Male is displayed as option and value="Male" means when this option is selected, this value (i.e. Male is sanded to POST Method) --->
+                 <option value="Female">Female</option>
+                 </select>
 
    
  
                  <label for="email" class="form-label">Email Address</label>
                  <input
                  type="email"
-                 name="email"
+                 name="Email"
                  id="email"
                  autocomplete="off"
                  class="form-input"
@@ -292,31 +307,134 @@
                  required
                  />
 
-                 <label for="email" class="form-label">Username</label>
+                 <label for="phone" class="form-label">Phone Number</label>
                  <input
-                 type="text"
-                 name="username"
-                 id="email"
+                 type="tel"
+                 name="Phone"
+                 id="phone"
                  autocomplete="off"
                  class="form-input"
-                 placeholder="Enter your email"
-                 value=#My_Email#
-                 required
-                 />
-
-                 <label for="email" class="form-label">Password</label>
-                 <input
-                 type="text"
-                 name="password"
-                 id="email"
-                 autocomplete="off"
-                 class="form-input"
-                 placeholder="Enter your email"
-                 value=""
+                 placeholder="Enter your phone number"
+                 value=#My_Phone#
                  required
                  />
 
 
+                 <label for="phone" class="form-label">Joining Date</label>
+                 <input
+                 type="Date"
+                 name="Joining_Date"
+                 id="joiningdate"
+                 autocomplete="off"
+                 class="form-input"
+                 placeholder="Enter your joining date"
+                 value=#My_Joining_Date#
+                 <!---  value="#DateFormat(#Joining_Date#,"yyyy-mm-dd")#" --->
+                 required
+                 />
+
+                 <label for="" class="form-label">Designation</label>
+                 <input
+                 type="text"
+                 name="Designation"
+                 id="designation"
+                 autocomplete="off"
+                 class="form-input"
+                 placeholder="Enter your designation"
+                 value=#My_Designation#
+                 required
+                 />
+
+                 <cfquery name ="GetDeptID" datasource="web_project" >
+
+                            select*
+                            from Department
+
+                 </cfquery>
+
+                 <!---
+                    -----------------------------------------------------------------
+                         Department NAME : #GetDeptName.Dept_Name#
+                    -----------------------------------------------------------------    
+
+                    ---> 
+                                  
+                 <label for="department" class="form-label">Department Name</label>
+                 <select name="Department_ID" id="department_name" class="form-select" autocomplete="off"  required>
+                 
+                 <cfloop query ="GetDeptID">
+                    <option <cfif My_Department_ID eq  getDeptid.Dept_ID> selected</cfif> value="#Dept_ID#">#Dept_Name#</option>
+                 </cfloop>
+                 </select>
+
+                
+                 <label for="" class="form-label">Experience</label>
+                 <input
+                 type="number"
+                 name="Experience"
+                 id="experience"
+                 class="form-input"
+                 placeholder="Enter your experience"
+                 value=#My_Experience#
+                 required
+                 />
+
+                 <label for="" class="form-label">Salary</label>
+                 <input
+                 type="number"
+                 name="Salary"
+                 id="salary"
+                 class="form-input"
+                 placeholder="Enter your salary"
+                 value=#My_Salary#
+                 required
+                 />
+  
+                 <cfquery name ="Get_All_Allowances" datasource ="web_project" >
+
+                        select *
+                        from Allowances
+                
+                 </cfquery>
+
+                 <label for="" class="form-label">Choose Allowances</label>
+            
+                 <div class="form-checkbox-row">
+
+                 <cfloop query="Get_All_Allowances">
+
+                     <input type="checkbox" name= "Allowance_ID"
+
+                     <cfif mycheck eq true>
+                 
+                        <cfquery name ="Get_Employees_Allowances" datasource ="web_project" >
+
+                             select *
+                             from Allowances_record join Allowances on Allowances.Allowance_ID = Allowances_Record.Allowance_ID
+                             where Allowances_Record.Employee_ID = #MY_ID#
+            
+                         </cfquery>
+
+                         <!---  <cfdump var="#Get_All_Allowances#">
+                         <cfdump var="#Get_Employees_Allowances#">  --->
+
+                         <cfloop query="Get_Employees_Allowances">
+
+                             <cfif #Get_All_Allowances.Allowance_ID# eq #Get_Employees_Allowances.Allowance_ID# >
+                                    checked
+                             </cfif>
+
+                         </cfloop>
+
+                     </cfif>
+
+                     value="#Get_All_Allowances.Allowance_ID#" >
+
+                     #Get_All_Allowances.Allowance_Name#<br>  
+
+                 </cfloop>
+
+                 </div>    
             
                  <button class="form-btn">Submit</button>
             

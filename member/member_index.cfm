@@ -234,14 +234,12 @@ FALSE
 
         <cfif session.auth.role eq "admin">
 
-                <cflocation  url="admin_index.cfm" addtoken="no">
+                <cflocation  url="admin/admin_index.cfm" addtoken="no">
 
         </cfif>
 
 </cfif>
-     <cfdump var="#session#">
 
-         <cfabort>
 
 
 
@@ -365,7 +363,7 @@ FALSE
              </div>
 --->
 
-        <img src="images/admin.jpeg" alt="Girl in a jacket" width="850" height="500">
+        <img src="/member/images/admin.jpeg" alt="Girl in a jacket" width="850" height="500">
 
     </cfoutput>
 

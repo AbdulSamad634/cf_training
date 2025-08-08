@@ -256,31 +256,34 @@ body {
                         </i> 
                 </li>
                 <li>
-                    <a href="employee_display.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Show Employees</span>  </a>
+                    <a href="/admin/employee/employee_display.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Show Employees</span>  </a>
                 </li>
                 <li>
-                    <a href="employee_form.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Add Employee</span>  </a>
+                    <a href="/admin/employee/employee_form.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Add Employee</span>  </a>
                 </li>
                 <li>
-                    <a href="allowance_display.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Show Allowances</span>  </a>
+                    <a href="/admin/allowance/allowance_display.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Show Allowances</span>  </a>
                 </li>
                 <li>
-                    <a href="allowance_form.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Add Allowance</span>  </a>
+                    <a href="/admin/allowance/allowance_form.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Add Allowance</span>  </a>
                 </li>
                 <li>
-                    <a href="new_user_form.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">New User</span>  </a>
+                    <a href="/admin/admin_users/new_user_form.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">New User</span>  </a>
                 </li>
                 <li>
-                    <a href="user_display.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Show All Users</span>  </a>
+                    <a href="/admin/admin_users/user_display.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Show All Users</span>  </a>
                 </li>
                  <li>
-                    <a href="temp_user_delete.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Recycle Bin Users</span>  </a>
+                    <a href="/admin/admin_users/temp_user_delete.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Recycle Bin Users</span>  </a>
                 </li>
                 <li>
-                    <a href="change_password.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Change Password</span>  </a>
+                    <a href="/admin/change_password.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Change Password</span>  </a>
                 </li>
                 <li>
-                    <a href="index.cfm?page_logout=1" addtoken="no"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Log Out</span>  </a>
+                    <a href="/admin/admin_profile_view.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Profile</span>  </a>
+                </li>
+                <li>
+                    <a href="../index.cfm?page_logout=#1#" addtoken="no"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Log Out</span>  </a>
                 </li>
               </ul>
                 </div>
@@ -307,19 +310,20 @@ body {
                         </i> 
                 </li>
                 <li>
-                    <a href="member_display.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Member Details</span>  </a>
+                    <a href="\member\member_display.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Member Details</span>  </a>
                 </li>
                 <li>
-                    <a href="member_allowance.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Allowance</span>  </a>
+                    <a href="/member/member_allowance.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Allowance</span>  </a>
                 </li>
                 <li>
-                    <a href="change_member_password.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Settings</span>  </a>
+                    <a href="/member/change_member_password.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Settings</span>  </a>
                 </li>
                 <li>
-                    <a href="member_profile.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Profile</span>  </a>
+                    <a href="\member\member_profile_view.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Profile</span>  </a>
                 </li>
                 <li>
-                    <a href="index.cfm?page_logout=1"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Log Out</span>  </a>
+
+                    <a href="../index.cfm?page_logout=#1#"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Log Out</span>  </a>
                 </li>           
              </ul>
              </div>

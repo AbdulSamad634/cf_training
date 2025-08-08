@@ -41,7 +41,7 @@
 
         <cfif session.auth.role eq "member">
 
-                        <cflocation  url="member_index.cfm" addtoken="no">
+                        <cflocation  url="\member\member_index.cfm" addtoken="no">
 
         </cfif>
 
@@ -124,7 +124,7 @@
                     </td>
                     <td>
     
-                     <a href="allowance_form.cfm?Allowance_ID=#Allowance_ID#"><button class="btn btn-danger">Edit</button></a>
+                     <a href="/admin/allowance/allowance_form.cfm?Allowance_ID=#Allowance_ID#"><button class="btn btn-danger">Edit</button></a>
             
                     </td>
                     </tr>

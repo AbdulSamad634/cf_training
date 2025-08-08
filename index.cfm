@@ -220,13 +220,13 @@
 
         <cfif session.auth.role eq "admin">
 
-                <cflocation  url="admin_index.cfm" addtoken="no">
+                <cflocation  url="admin/admin_index.cfm" addtoken="no">
 
         </cfif>
 
         <cfif session.auth.role eq "member">
 
-                <cflocation  url="member_index.cfm" addtoken="no">
+                <cflocation  url="\member\member_index.cfm" addtoken="no">
 
         </cfif>
 

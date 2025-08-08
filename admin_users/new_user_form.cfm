@@ -196,34 +196,66 @@
 
 <body>
 
-      <cfoutput>
+        <cfif session.auth.role eq "member">
 
-         <cfif structkeyExists(session,"auth")>
+                        <cflocation  url="\member\member_index.cfm" addtoken="no">
 
-               <cfif session.auth.role eq "member">
-               
-         <cfset My_ID ="#session.auth.ID#">
-         <cfset My_FullName = "#session.auth.fullname#">
-         <cfset My_Email = "#session.auth.email#">
-         <cfset My_UserName = "#session.auth.username#">
-         <cfset My_Password = "#session.auth.password#">
+        </cfif>
 
+    <cfoutput>
+
+
+
+            <cfdump var="#session#">
+
+         <cfset My_ID ="">
+         <cfset My_FullName = "">
+         <cfset My_Email = "">
+         <cfset My_UserName = "">
+         <cfset My_Password = "">
+
+         <cfset mycheck = #structKeyExists(url,"ID")# >
+
+         <cfif mycheck eq true>
+
+             <cfset rowID = URL.ID > 
+
+             <cfquery name="User_Query" datasource ="web_project">
+
+                 select *
+                 from member_users
+                 where ID=#rowID#
+
+             </cfquery>  
+
+             <cfloop query="User_Query">
+
+                    <cfset My_ID ="#ID#">
+                    <cfset My_FullName = "#fullname#">
+                    <cfset My_Email = "#email#">
+                    <cfset My_UserName = "#username#">
+                    <cfset My_Password = "#password#">
+
+
+                   <!--------------------------------------------------------------------
+                         Department ID : #Department_ID#
+                    --------------------------------------------------------------------- --->
+
+             </cfloop> 
+
+         </cfif>
 
          <div class="form-container">
 
-            <form enctype="multipart/form-data" action="upload_profile.cfm" method="POST">
+            <form action="/admin/admin_users/user_display.cfm" method="POST">
 
                  <div style="margin-bottom: 2rem">
-                 <h2 class="form-title">Profile</h2>
+                 <h2 class="form-title">User Data Input Form</h2>
                  <p class="form-desc">
-                    Member Profile
+                    Please provide required details below.
                  </p>
                  </div>  
 
-                    please upload an image
-                    <input type="file" name="fileUpload">
-                    <!--- <input type="submit" value="Upload File">  --->
-                 
 
                  <label for="" class="form-label">ID</label>
                  <input
@@ -232,10 +264,12 @@
                  id="id"
                  autocomplete="off"
                  class="form-input"
-                 placeholder="Enter ID"
+                 placeholder="Enter your ID"
                  value=#My_ID#
                  readonly
+                 required
                  />
+
 
                  <label for="" class="form-label">Full Name</label>
                  <input
@@ -244,9 +278,12 @@
                  id="Full Name"
                  autocomplete="off"
                  class="form-input"
-                 placeholder="Enter full name"
+                 placeholder="Enter your full name"
                  value=#My_FullName#
-                 >
+                 required
+                 />
+
+   
  
                  <label for="email" class="form-label">Email Address</label>
                  <input
@@ -255,9 +292,10 @@
                  id="email"
                  autocomplete="off"
                  class="form-input"
-                 placeholder="Enter email"
+                 placeholder="Enter your email"
                  value=#My_Email#
-                 >
+                 required
+                 />
 
                  <label for="email" class="form-label">Username</label>
                  <input
@@ -266,9 +304,10 @@
                  id="email"
                  autocomplete="off"
                  class="form-input"
-                 placeholder="Enter username"
-                 value=#My_username#
-                 >
+                 placeholder="Enter your email"
+                 value=#My_Email#
+                 required
+                 />
 
                  <label for="email" class="form-label">Password</label>
                  <input
@@ -277,9 +316,10 @@
                  id="email"
                  autocomplete="off"
                  class="form-input"
-                 placeholder="Enter password"
+                 placeholder="Enter your email"
                  value=""
-                 >
+                 required
+                 />
 
 
             
@@ -288,11 +328,6 @@
             </form>
 
          </div>
-
-         </cfif>
-
-   </cfif>
-
 
     </cfoutput>
 

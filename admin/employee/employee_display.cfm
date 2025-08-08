@@ -103,7 +103,7 @@ values (1,'PTI'),
 
         <cfif session.auth.role eq "member">
 
-                        <cflocation  url="member_index.cfm" addtoken="no">
+                        <cflocation  url="\member\member_index.cfm" addtoken="no">
 
         </cfif>
 
@@ -274,8 +274,8 @@ values (1,'PTI'),
 
                     <!--- <input class="btn btn-danger" type="button" value="Edit" onclick="location.href='form.cfm'"> --->
 
-                     <a href="employee_form.cfm?ID=#ID#"><button class="btn btn-success">Edit</button></a>
-                     <a href="temp_employee_delete.cfm?ID=#ID#"><button class="btn btn-danger">Delete</button></a>
+                     <a href="/admin/employee/employee_form.cfm?ID=#ID#"><button class="btn btn-success">Edit</button></a>
+                     <a href="/admin/employee/temp_employee_delete.cfm?ID=#ID#"><button class="btn btn-danger">Delete</button></a>
             
                     </td>
                     </tr>

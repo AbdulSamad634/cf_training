@@ -1,7 +1,7 @@
     <cfif structKeyExists(form, "fileUpload") and len(trim(form.fileUpload))>
         <cffile action="upload"
                 fileField="fileUpload"
-                destination="D:\git\cf_training\"
+                destination="D:\git\cf_training\member\profile_pics\#session.auth.id#.jpg"
                 nameconflict="overwrite"
                 result="uploadResult" >
     </cfif>
@@ -14,7 +14,13 @@
 
 </cfquery>
 
-<cflocation  url= "member_profile.cfm" addtoken="no">
+
+<cflocation  url= "member_profile_view.cfm" addtoken="no">
+
+
+
+
+
 
 <!---        <img src="D:\git\cf_training\fileUpload" alt="Girl in a jacket" width="50" height="50"> --->
 

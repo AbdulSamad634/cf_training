@@ -6,8 +6,8 @@
             <title>  </title>
 
             <link href=	"https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" >
-         
-         <style>
+        
+        <style>
 
                 /* General Body Styles */
                 body {
@@ -190,116 +190,71 @@
                 }
                 }
 
-         </style>
+        </style>
 
 </head>
 
 <body>
 
-        <cfif session.auth.role eq "meber">
-
-                        <cflocation  url="member_index.cfm" addtoken="no">
-
-        </cfif>
 
     <cfoutput>
 
-         <cfset My_ID = "">
-         <cfset My_FullName = "">
-         <cfset My_Email = "">
-         <cfset My_Username = "">
-         <cfset My_Password = "">
-  
-         <cfif session.auth.role eq "member">
 
-                        <cflocation  url="member_index.cfm" addtoken="no">
-
-         </cfif>
-
-         
-         <cfif session.auth.role eq "admin">
-
-                 <cfset My_ID = #session.auth.ID#>
-                 <cfset My_FullName= #session.auth.fullname#>
-                 <cfset My_Email = #session.auth.email#>
-                 <cfset My_Username= #session.auth.username#>
-                 <cfset My_Password = #session.auth.password#>
-
-
-                   <!--------------------------------------------------------------------
-                         Department ID : #Department_ID#
-                    --------------------------------------------------------------------- --->
-
-             </cfloop> 
-
-         </cfif>
 
          <div class="form-container">
 
-            <form action="admin_update.cfm" method="POST">
+            <form action="\member\member_index.cfm" method="POST">
 
                  <div style="margin-bottom: 2rem">
-                 <h2 class="form-title">Admin Data Edit Form</h2>
+                 <h2 class="form-title">Reset Your Password</h2>
                  <p class="form-desc">
-                    Carefully make changes.
+                
                  </p>
                  </div>  
 
-                 <label for="" class="form-label">ID</label>
+                 <label for="" class="form-label">Enter your old password</label>
                  <input
-                 type="number"
-                 name="ID"
+                 type="text"
+                 name="Old_Password"
                  id="id"
                  autocomplete="off"
                  class="form-input"
-                 placeholder="Enter your ID"
-                 value="#My_ID#"
-                 readonly
+                 placeholder="Enter Old Password"
+                 <!--- value=#My_ID#
+                 readonly  --->
+                 
                  required
                  />
  
-                 <label for="" class="form-label">Full Name</label>
+                 <label for="" class="form-label">New Password</label>
                  <input
                  type="text"
-                 name="Employee_Name"
+                 name="New_Password"
                  id="Full Name"
                  autocomplete="off"
                  class="form-input"
-                 placeholder="Enter your full name"
-                 value="#My_FullName#"
+                 placeholder="Enter New Password"
                  required
                  />
-   
- 
-                 <label for="email" class="form-label">User Name</label>
+
+                 <label for="Confirm_Password" class="form-label">Confirm Password</label>
                  <input
-                 type="email"
-                 name="Email"
-                 id="email"
+                 type="text"
+                 name="Confirm_Password"
+                 id="phone"
                  autocomplete="off"
                  class="form-input"
-                 placeholder="Enter your email"
-                 value="#My_username#"
-                 required
-                 />
-
-                 <label for="email" class="form-label">Password</label>
-                 <input
-                 type="email"
-                 name="Email"
-                 id="email"
-                 autocomplete="off"
-                 class="form-input"
-                 placeholder="Enter your email"
-                 value="#My_Password#"
+                 placeholder="Confirm Password"
+                 <!--- value=#My_Phone# --->
                  required
                  />
 
 
-            
                  <button class="form-btn">Submit</button>
-            
+
             </form>
+
+               
 
          </div>
 

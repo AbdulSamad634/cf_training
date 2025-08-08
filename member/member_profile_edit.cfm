@@ -6,8 +6,8 @@
             <title>  </title>
 
             <link href=	"https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" >
-        
-        <style>
+         
+         <style>
 
                 /* General Body Styles */
                 body {
@@ -190,73 +190,109 @@
                 }
                 }
 
-        </style>
+         </style>
 
 </head>
 
 <body>
 
+      <cfoutput>
 
-    <cfoutput>
+         <cfif structkeyExists(session,"auth")>
 
+               <cfif session.auth.role eq "member">
+               
+         <cfset My_ID ="#session.auth.ID#">
+         <cfset My_FullName = "#session.auth.fullname#">
+         <cfset My_Email = "#session.auth.email#">
+         <cfset My_UserName = "#session.auth.username#">
+         <cfset My_Password = "#session.auth.password#">
 
 
          <div class="form-container">
 
-            <form action="admin/admin_index.cfm" method="POST">
+            <form enctype="multipart/form-data" action="/member/upload_profile.cfm" method="POST">
 
                  <div style="margin-bottom: 2rem">
-                 <h2 class="form-title">Reset Your Password</h2>
+                 <h2 class="form-title">Profile</h2>
                  <p class="form-desc">
-                
+                    Member Profile
                  </p>
                  </div>  
 
-                 <label for="" class="form-label">Enter your old password</label>
+                    please upload an image
+                    <input type="file" name="fileUpload" onchange="loadFile(event)" >
+                    <img src="/member/profile_pics/#session.auth.id#.jpg" alt="error" width=200px height 200px>
+                 
+
+                 <label for="" class="form-label">ID</label>
                  <input
-                 type="text"
-                 name="Old_Password"
+                 type="number"
+                 name="ID"
                  id="id"
                  autocomplete="off"
                  class="form-input"
-                 placeholder="Enter Old Password"
-                 <!--- value=#My_ID#
-                 readonly  --->
-                 
-                 required
+                 placeholder="Enter ID"
+                 value=#My_ID#
+                 readonly
                  />
- 
-                 <label for="" class="form-label">New Password</label>
+
+                 <label for="" class="form-label">Full Name</label>
                  <input
                  type="text"
-                 name="New_Password"
+                 name="fullname"
                  id="Full Name"
                  autocomplete="off"
                  class="form-input"
-                 placeholder="Enter New Password"
-                 required
-                 />
-
-                 <label for="Confirm_Password" class="form-label">Confirm Password</label>
+                 placeholder="Enter full name"
+                 value=#My_FullName#
+                 >
+ 
+                 <label for="email" class="form-label">Email Address</label>
                  <input
-                 type="text"
-                 name="Confirm_Password"
-                 id="phone"
+                 type="email"
+                 name="email"
+                 id="email"
                  autocomplete="off"
                  class="form-input"
-                 placeholder="Confirm Password"
-                 <!--- value=#My_Phone# --->
-                 required
-                 />
+                 placeholder="Enter email"
+                 value=#My_Email#
+                 >
+
+                 <label for="email" class="form-label">Username</label>
+                 <input
+                 type="text"
+                 name="username"
+                 id="email"
+                 autocomplete="off"
+                 class="form-input"
+                 placeholder="Enter username"
+                 value=#My_username#
+                 >
+
+                 <label for="email" class="form-label">Password</label>
+                 <input
+                 type="text"
+                 name="password"
+                 id="email"
+                 autocomplete="off"
+                 class="form-input"
+                 placeholder="Enter password"
+                 value=""
+                 >
 
 
+            
                  <button class="form-btn">Submit</button>
-
+            
             </form>
 
-               
-
          </div>
+
+         </cfif>
+
+   </cfif>
+
 
     </cfoutput>
 

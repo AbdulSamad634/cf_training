@@ -27,15 +27,6 @@
 
                 }
 
-                .button3
-                {
-                    
-                        margin-left: 10px;
-
-                }
-
-                
-
 
         </style>
 
@@ -107,12 +98,23 @@ values (1,'PTI'),
 
 --->
 
+<body>
+
+
+        <cfif session.auth.role eq "member">
+
+                        <cflocation  url="\member\member_index.cfm" addtoken="no">
+
+        </cfif>
+
+
+    <cfoutput>
     
          <!--- #ID#-#Employee_Name#-#Gender#-#Email#-#Phone#-#DateFormat(#Joining_Date#,"yyyy-mm-dd")#-#Designation#-#Dept_Name#-#Experience#-#Salary# --->
 
          <!--- <cfdump var ="#Query_Status#"> --->
          
-<!---
+
          <cfif isDefined("ID_Active") >
 
             <cfquery name="update_employee_data" datasource ="web_project">
@@ -189,83 +191,22 @@ values (1,'PTI'),
 
                   </cfif> 
 
-                  --->
-
-
-
-<body>
-
-    <cfoutput>
-
-
-<!--- 
-
-             <cfdump var="#session#"> 
-
-            #session.auth.email#
-            #session.auth.id#
-
-            
-
-           
-
-<cfif structKeyExists(session, "auth" ) >
-TRUE
-<cfelse>
-
-FALSE
-
-</cfif>
-
-
-
---->
-
-<!---
-
-<cfif structKeyExists(session.auth, "id" ) >
-TRUE
-<cfelse>
-
-FALSE
-
-</cfif>
---->
-<cfif structkeyExists(session,"auth") >
-
-        <cfif session.auth.role eq "admin">
-
-                <cflocation  url="admin_index.cfm" addtoken="no">
-
-        </cfif>
-
-</cfif>
-
-
-
-         <cfdump var="#session#">
-
-         <cfabort>
-
-        
-         <cfset myemail = #session.auth.email# >
 
          <cfquery name="Query_Status" datasource="web_project">
 
                           select*
                           from Employee_Data Inner Join Department On Employee_Data.Department_ID = Department.Dept_ID
-                          where Email="#myemail#";
-                    
-         </cfquery>
-
-         <!--- <cfdump var = "#Query_Status#" > --->
+                          where IsActive=1
+                          order by Employee_Data.ID asc          
     
-         <table class="table table-danger table-striped-columns">
+         </cfquery>
+    
+         <table class="table table-dark table-striped-columns">
 
             <thead class="heading">
 
                 <tr>
-                <th colspan = "10">
+                <th colspan = "11">
                 Employee
                 </th>
                 <tr>
@@ -279,70 +220,71 @@ FALSE
                 <th>Department Name</th>
                 <th>Experience</th>
                 <th>Salary</th>
-    
+                <th>Action</th>
             
             </thead>
 
             <tbody>
 
+
+                <cfloop query="Query_Status">
+
                     <tr>
                     <td>
-                    #Query_Status.ID#
+                    #ID#
                     </td>
                     <td>
-                    #Query_Status.Employee_Name#
+                    #Employee_Name#
                     </td>
                     <td>
-                    #Query_Status.Gender#
+                    #Gender#
                     </td>
                     <td>
-                    #Query_Status.Email#
+                    #Email#
                     </td>
                     <td>
-                    #Query_Status.phone#
+                    #Phone#
                     </td>
                     <td>
-                    #DateFormat(#Query_Status.Joining_Date#, "ddd dd mmmm, yyyy")# 
+                    #DateFormat(#Joining_Date#, "ddd dd mmmm, yyyy")# 
                     </td>
                     <td>
-                    #Query_Status.Designation#
+                    #Designation#
                     </td>
 
                   <cfquery name="GetDeptName" datasource="web_project" >
 
                     select Dept_Name
                     from Department
-                    where Dept_ID = #Query_Status.Department_ID#
+                    where Dept_ID = #Department_ID#
 
-                  </cfquery>
-
-                  <!--- <cfdump var = "#GetDeptName#" > --->
+                    </cfquery>
 
                     <td>
                     #GetDeptName.Dept_Name#
                     </td>
 
                     <td>
-                    #Query_Status.Experience#
+                    #Experience#
                     </td>
                     <td>
-                    #Query_Status.Salary#
+                    #Salary#
                     </td>
-         
+                    <td>
+
+                    <!--- <input class="btn btn-danger" type="button" value="Edit" onclick="location.href='form.cfm'"> --->
+
+                     <a href="/admin/employee/employee_form.cfm?ID=#ID#"><button class="btn btn-success">Edit</button></a>
+                     <a href="/admin/employee/temp_employee_delete.cfm?ID=#ID#"><button class="btn btn-danger">Delete</button></a>
+            
+                    </td>
                     </tr>
 
-            
+                </cfloop>
 
             </tbody>
         
          </table>
-
-            <div class="button3">
-
-                 <a href="index.cfm?page_logout=#1#"><button class="btn btn-dark ">Log Out</button></a>
-
-             </div>
-
 
     </cfoutput>
 

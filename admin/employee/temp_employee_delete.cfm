@@ -38,7 +38,7 @@
 
             <cfif session.auth.role eq "member">
 
-                        <cflocation  url="member_index.cfm" addtoken="no">
+                        <cflocation  url="\member\member_index.cfm" addtoken="no">
 
         </cfif>
 
@@ -150,8 +150,8 @@
                    
                         <td>
 
-                             <a href="employee_display.cfm?ID_Active=#ID#"><button class="btn btn-success">Restore</button></a>
-                             <a href="permanent_delete.cfm?ID=#ID#"><button class="btn btn-danger">Permanent Delete</button></a>
+                             <a href="/admin/employee/employee_display.cfm?ID_Active=#ID#"><button class="btn btn-success">Restore</button></a>
+                             <a href="/admin/employee/permanent_delete.cfm?ID=#ID#"><button class="btn btn-danger">Permanent Delete</button></a>
             
                         </td>
 

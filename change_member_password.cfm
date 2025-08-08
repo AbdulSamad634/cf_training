@@ -203,7 +203,7 @@
 
          <div class="form-container">
 
-            <form action="member_index.cfm" method="POST">
+            <form action="\member\member_index.cfm" method="POST">
 
                  <div style="margin-bottom: 2rem">
                  <h2 class="form-title">Reset Your Password</h2>

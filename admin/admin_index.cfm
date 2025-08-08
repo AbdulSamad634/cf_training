@@ -184,7 +184,7 @@ HELLO #session.client_fullName#
 
          </div> --->
 
-         <img src="images/admin.jpeg" alt="Girl in a jacket" width="850" height="500"> 
+         <img src="/admin/images/admin.jpeg" alt="Girl in a jacket" width="850" height="500"> 
 
          <!---
 

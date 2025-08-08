@@ -103,12 +103,15 @@ values (1,'PTI'),
 
         <cfif session.auth.role eq "member">
 
-                        <cflocation  url="member_index.cfm" addtoken="no">
+                        <cflocation  url="\member\member_index.cfm" addtoken="no">
 
         </cfif>
 
 
     <cfoutput>
+
+
+               <cfdump var="#session#">
     
          <!--- #ID#-#Employee_Name#-#Gender#-#Email#-#Phone#-#DateFormat(#Joining_Date#,"yyyy-mm-dd")#-#Designation#-#Dept_Name#-#Experience#-#Salary# --->
 
@@ -217,8 +220,8 @@ values (1,'PTI'),
 
                     <!--- <input class="btn btn-danger" type="button" value="Edit" onclick="location.href='form.cfm'"> --->
 
-                     <a href="new_user_form.cfm?ID=#ID#"><button class="btn btn-success">Edit</button></a>
-                     <a href="temp_user_delete.cfm?ID=#ID#"><button class="btn btn-danger">Delete</button></a>
+                     <a href="/admin/admin_users/new_user_form.cfm?ID=#ID#"><button class="btn btn-success">Edit</button></a>
+                     <a href="/admin/admin_users/temp_user_delete.cfm?ID=#ID#"><button class="btn btn-danger">Delete</button></a>
             
                     </td>
                     </tr>

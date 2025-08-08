@@ -92,11 +92,11 @@
       <cfset Session.auth.Password= getadmin.Password>
       <cfset SESSION.auth.Role      = getadmin.Role>
       <cfset session.auth.admin_id = getadmin.ID>
-      <cflocation url="admin_index.cfm">
+      <cflocation url="admin/admin_index.cfm">
       <cfreturn true>
     </cfif>
      <cfquery name="getmember" datasource="web_project">
-        SELECT ID, FullName, email, Username, Password, Role, IsActive
+        SELECT ID, FullName, email, Username, Password, Role, IsActive, admin_id
          FROM member_users
         WHERE  Username = <cfqueryparam cfsqltype="cf_sql_varchar" value="#input_Username#" maxlength="255" > and password = <cfqueryparam cfsqltype="cf_sql_varchar" value="#input_Password#" maxlength="255"> and IsActive = 1
     </cfquery>
@@ -110,7 +110,7 @@
       <cfset Session.auth.Password= getmember.Password>
       <cfset SESSION.auth.Role      = getmember.Role>
       <cfset session.auth.admin_id = getmember.admin_id>
-      <cflocation url="member_index.cfm">
+      <cflocation url="\member\member_index.cfm">
       <cfreturn true>
     </cfif>
     <cfthrow message="Incorrect email address and/or password. Be sure to enter the correct, original email address with which you registered. Please type your password carefully.">
@@ -161,11 +161,11 @@
             <cfabort> 
         </cfif>
         <cfif session.auth.role eq "admin" > <!--- and findNoCase(searchString, stringurl) eq 0> --->
-            <cflocation  url="admin_index.cfm">
+            <cflocation  url="admin/admin_index.cfm">
             <cfabort>
         </cfif>
         <cfif session.auth.role eq "member" >
-            <cflocation url="member_index.cfm">
+            <cflocation url="\member\member_index.cfm">
             <cfabort>
         </cfif>
     </cfif> 
@@ -180,10 +180,10 @@
           <cfabort> <!--- login failed, so show login error form ----> 
           <cfreturn false>
           <cfelseif session.auth.role eq "admin">
-            <cflocation url="admin_index.cfm" addtoken="false">
+            <cflocation url="admin/admin_index.cfm" addtoken="false">
             <cfabort>
          <cfelseif session.auth.role eq "member">
-            <cflocation url="member_index.cfm" addtoken="false">
+            <cflocation url="\member\member_index.cfm" addtoken="false">
             <cfabort>
      
           </cfif>
