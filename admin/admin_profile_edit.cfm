@@ -203,7 +203,7 @@
                <cfif session.auth.role eq "admin">
                
          <cfset My_ID ="#session.auth.ID#">
-         <cfset My_FullName = "#session.auth.fullname#">
+         <cfset My_FullName ="#session.auth.fullname#">
          <cfset My_Email = "#session.auth.email#">
          <cfset My_UserName = "#session.auth.username#">
          <cfset My_Password = "#session.auth.password#">
@@ -222,7 +222,7 @@
 
                     please upload an image
                     <input type="file" name="fileUpload" onchange="loadFile(event)" >
-                    <img src="profile_pics/#session.auth.id#.jpg" alt="error" width=200px height 200px>
+                    <img src="/admin/profile_pics/#session.auth.id#.jpg" alt="error" width=200px height 200px>
                  
 
                  <label for="" class="form-label">ID</label>

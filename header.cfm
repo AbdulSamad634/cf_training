@@ -283,7 +283,7 @@ body {
                     <a href="/admin/admin_profile_view.cfm"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Profile</span>  </a>
                 </li>
                 <li>
-                    <a href="../index.cfm?page_logout=1#" addtoken="no"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Log Out</span>  </a>
+                    <a href="/index.cfm?page_logout=1#" addtoken="no"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Log Out</span>  </a>
                 </li>
               </ul>
                 </div>

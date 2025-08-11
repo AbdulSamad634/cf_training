@@ -2,7 +2,24 @@
 	displayname="Application"
 	output="true"
 	hint="Handle the application.">
+    <!--- Mail Server Configuration --->
+    <cfset variables.mailservers = [
+        {
+            host = "smtp.gmail.com",
+            port = 587,
+            username = "admin",
+            password = "encrypted:d3048282340fcec1555db9a0e2857bd9dfaa834069cf10de",
+            ssl = true,
+            tls = true,
+            lifeTimespan = createTimeSpan(0, 0, 30, 0),
+            idleTimespan = createTimeSpan(0, 0, 30, 9)
+        }
+    ]>
 
+    <!--- Optional function to get mail server config --->
+    <cffunction name="getMailServers" access="public" returntype="array" output="false">
+        <cfreturn variables.mailservers>
+    </cffunction>
 
 	<!--- Set up the application. --->
 	    <cfset THIS.Name = "AppCFC" />
@@ -119,6 +136,7 @@
 </cffunction>
 <!--- close function checkLogin --->
 
+<!---
  <!--- begin function OnRequest ---> 
 <cffunction name="onRequest" returnType="void" output="true">
     <!--- If not logged in and not on login page, redirect to login --->
@@ -136,6 +154,8 @@
         <cfinclude template="footer.cfm">
     </cfif>
 </cffunction>
+
+--->
 
 <!--- close function OnRequest --->
 

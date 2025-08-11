@@ -97,7 +97,7 @@
         --->
 
 
-<cfdump var="#session#">
+<!--- <cfdump var="#session#"> --->
 
 
           <div class="row gutters-sm">
@@ -105,7 +105,7 @@
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img src="/member/profile_pics/#session.auth.id#.jpg" alt="error" width=220px height=300px>
+                  <img src="/member/profile_pics/#session.auth.id#.jpg" alt="error" width=220px height=300px>
                     <div class="mt-3">
                      <cfset full_name= "#session.auth.FullName#">
                      <cfoutput>

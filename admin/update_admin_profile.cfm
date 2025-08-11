@@ -8,8 +8,8 @@
 
     <cfquery name ="update_profile" datasource="web_project">
       
-      update member_users
-      set  fullname="#fullname#", email="#email#",username="#username#", password="#password#",profile_pic="D:\\git\\cf_training"
+     update admin_users
+     set  fullname="#fullname#", email="#email#",username="#username#", password="#password#"
      where id="#ID#" 
 
 </cfquery>

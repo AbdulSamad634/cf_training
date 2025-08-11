@@ -229,7 +229,7 @@
 
                     please upload an image
                     <input type="file" name="fileUpload" onchange="loadFile(event)" >
-                    <img src="../member/profile_pics/#session.auth.id#.jpg" alt="error" width=200px height 200px>
+                    <img src="/member/profile_pics/#session.auth.id#.jpg" alt="error" width=200px height 200px>
                  
 
                  <label for="" class="form-label">ID</label>

@@ -269,6 +269,11 @@
                  maxlength="256"
                  tabindex="2"
                  />
+                
+                 <br>
+                 <br>
+
+                 <a href="forget_password.cfm"><P>Forgot your password?</P></a> 
               
                  <button name="doLogin" type="submit" class="form-btn" tabindex="3">Click to log in.</button>
             

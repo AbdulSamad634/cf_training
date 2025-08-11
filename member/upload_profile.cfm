@@ -15,7 +15,7 @@
 </cfquery>
 
 
-<cflocation  url= "member_profile_view.cfm" addtoken="no">
+<cflocation  url= "/member/member_profile_view.cfm" addtoken="no">
 
 
 

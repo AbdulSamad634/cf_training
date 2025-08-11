@@ -1,7 +1,7 @@
     <cfif structKeyExists(form, "fileUpload") and len(trim(form.fileUpload))>
         <cffile action="upload"
                 fileField="fileUpload"
-                destination="D:\git\cf_training\member\profile_pics\#session.auth.id#.jpg"
+                destination="D:\git\cf_training\member\profile_pics\#ID#.jpg"
                 nameconflict="overwrite"
                 result="uploadResult" >
     </cfif>

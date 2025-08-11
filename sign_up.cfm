@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+
+ <html>
+
 <head>
             <title>  </title>
 
@@ -193,15 +197,14 @@
 <!---
 <cfinclude template="header.cfm">
 --->
+<body>
 
     <cfoutput>
     
-    <!--- <cfdump var="#session#"> --->
-
 
          <div class="form-container">
 
-            <form action="index.cfm" method="POST">
+            <form action="user_signup.cfm" method="POST">
 
                  <div style="margin-bottom: 2rem">
                  <h2 class="form-title">Sign Up</h2>
@@ -215,7 +218,6 @@
                  autocomplete="off"
                  class="form-input"
                  placeholder="Name....."
-                 required
                  />
  
                  <label for="" class="form-label">Email</label>
@@ -226,12 +228,11 @@
                  autocomplete="off"
                  class="form-input"
                  placeholder="Email...."
-                 required
                  />
                 
 
                  <label for="country" class="form-label">Role</label>
-                 <select name="Role" id="role" class="form-select" autocomplete="off" placeholder="Role...." required>
+                 <select name="Role" id="role" class="form-select" autocomplete="off" placeholder="Role...." >
                  <option value="member">Member</option>
                  <option value="admin">Admin</option> <!--- It means Male is displayed as option and value="Male" means when this option is selected, this value (i.e. Male is sanded to POST Method) --->
                  </select>                 
@@ -244,7 +245,6 @@
                  autocomplete="off"
                  class="form-input"
                  placeholder="Username..."
-                 required
                  />                 
 
                  <label for="" class="form-label">Password</label>
@@ -254,7 +254,6 @@
                  id="Passwrd"
                  autocomplete="off"
                  class="form-input"
-                 required
                  />
 
 
@@ -270,9 +269,6 @@
 
     </cfoutput>
 
- <!---   
-<cfinclude template="footer.cfm">
---->
-
+</body>
 
 

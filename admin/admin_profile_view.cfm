@@ -250,7 +250,7 @@
 
       <div class="col-3">
           <div class="row">
-          <img src="profile_pics/#session.auth.id#.jpg" alt="error" width=50px height=240px>
+          <img src="/admin/profile_pics/#session.auth.id#.jpg" alt="error" width=50px height=240px>
           </div>
           <div>
           <h5 class="card-title">#session.auth.fullname#</h5>
@@ -513,7 +513,7 @@ where admin_id = #session.auth.admin_id#
 
      <div class="col-3">
           <div class="row">
-          <img src="../member/profile_pics/#get_users.id#.jpg" alt="error" width=50px height=240px>
+          <img src="/member/profile_pics/#get_users.id#.jpg" alt="error" width=50px height=240px>
 
           </div>
           <div>
