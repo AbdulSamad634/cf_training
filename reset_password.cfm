@@ -3,9 +3,7 @@
  <html>
 
 <head>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <title>  </title>
 
             <link href=	"https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" >
         
@@ -192,18 +190,23 @@
                 }
                 }
 
-                .msg
-                {
-                        width=200px;
-                        height=200px;
-                        background-color=#5a54d1;
-                }
-
         </style>
 
 </head>
 
 <body>
+
+<!---
+<cfoutput>
+<h2>Login Page</h2>
+<form name="loginform" method="post" action="login.cfm">
+    Username: <input type="text" name="Username"><br>
+    Password: <input type="password" name="Passwrd"><br>
+    <input type="submit" name="doLogin" value="Login">
+</form>
+</cfoutput>
+
+--->
 
 <cfoutput>
 
@@ -235,16 +238,16 @@
 
          <div class="form-container">
 
-            <form name="LoginForm" method="post" action="login.cfm">
+            <form name="LoginForm4" method="post" action="update_password.cfm">
 
                  <div style="margin-bottom: 2rem">
                  <h2 class="form-title">Log In</h2>
                  </div>  
 
-                 <label for="UserName" class="form-label">Username</label>
+                 <label for="UserName" class="form-label">Password/label>
                  <input
                  type="text"
-                 name="username"
+                 name="password"
                  id="username"
                  autocomplete="off"
                  class="form-input"
@@ -255,14 +258,11 @@
                  tabindex="1"
                  required
                  />
-
-                     <!-- Message will appear here -->
-                     <div id="msg" style="margin-top:5px; font-weight:bold;"></div>
  
-                 <label for="Password" class="form-label">Password</label>
+                 <label for="Password" class="form-label">Confirm your Password</label>
                  <input
                  type="text"
-                 name="passwrd"
+                 name="confirm_password"
                  id="Passwrd"
                  size="30"
                  value=""
@@ -273,154 +273,13 @@
                  <br>
                  <br>
 
-                 <a href="forget_password.cfm"><P>Forgot your password?</P></a> 
-
-                 <button name="doLogin" type="button" class="form-btn" ID="btn1" tabindex="3">Check AJAX.</button>
+                 <a href="update_password.cfm?ID"><P>Submit</P></a> 
               
-                 <button name="doLogin" type="submit" class="form-btn" tabindex="3">Click to log in.</button>
+            
         
             </form>
 
          </div>
-
-                 <script>        
-
-$(function() {
-  $("##btn1").click(function(e){
-    e.preventDefault();
-
-    var username = $("##username").val().trim();
-    if (!username) {
-      $("##msg").text("Please enter a username.");
-      return;
-    }
-
-    $.ajax({
-      url: "CFC/validate.cfc?method=print",
-      method: "POST",
-      data: { param1: username },
-      dataType: "json",
-      beforeSend: function(){ $("##btn1").prop("disabled", true).text("Checking..."); },
-      success: function(response){
-        console.log(response);
-        $("##msg").text(response.message).removeClass().addClass(response.valid ? "text-success" : "text-danger");
-      },
-      error: function(xhr, status, error){
-        console.log("AJAX error:", status, error);
-        $("##msg").text("Network or server error. See console.");
-      },
-      complete: function(){ $("##btn1").prop("disabled", false).text("Check AJAX."); }
-    });
-  });
-});
-
-
-                </script>
-<!---
-Explanations:
-
-$(function() {
-
-Shorthand for $(document).ready(...). Runs the code inside after the DOM is ready (all HTML elements are available).
-
-$("##btn1").click(function(e){
-
-Selects the element with id btn1 and attaches a click event handler.
-
-Remember: ##btn1 in your .cfm becomes #btn1 in the browser.
-
-e is the event object passed to the handler.
-
-e.preventDefault();
-
-Stops the browser’s default action for the click. Useful if the button is inside a form or is type="submit" — prevents page reload / form submit.
-
-var username = $("##username").val().trim();
-
-$("##username") selects the input with id username.
-
-.val() gets the input’s current value (a string).
-
-.trim() removes leading/trailing spaces. The result is stored in the local variable username.
-
-if (!username) {
-
-Checks whether username is empty ("") or falsy. If empty, the code inside the if runs.
-
-$("##msg").text("Please enter a username.");
-
-Selects the element with id msg and sets its text to the message. This shows the message on the page.
-
-return;
-
-Exits the click handler early so the AJAX request is not sent when username is empty.
-
-$.ajax({
-
-Begins an AJAX request; the object inside configures the request.
-
-url: "CFC/validate.cfc?method=print",
-
-The server endpoint the request goes to. For ColdFusion CFCs you often add &returnFormat=json or set returnformat="json" server-side to ensure JSON is returned.
-
-method: "POST",
-
-The HTTP verb. POST sends data in the body. (type is equivalent shorthand in older jQuery.)
-
-data: { param1: username },
-
-The payload sent to the server. Server receives param1 with the value of the username variable.
-
-dataType: "json",
-
-Tells jQuery to expect JSON from the server. jQuery will parse the response into a JS object. If the response is not valid JSON, the error callback runs (parsererror).
-
-beforeSend: function(){ $("##btn1").prop("disabled", true).text("Checking..."); },
-
-Runs just before the request is sent.
-
-Disables the button (.prop("disabled", true)) so the user can’t click again and changes its label to “Checking...”.
-
-success: function(response){
-
-Runs when the server responds with a successful HTTP status (200) and valid JSON. response is the parsed JS object returned from the server.
-
-console.log(response);
-
-Prints the server response to the browser console — great for debugging.
-
-$("##msg").text(response.message).removeClass().addClass(response.valid ? "text-success" : "text-danger");
-
-Updates #msg text to response.message.
-
-.removeClass() with no args removes all classes from the element (be careful — you might prefer .removeClass("text-success text-danger")).
-
-.addClass(...) then adds either text-success or text-danger depending on response.valid.
-
-response.valid should be a boolean (true or false) provided by your CFC; response.message should be a string.
-
-error: function(xhr, status, error){
-
-Runs if the request fails (network error, 404/500, or JSON parse error).
-
-xhr is the XMLHttpRequest object — check xhr.status and xhr.responseText in console for details.
-
-console.log("AJAX error:", status, error);
-
-Logs the error info to the console for debugging.
-
-$("##msg").text("Network or server error. See console.");
-
-Shows a user-friendly error message on the page.
-
-complete: function(){ $("##btn1").prop("disabled", false).text("Check AJAX."); }
-
-Runs after success or error — always. Re-enables the button and restores its text.
-
-}); (end of $.ajax), then }); (end of click handler), then }); (end of document ready).
-
-
---->
 
 </cfoutput>
 

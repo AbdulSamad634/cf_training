@@ -1,14 +1,291 @@
-
+<!---
 
 <html>
 <body>
 <cfoutput>
-<cfmail  to="rabiaasghar769@gmail.com" from="abdul.samad0165@gmail.com" subject="Your Order">
+<cfmail  to="abdul.samad0165@gmail.com" from="se125@bjs-softsolution.com" subject="Your Order" type="html" port="2525" server="smtp.sendgrid.net" password="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">
   Hi there,
   This mail is sent to confirm that we have received your order.
 </cfmail>
 
-<cfdump var=#getMailServers()#>
 </cfoutput>
 </body>
 </html>
+
+--->
+
+
+<!DOCTYPE html>
+
+ <html>
+
+<head>
+            <title>  </title>
+
+            <link href=	"https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" >
+        
+        <style>
+
+                /* General Body Styles */
+                body {
+                font-family: "Inter", sans-serif;
+                background-color: #f3f4f6; /* A light gray background */
+                margin: 0;
+                padding: 0;
+                }
+
+                /* Main container to center the form */
+                .main-center {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                padding: 2rem;
+                box-sizing: border-box;
+                }
+
+                /* The form card itself */
+                .form-container {
+                margin: 0 auto;
+                max-width: 570px;
+                width: 100%;
+                background: white;
+                padding: 2.5rem; /* 40px */
+                border-radius: 0.75rem; /* 12px */
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+                0 4px 6px -4px rgba(0, 0, 0, 0.1);
+                }
+
+                /* Form image styling */
+                .form-img {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 2rem; /* 32px */
+                width: 100%;
+                max-width: 200px;
+                height: auto; /* Maintain aspect ratio */
+                }
+
+                /* Form title and description */
+                .form-title {
+                font-size: 1.875rem; /* 30px */
+                font-weight: 700;
+                color: #111827; /* Dark gray */
+                margin-bottom: 0.5rem; /* 8px */
+                text-align: center;
+                }
+
+                .form-desc {
+                color: #6b7280; /* Medium gray */
+                margin-bottom: 2rem; /* 32px */
+                font-size: 0.875rem; /* 14px */
+                text-align: center;
+                line-height: 1.5;
+                }
+
+                /* Styling for form labels */
+                .form-label {
+                display: block;
+                margin-bottom: 0.5rem; /* 8px */
+                font-size: 0.875rem; /* 14px */
+                font-weight: 600;
+                color: #374151; /* Slightly lighter dark gray */
+                }
+
+                /* Unified styling for text inputs and select dropdowns */
+                .form-input,
+                .form-select {
+                width: 100%;
+                padding: 0.875rem 1.25rem; /* 14px 20px */
+                border: 1px solid #d1d5db; /* Light gray border */
+                border-radius: 0.5rem; /* 8px */
+                background: #ffffff;
+                font-weight: 500;
+                font-size: 1rem; /* 16px */
+                color: #111827;
+                outline: none;
+                box-sizing: border-box;
+                transition: border-color 0.2s, box-shadow 0.2s;
+                margin-bottom: 1.25rem; /* 20px */
+                }
+
+                .form-input::placeholder {
+                color: #9ca3af; /* Lighter gray for placeholder */
+                }
+
+                /* Focus state for inputs and selects */
+                .form-input:focus,
+                .form-select:focus {
+                border-color: #6a64f1; /* Purple accent color */
+                box-shadow: 0 0 0 3px rgba(106, 100, 241, 0.2);
+                }
+
+                /* Styling for the file input */
+                .form-file {
+                display: block;
+                width: 100%;
+                margin-bottom: 1.25rem; /* 20px */
+                font-size: 0.875rem; /* 14px */
+                color: #374151;
+                }
+
+                /* Custom styling for file input button */
+                .form-file::file-selector-button {
+                margin-right: 1rem;
+                padding: 0.5rem 1rem;
+                border: 1px solid #d1d5db;
+                border-radius: 0.375rem;
+                background-color: #f9fafb;
+                color: #374151;
+                font-weight: 500;
+                cursor: pointer;
+                transition: background-color 0.2s;
+                }
+
+                .form-file::file-selector-button:hover {
+                background-color: #f3f4f6;
+                }
+
+                /* Container for the checkbox and its label */
+                .form-checkbox-row {
+                display: flex;
+                align-items: flex-start;
+                gap: 0.75rem; /* 12px */
+                margin-top: 1.5rem; /* 24px */
+                margin-bottom: 1.5rem; /* 24px */
+                }
+
+                /* Styling for the checkbox */
+                .form-checkbox {
+                margin-top: 0.125rem; /* 2px */
+                height: 1.25rem; /* 20px */
+                width: 1.25rem; /* 20px */
+                border-radius: 0.25rem; /* 4px */
+                border: 1px solid #d1d5db;
+                cursor: pointer;
+                flex-shrink: 0;
+                }
+
+                .form-checkbox:checked {
+                background-color: #6a64f1;
+                border-color: #6a64f1;
+                }
+
+                /* Submit button styling */
+                .form-btn {
+                text-align: center;
+                width: 100%;
+                font-size: 1rem; /* 16px */
+                border-radius: 0.5rem; /* 8px */
+                padding: 0.875rem 1.5rem; /* 14px 24px */
+                border: none;
+                font-weight: 600;
+                background-color: #6a64f1; /* Purple accent color */
+                color: white;
+                cursor: pointer;
+                margin-top: 1.5rem; /* 24px */
+                transition: background-color 0.2s, box-shadow 0.2s;
+                }
+
+                .form-btn:hover {
+                background-color: #5a54d1; /* Darker purple on hover */
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                }
+                /* --- Mobile Responsive Styles --- */
+                @media (max-width: 600px) {
+                .main-center {
+                padding: 1rem;
+                }
+
+                .form-container {
+                padding: 1.5rem;
+                }
+
+                .form-title {
+                font-size: 1.5rem; /* 24px */
+                }
+                }
+
+        </style>
+
+</head>
+
+<body>
+
+<!---
+<cfoutput>
+<h2>Login Page</h2>
+<form name="loginform" method="post" action="login.cfm">
+    Username: <input type="text" name="Username"><br>
+    Password: <input type="password" name="Passwrd"><br>
+    <input type="submit" name="doLogin" value="Login">
+</form>
+</cfoutput>
+
+--->
+
+<cfoutput>
+
+
+<cfif structKeyExists(url, "page_logout")>
+<cfdump var="session">
+<cfset StructClear(Session)>
+<cflocation  url="index.cfm" addtoken="no">
+</cfif>
+
+<cfif structkeyExists(session,"auth") >
+
+        <cfif session.auth.role eq "admin">
+
+                <cflocation  url="admin/admin_index.cfm" addtoken="no">
+
+        </cfif>
+
+        <cfif session.auth.role eq "member">
+
+                <cflocation  url="\member\member_index.cfm" addtoken="no">
+
+        </cfif>
+
+</cfif>
+
+
+      <!---  <cfdump var="#session#"> --->
+
+         <div class="form-container">
+
+            <form name="LoginForm_2" method="post" action="send_email.cfm">
+
+                 <div style="margin-bottom: 2rem">
+                 <h2 class="form-title">Enter Username to get Reset Password instructions in your email</h2>
+                 </div>  
+
+                 <label for="UserName" class="form-label">Username</label>
+                 <input
+                 type="text"
+                 name="username"
+                 id="username"
+                 autocomplete="off"
+                 class="form-input"
+                 placeholder="username....."
+                 size="30"
+                 value=""
+                 maxlength="256"
+                 tabindex="1"
+                 required
+                 />
+              
+                 <button name="doLogin" type="submit" class="form-btn" tabindex="3">Reset Password</button>
+            
+        
+            </form>
+
+         </div>
+
+</cfoutput>
+
+
+
+
+

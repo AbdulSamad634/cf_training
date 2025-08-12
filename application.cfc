@@ -82,6 +82,9 @@
     <cfreturn true>
 </cffunction>
 
+
+
+
         
  <!--- begin function checkLogin ---> 
  <cffunction name="checkLogin">
@@ -136,7 +139,7 @@
 </cffunction>
 <!--- close function checkLogin --->
 
-<!---
+
  <!--- begin function OnRequest ---> 
 <cffunction name="onRequest" returnType="void" output="true">
     <!--- If not logged in and not on login page, redirect to login --->
@@ -155,7 +158,7 @@
     </cfif>
 </cffunction>
 
---->
+
 
 <!--- close function OnRequest --->
 
