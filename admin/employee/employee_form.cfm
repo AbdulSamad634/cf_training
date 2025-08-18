@@ -399,42 +399,67 @@
 
                  <label for="" class="form-label">Choose Allowances</label>
             
-                 <div class="form-checkbox-row">
+               <!--- <div class="form-checkbox-row"> --->
+               <div>
+                     <cfloop query="Get_All_Allowances">
+                            <input type="checkbox" id="checkbox" name= "Allowance_ID"
+                                <cfif mycheck eq true>
+                                    <cfquery name ="Get_Employees_Allowances" datasource ="web_project" >
+                                         select *
+                                         from Allowances_record join Allowances on Allowances.Allowance_ID = Allowances_Record.Allowance_ID
+                                         where Allowances_Record.Employee_ID = #MY_ID#
+                                    </cfquery>
+                                         <!---  <cfdump var="#Get_All_Allowances#">
+                                         <cfdump var="#Get_Employees_Allowances#">  --->
+                                         <cfloop query="Get_Employees_Allowances">
+                                             <cfif #Get_All_Allowances.Allowance_ID# eq #Get_Employees_Allowances.Allowance_ID# >
+                                                checked
+                                             </cfif>
+                                         </cfloop>
+                                    <cfquery name="Updated_Payment" datasource="web_project">
+                                        select allowances_record.payment
+                                        from Allowances_record join Allowances on Allowances.Allowance_ID = Allowances_Record.Allowance_ID
+                                        where Allowances_Record.Employee_ID = #My_ID#
+                                    </cfquery>
 
-                 <cfloop query="Get_All_Allowances">
+                                </cfif>
+                             value="#Get_All_Allowances.Allowance_ID#"
+                            >
+                             #Get_All_Allowances.Allowance_Name#<br>
 
-                     <input type="checkbox" name= "Allowance_ID"
+                                <cfloop query="Updated_Payment">
+                                
 
-                     <cfif mycheck eq true>
-                 
-                        <cfquery name ="Get_Employees_Allowances" datasource ="web_project" >
+<cfif #Get_All_Allowances.Allowance_ID# eq #Get_Employees_Allowances.Allowance_ID# >
+                             <input type="number" name="Payment" id="payment" class="form-input" autocomplete="off" value=#Updated_Payment.Payment# >
+                           </cfif>
+                           </cfloop>
 
-                             select *
-                             from Allowances_record join Allowances on Allowances.Allowance_ID = Allowances_Record.Allowance_ID
-                             where Allowances_Record.Employee_ID = #MY_ID#
+<script>
+
+      $(function() {
+  $("##checkbox").change(function(){
+
+    if($(this).is(':checked'))
+    {
+            $(this).show();
+    }
+    else
+    {
+        $(this).hide();
+        }
+        } 
+     }
+    );
             
-                         </cfquery>
+</script>
+    
+                     </cfloop>
+                     
+                </div>
 
-                         <!---  <cfdump var="#Get_All_Allowances#">
-                         <cfdump var="#Get_Employees_Allowances#">  --->
 
-                         <cfloop query="Get_Employees_Allowances">
-
-                             <cfif #Get_All_Allowances.Allowance_ID# eq #Get_Employees_Allowances.Allowance_ID# >
-                                    checked
-                             </cfif>
-
-                         </cfloop>
-
-                     </cfif>
-
-                     value="#Get_All_Allowances.Allowance_ID#" >
-
-                     #Get_All_Allowances.Allowance_Name#<br>  
-
-                 </cfloop>
-
-                 </div>    
+          
             
                  <button class="form-btn">Submit</button>
             

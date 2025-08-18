@@ -1,0 +1,1992 @@
+<!---
+
+Focus : float: left property of div. Google it....
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ID</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            float: left;
+            padding: 10px;
+            margin: 10px;
+            background-color: pink;
+        }
+    </style>
+    <script src=
+"https://code.jquery.com/jquery-1.10.2.js">
+    </script>
+</head>
+
+<body>
+    <div id="DIV1">
+
+        <p>id="DIV1"</p>
+
+    </div>
+    <div id="DIV2">id="DIV2"</div>
+    <script>
+        $("#DIV2").css("border",
+            "2px solid yellow");
+    </script>
+</body>
+
+</html>
+--->
+
+<!---
+ 
+Focus: changing text color on click of button
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                $("h2").css("color",
+                    "green");
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <h2>GeeksForGeeks</h2>
+    <button>Change text color</button>
+</body>
+
+</html>
+
+--->
+
+<!--- 
+
+jQuery :first-child Selector
+jQuery :first-of-type Selector
+
+
+-->
+
+<!--- 
+
+concept : jQuery :first-child Selector
+https://www.geeksforgeeks.org/jquery/jquery-first-child-selector/
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        jQuery | :first-of-child Selector
+    </title>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    // Script to use first-of-child selector 
+    <script>
+        $(document).ready(function () {
+            $("h4:first-child").css({
+                "background-color": "green",
+                "color": "white"
+            });
+        });
+    </script>
+    <style>
+        option {
+            font-weight: bold;
+            font-size: 25px;
+            color: green;
+        }
+
+        select {
+            font-weight: bold;
+            font-size: 25px;
+            color: green;
+        }
+    </style>
+</head>
+
+<body style="text-align:center; width: 500px; margin: auto">
+    <h1>
+        jQuery | :first-of-child Selector
+    </h1>
+    <h4>The first heading in body.</h4>
+    <h4>The last heading in body.</h4>
+
+
+     <div style="border:1px solid blue;">
+        <h4>The first heading in second div.</h4>
+        <h4>The last heading in second div.</h4>
+    </div>
+
+    <div style="border:1px solid blue;">
+        <h3>The first heading in second div.</h4>
+        <h4>The last heading in second div.</h4>
+    </div>
+</body>
+</html>
+--->
+
+<!---
+concept : jQuery :first-type Selector: 
+https://www.geeksforgeeks.org/jquery/jquery-first-of-type-selector/
+
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>
+        jQuery | :first-of-type Selector
+    </title>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <!-- Script to use first-of-child selector 
+    <script>
+        $(document).ready(function () {
+            $("h4:first-of-type").css({
+                "background-color": "green",
+                "color": "white"
+            });
+        });
+    </script>
+    <style>
+        option {
+            font-weight: bold;
+            font-size: 25px;
+            color: green;
+        }
+
+        select {
+            font-weight: bold;
+            font-size: 25px;
+            color: green;
+        }
+    </style>
+</head>
+
+<body style="text-align:center; width: 500px; margin: auto">
+    <h1>
+        jQuery | :first-of-type Selector
+    </h1>
+    <h4>The first heading in body.</h4>
+    <h4>The 3rd last heading in body.</h4>
+
+
+     <div style="border:1px solid blue;">
+        <h4>The first heading in second div.</h4>
+        <h4>The 2nd last heading in second div.</h4>
+    </div>
+
+
+    <div style="border:1px solid blue;">
+        <h3>The first heading in second div.</h4>
+        <h4>The last heading in second div.</h4>
+    </div>
+</body>
+
+</html>
+
+--->
+
+<!--- 
+
+Concept: jQuery :nth-child() Selector
+
+https://www.geeksforgeeks.org/jquery/jquery-nth-child-selector/
+
+AI overview:
+
+The expression 2n-1 within p:nth-child(2n-1) is a formula used in CSS's 
+:nth-child() pseudo-class to select elements based on their position among siblings.
+Here's a breakdown:
+n: Represents an integer starting from 0 and increasing (0, 1, 2, 3, ...).
+2n-1: This formula generates a sequence of numbers when n takes on increasing integer values:
+When n = 0: 2 * 0 - 1 = -1 (This value is ignored as child indices start from 1).
+When n = 1: 2 * 1 - 1 = 1
+When n = 2: 2 * 2 - 1 = 3
+When n = 3: 2 * 3 - 1 = 5
+And so on.
+Therefore, p:nth-child(2n-1) selects every odd-numbered <p> element that is a child of its parent. 
+In the provided jQuery code, this means that the first, third, fifth, and subsequent odd-positioned <p> elements
+ will have their background-color set to lightgreen.
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jQuery :nth-child() Selector</title>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("p:nth-child(2n-1)").css("background-color",
+                "lightgreen");
+        });
+    </script>
+</head>
+
+<body>
+    <p>GFG</p>
+    <p>GFG</p>
+    <p>GFG</p>
+    <p>GFG</p>
+    <p>GFG</p>
+    <p>GFG</p>
+    <p>GFG</p>
+    <p>GFG</p>
+    <p>GFG</p>
+    <p>GFG</p>
+    <p>GFG</p>
+</body>
+
+</html>
+
+--->
+
+
+<!--- 
+Concept: jQuery :nth-of-type() Selector
+https://www.geeksforgeeks.org/jquery/jquery-nth-of-type-selector/
+Example # 1 
+Using n as a parameter. 
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jQuery :nth-of-type() Selector</title>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("p:nth-of-type(2)").css(
+                "color", "green");
+        });
+    </script>
+</head>
+
+<body>
+    <p>Geeks 1</p>
+    <p>Geeks 2</p>
+    <section>
+        <!--Indices of child elements start
+            from beginning inside new section
+        <p>geeks for geeks 1</p>
+        <p>geeks for geeks 2</p>
+        <p>geeks for geeks 3</p>
+    </section>
+    <!--Outside the section the index of 
+        the child element remain same as
+        before section tag
+    <p>Geeks 3</p>
+</body>
+
+</html>
+
+-->
+
+<!--- 
+Concept: jQuery :nth-of-type() Selector
+https://www.geeksforgeeks.org/jquery/jquery-nth-of-type-selector/
+Example # 2
+Using even as a parameter. 
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jQuery :nth-of-type() Selector</title>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script>
+        $(document).mouseover(function () {
+            $("p:nth-of-type(even)").css(
+                "background-color", "green");
+        });
+    </script>
+</head>
+
+<body>
+    <p>Geeks 1</p>
+    <p>Geeks 2</p>
+    <section>
+        <!--Indices of child elements start 
+        from beginning inside new section
+        <p>geeks for geeks 1</p>
+        <p>geeks for geeks 2</p>
+        <p>geeks for geeks 3</p>
+    </section>
+    <!--Outside the section the index of the
+       child element remain same as before 
+       section tag
+    <p>Geeks 3</p>
+</body>
+
+</html>
+
+--->
+
+
+<!--- 
+Concept: jQuery :nth-of-type() Selector
+https://www.geeksforgeeks.org/jquery/jquery-nth-of-type-selector/
+Example # 3
+Using odd as a parameter. 
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script>
+        $(document).mouseover(function () {
+            $("p:nth-of-type(odd)").css(
+                "color", "red");
+        });
+    </script>
+</head>
+
+<body>
+    <p>Geeks 1</p>
+    <p>Geeks 2</p>
+    <section>
+        <!--Indices of child elements 
+      start from beginning inside new section
+        <p>geeks for geeks 1</p>
+        <p>geeks for geeks 2</p>
+        <p>geeks for geeks 3</p>
+    </section>
+    <!--Outside the section the index
+        of the child element remain
+        same as before section tag
+    <p>Geeks 3</p>
+</body>
+
+</html>
+
+--->
+
+
+<!--- 
+Concept: jQuery :nth-of-type() Selector
+https://www.geeksforgeeks.org/jquery/jquery-nth-of-type-selector/
+Example # 4
+Using algebraic equation as a parameter. 
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script>
+        $(document).mouseover(function () {
+            $("p:nth-of-type(3n+2)").css(
+                "color", "green");
+        });
+    </script>
+</head>
+
+<body>
+    <p>Geeks 1</p>
+    <p>Geeks 2</p>
+    <section>
+        <!--Indices of child elements
+            start from beginning inside 
+            new section
+        <p>geeks for geeks 1</p>
+        <p>geeks for geeks 2</p>
+        <p>geeks for geeks 3</p>
+        <p>geeks for geeks 4</p>
+        <p>geeks for geeks 5</p>
+    </section>
+    <!--Outside the section the index 
+        of the child element remain 
+        same as before section tag
+    <p>Geeks 3</p>
+</body>
+
+</html>
+
+--->
+
+<!--- 
+Concept: jQuery :nth-last-of-type() Selector
+https://www.geeksforgeeks.org/jquery/jquery-nth-last-of-type-selector/
+Example # 1
+This example use :nth-last-of-type() selector to select odd element from the last. 
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        jQuery | :nth-last-of-type() Selector
+    </title>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+</head>
+
+<body>
+    Computer Science Subjects
+    <ul>
+        <li>Data Structure</li>
+        <li>Algorithm Analysis</li>
+        <li>Operating System</li>
+        <li>Computer Networks</li>
+        <li>Web Technology</li>
+        <li>C Programming</li>
+        <li>C++ Programming</li>
+        <li>Java</li>
+    </ul>
+    <!-- Script to use :nth-last-of-type() Selector 
+    <script>
+        $(document).ready(function () {
+            let el = $("ul li:nth-last-of-type(odd)").css({
+                background: "green"
+            });
+        });
+    </script>
+</body>
+
+</html>
+
+--->
+
+
+<!--- 
+Concept: jQuery :nth-last-of-type() Selector
+https://www.geeksforgeeks.org/jquery/jquery-nth-last-of-type-selector/
+Example # 2
+This example use :nth-last-of-type() selector to select last element
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        jQuery | :nth-last-of-type() Selector
+    </title>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+</head>
+
+<body>
+    <section>
+        <article>
+            <p>Company - GeeksforGeeks</p>
+            <p>Name - ABC</p>
+            <p>Email - abc@geeksforgeeks.org</p>
+        </article>
+        <article>
+            <p>Company - GFG</p>
+            <p>Name - XYZ</p>
+            <p>Email - xyz@gfg.org</p>
+        </article>
+        <article>
+            <p>Company - G4G</p>
+            <p>Name - Geeks</p>
+            <p>Email - geeks@g4g.org</p>
+        </article>
+    </section>
+    <!-- Script to use :nth-last-of-type() selector
+    <script>
+        $(document).ready(function () {
+            $("article p:first-of-type").css({
+                fontWeight: "bold",
+                fontSize: '1.2rem'
+            })
+            $("article p:nth-last-of-type(1)").css({
+                fontStyle: 'italic',
+                opacity: 0.8
+            })
+        })
+    </script>
+</body>
+
+</html>
+
+
+--->
+
+<!---
+
+Concept: jQuery :only-child Selector
+https://www.geeksforgeeks.org/jquery/jquery-only-child-selector/
+Example 1:
+In this example, we are using only-child selector.
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jQuery :only-child Selector</title>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("p:only-child").css(
+                "background-color", "green");
+        });
+    </script>
+</head>
+
+<body>
+    <h1>
+        <center>Geeks</center>
+    </h1>
+    <div style="border:1px solid;">
+        <p>Geeks for Geeks</p>
+    </div>
+    <br>
+    <div style="border:1px solid;">
+        <p>Geeks for Geeks</p>
+        <p>jQuery:Only Child Selector</p>
+    </div>
+    <br>
+</body>
+
+</html>
+
+--->
+
+
+<!---
+
+Concept: jQuery :only-child Selector
+https://www.geeksforgeeks.org/jquery/jquery-only-child-selector/
+Example 2:
+In this example, we are using only-child selector.
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jQuery :only-child Selector</title>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("p:only-child").css(
+                "background-color", "green");
+        });
+    </script>
+</head>
+
+<body>
+    <h1>
+        <center>Geeks</center>
+    </h1>
+    <div style="border:1px solid;">
+        <p>Geeks for Geeks</p>
+    </div>
+    <br>
+    <div style="border:1px solid;">
+        <p>Geeks for Geeks</p>
+    </div>
+    <br>
+    <div style="border:1px solid;">
+        <p>Geeks for Geeks</p>
+    </div>
+    <br>
+</body>
+
+</html>
+
+
+--->
+
+
+<!---
+
+Concept : jQuery :only-of-type Selector
+https://www.geeksforgeeks.org/jquery/jquery-only-of-type-selector/
+Example: 
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <!-- Script to use only-of-type selector 
+    <script>
+        $(document).ready(function () {
+             $("p:only-of-type").css(
+                "color", "green");
+        });
+    </script>
+</head>
+
+<body>
+    <center>
+        <!-- Children of division 
+        <h3>Division as a parent</h3>
+        <div>
+            <p>Geek1 of div.</p>
+            <p>Geek2 of div.</p>
+        </div>
+        <!-- Only child of id 
+        <h3>ID as a parent.</h3>
+        <id>
+            <p>The only Geek of id.</p>
+        </id>
+        <!-- Only child of class 
+        <h3>Class as a parent.</h3>
+        <class>
+            <p>The only Geek of class.</p>
+        </class>
+        <!-- Only child of body 
+        <h3>Body as a parent.</h3>
+        <p>The only Geek of body.</p>
+    </center>
+</body>
+
+</html>
+--->
+
+
+<!---
+
+Concept : jQuery :only-child
+https://www.geeksforgeeks.org/jquery/jquery-only-of-type-selector/
+
+Above Example(only-type-selector) with only-child
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <!-- Script to use only-of-type selector 
+    <script>
+        $(document).ready(function () {
+             $("p:only-child").css(
+                "color", "green");
+        });
+    </script>
+</head>
+
+<body>
+    <center>
+        <!-- Children of division 
+        <h3>Division as a parent</h3>
+        <div>
+            <p>Geek1 of div.</p>
+            <p>Geek2 of div.</p>
+        </div>
+        <!-- Only child of id 
+        <h3>ID as a parent.</h3>
+        <id>
+            <p>The only Geek of id.</p>
+        </id>
+        <!-- Only child of class 
+        <h3>Class as a parent.</h3>
+        <class>
+            <p>The only Geek of class.</p>
+        </class>
+        <!-- Only child of body 
+        <h3>Body as a parent.</h3>
+        <p>The only Geek of body.</p>
+    </center>
+</body>
+
+</html>
+
+--->
+
+<!--- 
+Concept: jQuery parent > child Selector
+https://www.geeksforgeeks.org/jquery/jquery-parent-child-selector/
+Example:
+
+<!DOCTYPE html>
+<html>
+<h1>
+  <center>Geeks </center>
+</h1>
+<head>
+  <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+  </script>
+  <script>
+    $(document).ready(function () {
+      $("div > span").css(
+        "background-color", "green");
+    });
+  </script>
+</head>
+<body>
+  <h3>All <span> elements that are
+    a direct child of <div>
+      element are selected.</h3>
+  <div style="border:1px solid black;">
+    <p>Geeks for Geeks
+      <br>
+      <span>
+        jQuery parent > child Selector
+      </span>
+    </p>
+  </div>
+  <br>
+  <div style="border:1px solid black;">
+    <p>Geeks for Geeks</p>
+    <span>
+      jQuery parent > child Selector
+    </span>
+  </div>
+</body>
+</html>
+
+--->
+
+<!--- 
+
+Concept: Jquery parent descendant selector
+https://www.geeksforgeeks.org/jquery/jquery-parent-descendant-selector/
+Example 1:
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("div span").css("color",
+                "lightgreen");
+        });
+    </script>
+</head>
+
+<body>
+    <h4>This div element has descendant span:</h4>
+    <div>
+        <span>DESCENDANT ELEMENT</span>
+    </div>
+</body>
+
+</html>
+
+-->
+
+<!--- 
+Concept : jQuery element + next Selector
+https://www.geeksforgeeks.org/jquery/jquery-element-next-selector/
+Example 1
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+  </script>
+  <script>
+    $(document).ready(function () {
+      $("div + p").css("background-color",
+        "lightgreen");
+    });
+  </script>
+  <style>
+    body {
+      width: 80%;
+      height: 40%;
+      padding: 10px;
+      border: 2px solid green;
+      font-size: 20px;
+    }
+    div {
+      border: 1px solid green;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div>Welcome to GfG.!</div>
+  <p>This is first paragraph element.</p>
+  <p>This is second paragraph element.</p>
+</body>
+</html>
+--->
+
+
+<!--- 
+Concept : jQuery element + next Selector
+https://www.geeksforgeeks.org/jquery/jquery-element-next-selector/
+Example 2
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+  </script>
+  <script>
+    $(document).ready(function () {
+      $("button").click(function () {
+        $("div + p").css("background-color",
+          "lightgreen");
+      });
+    });
+  </script>
+  <style>
+    body {
+      width: 80%;
+      height: 40%;
+      padding: 10px;
+      border: 2px solid green;
+      font-size: 20px;
+    }
+    div {
+      border: 1px solid green;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div>Welcome to GfG.!</div>
+  <h1>Heading element ios here.</h1>
+  <p>This is first paragraph element.</p>
+  <p>This is second paragraph element.</p>
+  <button>Submit</button>
+</body>
+</html>
+
+--->
+
+<!--- 
+
+Concept: jQuery element ~ siblings Selector
+https://www.geeksforgeeks.org/jquery/jquery-element-siblings-selector/
+Example 1:
+
+chatgpt:
+In HTML (and in general DOM structure), siblings are elements that share the same parent.
+
+
+Selector: div ~ p
+The ~ in CSS/jQuery means "select all siblings that come after the element" (general sibling combinator).
+
+So div ~ p means:
+
+"Select all <p> elements that are siblings of a <div> and appear after that <div> in the DOM."
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        jQuery element ~ siblings Selector
+    </title>
+</head>
+
+<body style="text-align:center;">
+    <h1 style="color:green;">
+        GeeksforGeeks
+    </h1>
+    <h2>jQuery element ~ siblings Selector</h2>
+    <p>Geeks1</p>
+    <div>
+        <p>Geek2</p>
+        <p>Geeks3</p>
+    </div>
+    <p>Geek4</p>
+    <p>Geeks5</p>
+    <div>
+        <p>Geek6</p>
+    </div>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("div ~ p").css("background-color", "green");
+        });
+    </script>
+</body>
+
+</html>
+
+-->
+
+<!--- 
+
+Concept: jQuery element ~ siblings Selector
+https://www.geeksforgeeks.org/jquery/jquery-element-siblings-selector/
+Example 2:
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        jQuery element ~ siblings Selector
+    </title>
+</head>
+
+<body style="text-align:center;">
+    <h1 style="color:green;">
+        GeeksforGeeks
+    </h1>
+    <h2>jQuery element ~ siblings Selector</h2>
+    <p>Geeks1</p>
+    <div>
+        <p>Geek2</p>
+        <p>Geeks3</p>
+    </div>
+    <p>Geek4</p>
+    <p>Geeks5</p>
+    <div>
+        <p>Geek6</p>
+    </div>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("p ~ div").css("border", "2px solid red");
+        });
+    </script>
+</body>
+
+</html>
+
+--->
+
+<!--- 
+Concept: jQuery eq() Method
+https://www.geeksforgeeks.org/jquery/jquery-eq-method/
+
+Example 1
+ Below code will select the specified elements. 
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>GeeksForGeeks articles</title>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".heading").eq(0).css("color", "red");
+            $(".heading").eq(2).css("color", "yellow");
+        });
+    </script>
+</head>
+
+<body>
+    <h1 class="heading">GeeksForGeeks</h1>
+    <h2 class="heading">GeeksForGeeks</h2>
+    <h3 class="heading">GeeksForGeeks</h3>
+    <h4 class="heading">GeeksForGeeks</h4>
+</body>
+
+</html>
+
+-->
+
+<!--- 
+Concept: jQuery eq() Method
+https://www.geeksforgeeks.org/jquery/jquery-eq-method/
+
+Example 2
+: Below code will select the specified elements with negative index. 
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>GeeksForGeeks articles</title>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".heading").eq(-2).addClass("style");
+            $(".heading").eq(-4).addClass("style");
+        });
+    </script>
+    <style>
+        .style {
+            color: red;
+            font-family: fantasy;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li class="heading">GeeksForGeeks</li>
+        <li class="heading">GeeksForGeeks</li>
+        <li class="heading">GeeksForGeeks</li>
+        <li class="heading">GeeksForGeeks</li>
+    </ul>
+</body>
+
+</html>
+
+
+--->
+
+<!--- 
+
+Concept: jQuery :gt() Selector
+https://www.geeksforgeeks.org/jquery/jquery-gt-selector/
+
+Example 1: 
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>jQuery :gt() Selector</title>
+    <script src=
+"https://code.jquery.com/jquery-1.10.2.js">
+    </script>
+</head>
+
+<body>
+    <table style="width:100%" border="3">
+        <tr>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+            <td>13</td>
+            <td>14</td>
+        </tr>
+    </table>
+    <script>
+        $("td:gt(8)").css("backgroundColor", "lightgreen");
+        $("td:gt(3)").css("color", "red");
+    </script>
+</body>
+
+</html>
+
+-->
+
+<!--- 
+
+Concept: jQuery :gt() Selector
+https://www.geeksforgeeks.org/jquery/jquery-gt-selector/
+
+Example 2: 
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>jQuery :gt() Selector</title>
+    <script src=
+"https://code.jquery.com/jquery-1.10.2.js">
+    </script>
+</head>
+
+<body>
+    <table style="width:100%" border="3">
+        <tr>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+        </tr>
+    </table>
+    <br>
+    <button>Change color</button>
+    <script>
+        $("button").click(function () {
+            $("td:gt(8)").css("backgroundColor", "lightblue");
+        });
+    </script>
+</body>
+
+</html>
+
+--->
+
+
+<!---  
+Concept: jQuery :lt() Selector
+https://www.geeksforgeeks.org/jquery/jquery-lt-selector/
+Example 1: In this example, we are using it() selector.
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jQuery :lt() Selector</title>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("ol:lt(3)").css(
+                "background-color", "green");
+        });
+    </script>
+</head>
+
+<body>
+    <h1>Welcome to My Web Page</h1>
+    <ol id="1">
+        <li>GEEKS</li>
+        <li>FOR</li>
+        <li>GEEKS</li>
+    </ol>
+    <ol id="2">
+        <li>GEEKS</li>
+        <li>FOR</li>
+        <li>GEEKS</li>
+    </ol>
+    <ol id="3">
+        <li>GEEKS</li>
+        <li>FOR</li>
+        <li>GEEKS</li>
+    </ol>
+    <ol id="4">
+        <li>GEEKS</li>
+        <li>FOR</li>
+        <li>GEEKS</li>
+    </ol>
+</body>
+
+</html>
+
+-->
+
+<!---  
+Concept: jQuery :lt() Selector
+https://www.geeksforgeeks.org/jquery/jquery-lt-selector/
+Example 2: Here is another example of it() selector.
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jQuery :lt() Selector</title>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                $("ol:lt(2)").css("color", "red");
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <h1>jQuery | :lt() Selector</h1>
+    <ol id="1">
+        <li>GEEKS</li>
+        <li>FOR</li>
+        <li>GEEKS</li>
+    </ol>
+    <ol id="2">
+        <li>GEEKS</li>
+        <li>FOR</li>
+        <li>GEEKS</li>
+    </ol>
+    <ol id="3">
+        <li>GEEKS</li>
+        <li>FOR</li>
+        <li>GEEKS</li>
+    </ol>
+    <ol id="4">
+        <li>GEEKS</li>
+        <li>FOR</li>
+        <li>GEEKS</li>
+    </ol>
+    <br>
+    <button>Change color</button>
+</body>
+
+</html>
+
+--->
+
+<!--- 
+
+Concept: jQuery :not() Selector
+https://www.geeksforgeeks.org/jquery/jquery-not-selector/
+
+Example 1: Change the background color of the p element. 
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jQuery :not() Selector</title>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script>
+        $(document).click(function () {
+            $("p:not(.intro)").css(
+                "background-color", "green");
+        });
+    </script>
+</head>
+
+<body>
+    <center>
+        <h1>Geeks for Geeks</h1>
+        <p class="intro">
+            A Computer Science Portal for Geeks
+        </p>
+        <p>jQuary :not selector</p>
+        <p>I change my background color</p>
+        <p>language option</p>
+        <ul id="choose" style="width:5em;
+                margin:0 auto;">
+            <li>JAVA</li>
+            <li>C++</li>
+            <li>PYTHON</li>
+        </ul>
+        <button>Change color</button>
+    </center>
+</body>
+
+</html>
+
+-->
+<!--- 
+
+Concept: jQuery :not() Selector
+https://www.geeksforgeeks.org/jquery/jquery-not-selector/
+
+Example 2:
+
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>jQuery :not() Selector</title>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js">
+    </script>
+</head>
+
+<body style="text-align:center;">
+    <h1>GeeksForGeeks</h1>
+    <h2>jQuery | :not() Selector</h2>
+    <p class="GFG-1" style="font-size: 15px; 
+                            font-weight: bold;">
+        GFG-1
+    </p>
+    <p class="GFG-2" style="font-size: 15px; 
+                            font-weight: bold;">
+        GFG-2
+    </p>
+    <p class="GFG-3" style="font-size: 15px; 
+                            font-weight: bold;">
+        GFG-3
+    </p>
+    <button id="button">
+        Change content
+    </button>
+    <p class="GFG" style="color:green; 
+                          font-size: 20px; 
+                          font-weight: bold;">
+    </p>
+    <script>
+        $("button").on('click', function () {
+            $('p[class^="GFG-"]:not(.GFG-1)').text("new Content");
+        });        
+    </script>
+</body>
+
+</html>
+
+
+--->
+
+<!---  
+Concept: jQuery :header Selector
+https://www.geeksforgeeks.org/jquery/jquery-header-selector/
+
+Example 1: Change the color of all headings to green. 
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jQuery :header Selector</title>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function () {
+            $(":header").css(
+                "color", "green");
+        });
+    </script>
+</head>
+
+<body>
+    <center>
+        <h1>GeeksForGeeks</h1>
+        <h2>jQuery :header Selector</h2>
+        <div style="color:orange;">
+            GeeksForGeeks
+        </div>
+        <h5>A computer science
+            portal for geeks.
+        </h5>
+        <p style="color:dodgerblue">
+            Sudo Placement
+        </p>
+        <p>GFG</p>
+    </center>
+</body>
+
+</html>
+
+ -->
+
+<!---  
+Concept: jQuery :header Selector
+https://www.geeksforgeeks.org/jquery/jquery-header-selector/
+
+Example 2: Change the color of all headings to blue by clicking the button. 
+
+ <!DOCTYPE html>
+<html>
+
+<head>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                $(":header").css(
+                    "color", "blue");
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <center>
+        <h1>GeeksForGeeks</h1>
+        <h2>jQuery :header Selector</h2>
+        <div>GeeksForGeeks</div>
+        <h5>A computer science
+            portal for geeks.
+        </h5>
+        <p>GFG</p>
+        <button>Change color</button>
+    </center>
+</body>
+
+</html>
+
+--->
+
+<!--- 
+Concept: jQuery :focus Selector
+
+$(":focus") in jQuery is a selector that finds the element on the page that is currently focused (active for user input).
+
+Meaning of "focused"
+When you click inside an input box, textarea, or select dropdown, that element becomes focused.
+
+When an element is focused, it’s ready to receive keyboard input or interaction.
+
+$(":focus") will return that element.
+
+How it works:
+When you click inside any input or textarea:
+
+$(":focus") selects the one currently active.
+
+Its background turns light yellow.
+
+When you click away (blur), background resets
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>:focus example</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+
+<h2>jQuery :focus example</h2>
+
+<input type="text" placeholder="First Name"><br><br>
+<input type="text" placeholder="Last Name"><br><br>
+<textarea placeholder="Write something..."></textarea>
+
+<script>
+$(document).ready(function(){
+    $("input, textarea").on("focus", function(){
+        $(":focus").css("background-color", "lightyellow");
+    });
+
+    $("input, textarea").on("blur", function(){
+        $(this).css("background-color", "white");
+    });
+});
+</script>
+
+</body>
+</html>
+
+-->
+
+<!--- 
+
+Concept: jQuery :contains() Selector
+https://www.geeksforgeeks.org/jquery/jquery-contains-selector/
+
+Example 1: This example uses :contains() selector  
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jQuery :contains() Selector</title>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <!-- Script to use :contains selector 
+    <script>
+        $(document).ready(function () {
+            $("h3:contains(is)").css("background-color", "green");
+        });
+    </script>
+</head>
+
+<body>
+    <center>
+        <h1 id="geeks1" style="color:green;">
+            GeeksForGeeks
+        </h1>
+        <h2 id="geeks2">
+            jQuery :contains() Selector
+        </h2>
+        <h3>
+            Who is your favourite Geek:
+        </h3>
+        <div id="choose">
+            <h3>Geek 1</h3>
+            <h3>Geek 2</h3>
+            <h3>Geek 3</h3>
+        </div>
+    </center>
+</body>
+
+</html>
+
+--->
+
+<!--- 
+
+Concept: jQuery :contains() Selector
+https://www.geeksforgeeks.org/jquery/jquery-contains-selector/
+
+Example 2: This example uses :contains() selector  
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jQuery :contains() Selector</title>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <!-- Script to use :contains selector
+    <script>
+        $(document).ready(function () {
+            $("h3:contains(Geek)").css("background-color", "green");
+        });
+    </script>
+</head>
+
+<body>
+    <center>
+        <h1 id="geeks1" style="color:green;">
+            GeeksForGeeks
+        </h1>
+        <h2 id="geeks2">
+            jQuery :contains() Selector
+        </h2>
+        <h3>
+            Who is your favourite candidate:
+        </h3>
+        <div id="choose">
+            <h3>Geek 1</h3>
+            <h3>Geek 2</h3>
+            <h3>Geek 3</h3>
+        </div>
+    </center>
+</body>
+
+</html>
+
+-->
+
+
+<!---  
+Concept: jQuery :has() Selector
+
+https://www.geeksforgeeks.org/jquery/jquery-has-selector/
+
+Example 1: This example uses:has selector to select <h2> span element to create a solid green border. 
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jQuery :has() Selector</title>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <!-- Script to use :has selector
+    <script>
+        $(document).ready(function () {
+            $("h2:has(span)").css("border", "solid green");
+        });
+    </script>
+</head>
+
+<body>
+    <center>
+        <h1 id="geeks1" style="color:green;">
+            GeeksForGeeks
+        </h1>
+        <h2 id="geeks2">
+            <span>
+                jQuery :has() Selector
+            </span>
+        </h2>
+    </center>
+</body>
+
+</html>
+
+--->
+
+<!---  
+Concept: jQuery :has() Selector
+
+https://www.geeksforgeeks.org/jquery/jquery-has-selector/
+
+Example 2: 
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jQuery :has() Selector</title>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <!-- Script to use :has selector
+    <script>
+        $(document).ready(function () {
+            $("body:has(h1, span)").css("border", "solid green");
+        });
+    </script>
+</head>
+
+<body>
+    <center>
+        <h1 id="geeks1" style="color:green;">
+            GeeksForGeeks
+        </h1>
+        <h2 id="geeks2">
+            <span>
+                jQuery :has() Selector
+            </span>
+        </h2>
+    </center>
+</body>
+
+</html>
+
+--->
+
+<!---
+
+Concept: jQuery :empty Selector
+https://www.geeksforgeeks.org/jquery/jquery-empty-selector/
+
+Example 1: This example uses :empty selector to select an element position in a table.
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        jQuery :empty() Selector
+    </title>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function () {
+            $(":empty").css("background-color", "green");
+        });
+    </script>
+</head>
+
+<body>
+    <center>
+        <h1 id="geeks1" style="color:green;">
+            GeeksForGeeks
+        </h1>
+        <h2 id="geeks2">jQuery :empty() Selector</h2>
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Country</th>
+            </tr>
+            <tr>
+                <td>Geeks 1</td>
+                <td></td>
+                <td>India</td>
+            </tr>
+            <tr>
+                <td>Geeks 2</td>
+                <td>2345</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Geeks 3</td>
+                <td>3456</td>
+                <td>India</td>
+            </tr>
+            <tr>
+                <td>Geeks 4</td>
+                <td>4567</td>
+                <td>India</td>
+            </tr>
+            <tr>
+                <td>Geeks 5</td>
+                <td>5678</td>
+                <td>U.S.</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>6789</td>
+                <td>Austrialia</td>
+            </tr>
+            <tr>
+                <td>Geeks 7</td>
+                <td></td>
+                <td>India</td>
+            </tr>
+        </table>
+    </center>
+</body>
+
+</html>
+
+-->
+
+
+<!---
+
+Concept: jQuery :empty Selector
+https://www.geeksforgeeks.org/jquery/jquery-empty-selector/
+
+Example 1: This example uses :empty selector to select an element position in a table.
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jQuery :empty() Selector</title>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <!-- Script to use empty selector 
+    <script>
+        $(document).ready(function () {
+            $("div:empty(.GFG)").css("background-color", "green");
+        });
+    </script>
+    <!-- Style to create box 
+    <style>
+        .GFG {
+            width: 200px;
+            height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>GeeksforGeeks</h1>
+    <div class="GFG"></div>
+</body>
+
+</html>
+
+
+--->
+
+<!--- 
+Concept: jQuery :parent Selector
+
+
+chatgpt:
+
+$(":parent") in jQuery is a selector that matches any element that has at least one child node (child can be text or another HTML element).
+
+It’s called “parent” because it’s selecting elements that are acting as parents to something inside them.
+
+How it works
+If an element contains any content — text, spaces, or other HTML elements — it is considered a parent.
+
+If it’s empty (<div></div>), it won’t be matched.
+
+example 1 from : https://www.geeksforgeeks.org/jquery/jquery-parent-selector/
+
+
+<!DOCTYPE html>
+<html>
+  
+<head>
+    <title>
+        jQuery :parent() Selector
+    </title>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+  
+    <script>
+        $(document).ready(function () {
+            $("li:parent").css(
+                "background-color", "green");
+        });
+    </script>
+</head>
+  
+<body>
+    <center>
+        <h1 id="geeks1">
+            GeeksForGeeks</h1>
+        <h2 id="geeks2">
+            jQuery :parent() Selector
+        </h2>
+        <div>
+            <li>Geek1</li>
+            <li></li>
+            <li>Geek3</li>
+            <li>Geek4</li>
+            <li></li>
+            <li>Geek6</li>
+        </div>
+    </center>
+</body>
+  
+</html>
+
+--->
+
+<!--- 
+Concept: jQuery :parent Selector
+
+ example 2 from : https://www.geeksforgeeks.org/jquery/jquery-parent-selector/
+
+
+<!DOCTYPE html>
+<html>
+  
+<head>
+    <title>
+        jQuery :parent() Selector
+    </title>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+  
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                $("li:parent").css(
+                    "border", "2px solid red");
+            });
+        });
+    </script>
+</head>
+  
+<body>
+    <center>
+        <h1 id="geeks1">
+            GeeksForGeeks</h1>
+        <h2 id="geeks2">
+            jQuery :parent() Selector
+        </h2>
+        <div>
+            <li>Geek1</li>
+            <li></li>
+            <li>Geek3</li>
+            <li>Geek4</li>
+            <li></li>
+            <li>Geek6</li>
+            <br>
+            <button>Add Border</button>
+        </div>
+    </center>
+</body>
+  
+</html>
+
+--->
+
+
+<!--- 
+Concept: jQuery :hidden Selector
+https://www.geeksforgeeks.org/jquery/jquery-hidden-selector/
+Example 1
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Jquery CDN -->
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <!-- Jquery demonstration script 
+    <script>
+        $(document).ready(function () {
+            $("h1:hidden").show(3000);
+        });
+    </script>
+    <!-- Script ends here 
+</head>
+
+<body>
+    <center>
+        <h1 style="display:none;">
+            GeeksforGeeks
+        </h1>
+        <p>Hidden attribute example</p>
+        <p>The above line will show up gradually.</p>
+    </center>
+</body>
+
+</html>
+
+-->
+
+<!DOCTYPE html>
+<html>
+  
+<head>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+  
+    <script>
+        $(document).ready(function () {
+            $("p:visible").css(
+                "background-color", "green");
+        });
+    </script>
+</head>
+  
+<body>
+    <center>
+        <h1 style="color:green;">
+            GeeksForGeeks
+        </h1>
+        <h2>
+            jQuery :visible Selector
+        </h2>
+        <p>GeeksForGeeks</p>
+        <p style="display:none;">
+            A Computer science portal for Geeks.
+        </p>
+        <p>
+            A computer science portal for geeks.
+        </p>
+        <h4>Sudo Placement</h4>
+        <div>GFG</div>
+    </center>
+</body>
+  
+</html>
+
+
+
