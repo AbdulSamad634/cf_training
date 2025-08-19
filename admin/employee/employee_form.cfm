@@ -192,6 +192,10 @@
 
          </style>
 
+             <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+    </script>
+
 </head>
 
 <body>
@@ -402,12 +406,13 @@
                <!--- <div class="form-checkbox-row"> --->
                <div>
                      <cfloop query="Get_All_Allowances">
-                            <input type="checkbox" id="checkbox" name= "Allowance_ID"
+                    <!---    <input type="checkbox" id="checkbox#Get_All_Allowances.Allowance_ID#" name= "Allowance_ID#Get_All_Allowances.Allowance_ID#" onChange="hideInput(this, payment#Get_All_Allowances.Allowance_ID#)" --->
+                    <input type="checkbox" id="checkbox" name= "Allowance_ID"
                                 <cfif mycheck eq true>
                                     <cfquery name ="Get_Employees_Allowances" datasource ="web_project" >
                                          select *
                                          from Allowances_record join Allowances on Allowances.Allowance_ID = Allowances_Record.Allowance_ID
-                                         where Allowances_Record.Employee_ID = #MY_ID#
+                                         where Allowances_Record.Employee_ID = #MY_ID# and Allowances_Record.IsActive = 1;
                                     </cfquery>
                                          <!---  <cfdump var="#Get_All_Allowances#">
                                          <cfdump var="#Get_Employees_Allowances#">  --->
@@ -416,51 +421,25 @@
                                                 checked
                                              </cfif>
                                          </cfloop>
-                                    <cfquery name="Updated_Payment" datasource="web_project">
+                                    <!---<cfquery name="Updated_Payment" datasource="web_project">
                                         select allowances_record.payment
                                         from Allowances_record join Allowances on Allowances.Allowance_ID = Allowances_Record.Allowance_ID
                                         where Allowances_Record.Employee_ID = #My_ID#
                                     </cfquery>
+                                    --->
 
                                 </cfif>
-                             value="#Get_All_Allowances.Allowance_ID#"
+                                value="#Get_All_Allowances.Allowance_ID#"
                             >
                              #Get_All_Allowances.Allowance_Name#<br>
-
-                                <cfloop query="Updated_Payment">
-                                
-
-<cfif #Get_All_Allowances.Allowance_ID# eq #Get_Employees_Allowances.Allowance_ID# >
-                             <input type="number" name="Payment" id="payment" class="form-input" autocomplete="off" value=#Updated_Payment.Payment# >
-                           </cfif>
-                           </cfloop>
-
-<script>
-
-      $(function() {
-  $("##checkbox").change(function(){
-
-    if($(this).is(':checked'))
-    {
-            $(this).show();
-    }
-    else
-    {
-        $(this).hide();
-        }
-        } 
-     }
-    );
-            
-</script>
-    
+                            <cfloop query="Get_Employees_Allowances">
+                                            <cfif #Get_All_Allowances.Allowance_ID# eq #Get_Employees_Allowances.Allowance_ID# >
+                                                <input type="number" name="allowance_Payment#Get_All_Allowances.Allowance_ID#" id="payment#Get_All_Allowances.Allowance_ID#" class="form-input" autocomplete="off" value="#Get_Employees_Allowances.Employee_Payment#" >
+                                            </cfif>
+                            </cfloop>
                      </cfloop>
-                     
                 </div>
 
-
-          
-            
                  <button class="form-btn">Submit</button>
             
             </form>
@@ -468,7 +447,29 @@
          </div>
 
     </cfoutput>
+<!---
+<script>
 
+    // $(function() 
+    // {
+    //     $("#checkbox").change(function(){
+    //         console.log("hiii");
+    //         $("#designation").hide();
+    //     })
+    // });
+    
+    function hideInput(check,elm){
+        if(check.checked){
+            $(elm).show(); 
+        }else{
+            $(elm).hide();
+        }
+        console.log("hiii");
+        console.log(elm);
+    }
+</script>
+
+--->
 </body>
 
 

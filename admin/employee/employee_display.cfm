@@ -148,7 +148,13 @@ values (1,'PTI'),
                          Set Employee_Name ="#Employee_Name#",Gender="#Gender#",Email="#Email#",Phone="#Phone#",Joining_Date="#Joining_Date#",Designation="#Designation#",Department_ID=#Department_ID#,Experience=#Experience#,Salary=#Salary#
                          where Employee_Data.ID = #ID#; 
 
-                    </cfquery>
+                     </cfquery>
+
+<!---
+                
+
+
+                     --->
 
                  <cfelse>
 
@@ -165,32 +171,112 @@ values (1,'PTI'),
 
          </cfif>         
                 
-             <cfif isDefined ("Allowance_ID")>
+            <cfif isDefined ("Allowance_ID")>
+                    <cfdump var="#Form.Allowance_ID#" >
 
-               <!---     #Form.Allowance_ID# --->
+<!--- following section  makes sure to update allowance payment value in database --->
 
-                    <cfquery name="Delete_Previous_Record" datasource="web_project" >
+                        <cfloop list = "#Form.Allowance_ID#" index="i">
+                            <cfquery name ="Check_Allowance" datasource="web_project" >
+                                select*
+                                from allowances_record
+                                where allowance_id = #i# and employee_id = #ID# and isactive=1;
+                            </cfquery>
+                             <!---   <cfdump var="#check_allowance#"> --->
+                            <cfif queryRecordCount(Check_Allowance) gte 1 >
+                                    <cfquery name="update_allowance_data" datasource="web_project">
+                                        select allowance_ID
+                                        from Allowances_Record
+                                        where Employee_ID = #ID# and isactive = 1;
+                                    </cfquery>
+                                    <cfloop query="update_allowance_data">
+                                        <cfquery name="final_Step" datasource="web_project">
+                                            update allowances_record
+                                            set employee_payment = #evaluate("allowance_payment#update_allowance_data.allowance_ID#")#
+                                            where Employee_ID=#ID# AND Allowance_ID=#update_allowance_data.allowance_ID# and isactive=1;
+                                        </cfquery>
+                                    </cfloop>
+                            </cfif>
+                        </cfloop>
 
-                        delete
-                        from Allowances_Record
-                        where Employee_ID = #ID#
+                     <!--- --->
 
-                    </cfquery>
 
+                    <!--- following section makes sure to insert newly selected allowance in database--->
                     <cfloop list = "#Form.Allowance_ID#" index="i">
-                        
+                            <cfquery name ="Check_Allowance" datasource="web_project" >
+                                select*
+                                from allowances_record
+                                where allowance_id = #i# and employee_id = #ID#;
+                            </cfquery>
+                             <!---   <cfdump var="#check_allowance#"> --->
+                            <cfif queryRecordCount(Check_Allowance) eq 0 >
+                                <cfquery name="get_default_allowance" datasource="web_project">
+                                    select payment
+                                    from allowances
+                                    where allowance_id = #i#
+                                </cfquery>
+                             <!---    <cfdump var="#get_default_allowance#"> --->
+                                <cfset default_payment = "#get_default_allowance.payment#" >
+                                <cfquery name="Allowences_Record" datasource ="web_project" >
+                                        insert into Allowances_Record(Employee_ID,Allowance_ID,Employee_Payment)
+                                        values(#ID#,#i#,#default_payment#)
+                                </cfquery>
+                            <cfelse> 
+                            </cfif>
+                    </cfloop>    
 
-                             <cfquery name="Allowences_Record" datasource ="web_project" >
+                    <!--- following section makes sure to inactive previously active allowance in database bcz it is unselected this time" --->
 
-                                        insert into Allowances_Record(Employee_ID,Allowance_ID)
-                                        values(#ID#,#i#)
 
-                             </cfquery>
+                            <cfquery name="set_active" datasource="web_project">
+                                update allowances_record
+                                set isactive = 0
+                                where employee_id = #ID#;
+                            </cfquery>
+                            <!--- <cfdump var="#set_active#"> --->
+                            <cfquery name="get_latest_employee" datasource="web_project">
+                                select allowance_id
+                                from allowances_record
+                                where employee_id = #ID#
+                            </cfquery>
+                            <!---        <cfdump var="#get_latest_employee#"> --->
+                            <cfloop query="get_latest_employee">
+                                <cfset var1= "#get_latest_employee.allowance_id#">
+                                    <cfloop list="#Form.Allowance_ID#" index="i" >
+                                        <cfif #var1# eq #i# >
+                                            TRUE
+                                            <cfquery name="update_active" datasource="web_project">
+                                                update allowances_record
+                                                set isactive = 1
+                                                where allowance_id = #i# and employee_id = #ID#;
+                                            </cfquery>
+                                        <cfelse>
+                                            False
+                                        </cfif>
+                                    </cfloop>
+                            </cfloop>
 
-                    </cfloop>
-
-                  </cfif> 
-
+                            <cfquery name="first_updated_inactive" datasource="web_project">
+                                select allowance_ID
+                                from allowances_record
+                                where employee_id = #ID# and isactive = 0;
+                            </cfquery>
+                            <cfloop query="first_updated_inactive">
+                                <cfquery name="second_updated_inactive" datasource="web_project">
+                                    select payment
+                                    from allowances
+                                    where allowance_id = "#first_updated_inactive.allowance_id#";
+                                </cfquery>
+                                <cfset updated_payment="#second_updated_inactive.payment#">
+                                <cfquery name="third_updated_inactive" datasource="web_project">
+                                    update allowances_record
+                                    set employee_payment=#updated_payment#
+                                    where employee_id = #ID# AND allowance_ID = "#first_updated_inactive.allowance_id#" and isactive=0;
+                                </cfquery>
+                            </cfloop>
+            </cfif> 
+                
 
          <cfquery name="Query_Status" datasource="web_project">
 
