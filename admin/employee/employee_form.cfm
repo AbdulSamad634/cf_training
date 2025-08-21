@@ -407,7 +407,7 @@
                <div>
                      <cfloop query="Get_All_Allowances">
                     <!---    <input type="checkbox" id="checkbox#Get_All_Allowances.Allowance_ID#" name= "Allowance_ID#Get_All_Allowances.Allowance_ID#" onChange="hideInput(this, payment#Get_All_Allowances.Allowance_ID#)" --->
-                    <input type="checkbox" id="checkbox" name= "Allowance_ID"
+                    <input type="checkbox" id="Check_Allowance#Get_All_Allowances.Allowance_ID#" name= "Check_Allowance#Get_All_Allowances.Allowance_ID#"
                                 <cfif mycheck eq true>
                                     <cfquery name ="Get_Employees_Allowances" datasource ="web_project" >
                                          select *

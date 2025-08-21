@@ -170,9 +170,10 @@ values (1,'PTI'),
              </cfif> 
 
          </cfif>         
-                
+
+<!---                 
             <cfif isDefined ("Allowance_ID")>
-                    <cfdump var="#Form.Allowance_ID#" >
+                  <!---  <cfdump var="#Form.Allowance_ID#" > --->
 
 <!--- following section  makes sure to update allowance payment value in database --->
 
@@ -245,14 +246,14 @@ values (1,'PTI'),
                                 <cfset var1= "#get_latest_employee.allowance_id#">
                                     <cfloop list="#Form.Allowance_ID#" index="i" >
                                         <cfif #var1# eq #i# >
-                                            TRUE
+                                           
                                             <cfquery name="update_active" datasource="web_project">
                                                 update allowances_record
                                                 set isactive = 1
                                                 where allowance_id = #i# and employee_id = #ID#;
                                             </cfquery>
                                         <cfelse>
-                                            False
+                                       
                                         </cfif>
                                     </cfloop>
                             </cfloop>
@@ -276,7 +277,104 @@ values (1,'PTI'),
                                 </cfquery>
                             </cfloop>
             </cfif> 
-                
+--->
+<cfif isDefined("ID")> 
+            <cfquery name ="get_allowance" datasource ="web_project" >
+                        select *
+                        from Allowances
+            </cfquery>
+            <cfloop query="get_allowance">
+                <cfif isDefined("Check_Allowance#get_allowance.Allowance_ID#") >
+                    <cfquery name = "check_allowance_1" datasource="web_project">
+                        select*
+                        from allowances_record
+                        where employee_id = #ID# AND allowance_id = "#get_allowance.allowance_id#";
+                    </cfquery>
+                    <cfquery name = "check_allowance_2" datasource="web_project">
+                        select*
+                        from allowances_record
+                        where employee_id = #ID# AND allowance_id = "#get_allowance.allowance_id#" and isactive=0;
+                    </cfquery>
+                    <cfquery name = "check_allowance_3" datasource="web_project">
+                        select*
+                        from allowances_record
+                        where employee_id = #ID# AND allowance_id = "#get_allowance.allowance_id#" and isactive=1;
+                    </cfquery>                    
+                    <cfif queryRecordCount(check_allowance_1) eq 0>
+                    TRUE 1
+                            <cfquery name="get_default_allowance" datasource="web_project">
+                                select payment
+                                from allowances
+                                where allowance_id = "#get_allowance.allowance_id#"
+                            </cfquery>
+                             <!---    <cfdump var="#get_default_allowance#"> --->
+                            <cfset default_payment = "#get_default_allowance.payment#" >
+                            <cfquery name="Insert_Allowences_Record" datasource ="web_project" >
+                                insert into Allowances_Record(Employee_ID,Allowance_ID,Employee_Payment)
+                                values(#ID#,"#get_allowance.allowance_id#","#default_payment#")
+                            </cfquery>
+                    <cfelseif queryRecordCount(check_allowance_2) eq 1>
+                    TRUE 2
+                            <cfquery name="get_default_allowance" datasource="web_project">
+                                select payment
+                                from allowances
+                                where allowance_id = "#get_allowance.allowance_id#"
+                            </cfquery>
+                            <cfdump var="#get_default_allowance#">
+                             <!---    <cfdump var="#get_default_allowance#"> --->
+                            <cfset default_payment = "#get_default_allowance.payment#" >
+                            #default_payment# dfd
+                          
+                            <cfquery name = "update_allowances" datasource="web_project">
+                                update allowances_record
+                                set employee_payment = #default_payment#, isactive = 1
+                                where Employee_ID=#ID# AND Allowance_ID="#get_allowance.allowance_id#";
+                            </cfquery>
+                            <cfquery name ="show_result" datasource="web_project">
+                                select* from allowances_record
+                                where employee_id = #ID#
+                            </cfquery>
+                            <cfdump var="#show_result#">
+
+                    <cfelseif queryRecordCount(check_allowance_3) eq 1>
+                    TRUE 3
+                            <cfquery name="final_Step" datasource="web_project">
+                                update allowances_record
+                                set employee_payment = "#evaluate("allowance_payment#get_allowance.allowance_ID#")#"
+                                where Employee_ID=#ID# AND Allowance_ID="#get_allowance.allowance_id#";
+                            </cfquery>
+                    </cfif>
+
+                <cfelse>
+                TRUE 4
+                    <cfquery name = "check_allowance" datasource="web_project">
+                        select*
+                        from allowances_record
+                        where employee_id = #ID# AND allowance_id = "#get_allowance.allowance_id#" and isactive = 1;
+                    </cfquery>
+                    <cfif queryRecordCount(check_allowance) eq 1>
+                            <cfquery name="get_default_allowance" datasource="web_project">
+                                update Allowances_Record
+                                set isactive=0
+                                where employee_id = #ID# AND allowance_id = "#get_allowance.allowance_id#";
+                            </cfquery>
+                    </cfif>
+                </cfif>    
+            </cfloop>
+</cfif>            
+
+
+<!---
+
+
+                    <cfquery name ="insert_allowance"datasource="web_project" >
+                        insert into allowances_record (employee_id,allowance_id,employee_payment)
+                        values ("#ID#",'#evaluate('Check_Allowance#get_allowance.Allowance_ID#')#','#evaluate('allowance_Payment#get_allowance.Allowance_ID#')#');
+                    </cfquery>
+                </cfif>
+            </cfloop>
+
+--->
 
          <cfquery name="Query_Status" datasource="web_project">
 
