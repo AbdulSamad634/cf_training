@@ -395,25 +395,20 @@
                  />
   
                  <cfquery name ="Get_All_Allowances" datasource ="web_project" >
-
                         select *
                         from Allowances
-                
                  </cfquery>
-
+                 <cfquery name ="Get_Employees_Allowances" datasource ="web_project" >
+                        select *
+                        from Allowances_record join Allowances on Allowances.Allowance_ID = Allowances_Record.Allowance_ID
+                        where Allowances_Record.Employee_ID = #MY_ID# and Allowances_Record.IsActive = 1;
+                 </cfquery>
                  <label for="" class="form-label">Choose Allowances</label>
-            
                <!--- <div class="form-checkbox-row"> --->
                <div>
                      <cfloop query="Get_All_Allowances">
-                    <!---    <input type="checkbox" id="checkbox#Get_All_Allowances.Allowance_ID#" name= "Allowance_ID#Get_All_Allowances.Allowance_ID#" onChange="hideInput(this, payment#Get_All_Allowances.Allowance_ID#)" --->
-                    <input type="checkbox" id="Check_Allowance#Get_All_Allowances.Allowance_ID#" name= "Check_Allowance#Get_All_Allowances.Allowance_ID#"
+                        <input type="checkbox" id="Check_Allowance#Get_All_Allowances.Allowance_ID#" name= "Check_Allowance#Get_All_Allowances.Allowance_ID#" onChange="hideInput(this, allowance_Payment#Get_All_Allowances.Allowance_ID#)"
                                 <cfif mycheck eq true>
-                                    <cfquery name ="Get_Employees_Allowances" datasource ="web_project" >
-                                         select *
-                                         from Allowances_record join Allowances on Allowances.Allowance_ID = Allowances_Record.Allowance_ID
-                                         where Allowances_Record.Employee_ID = #MY_ID# and Allowances_Record.IsActive = 1;
-                                    </cfquery>
                                          <!---  <cfdump var="#Get_All_Allowances#">
                                          <cfdump var="#Get_Employees_Allowances#">  --->
                                          <cfloop query="Get_Employees_Allowances">
@@ -421,23 +416,26 @@
                                                 checked
                                              </cfif>
                                          </cfloop>
-                                    <!---<cfquery name="Updated_Payment" datasource="web_project">
-                                        select allowances_record.payment
-                                        from Allowances_record join Allowances on Allowances.Allowance_ID = Allowances_Record.Allowance_ID
-                                        where Allowances_Record.Employee_ID = #My_ID#
-                                    </cfquery>
-                                    --->
-
                                 </cfif>
                                 value="#Get_All_Allowances.Allowance_ID#"
-                            >
+                        >
                              #Get_All_Allowances.Allowance_Name#<br>
+                            <cfset check = 1>
                             <cfloop query="Get_Employees_Allowances">
-                                            <cfif #Get_All_Allowances.Allowance_ID# eq #Get_Employees_Allowances.Allowance_ID# >
-                                                <input type="number" name="allowance_Payment#Get_All_Allowances.Allowance_ID#" id="payment#Get_All_Allowances.Allowance_ID#" class="form-input" autocomplete="off" value="#Get_Employees_Allowances.Employee_Payment#" >
-                                            </cfif>
-                            </cfloop>
-                     </cfloop>
+                                <cfif #Get_All_Allowances.Allowance_ID# eq #Get_Employees_Allowances.Allowance_ID# >
+                             
+                                    <input type="number" name="allowance_Payment#Get_All_Allowances.Allowance_ID#" id="payment#Get_All_Allowances.Allowance_ID#" class="form-input" autocomplete="off" value="#Get_Employees_Allowances.Employee_Payment#" onChange="CheckValue(this)" >
+                                    <cfset check = 2>
+                         
+                                </cfif>
+                             </cfloop>
+                             <cfif check eq 1 >
+                
+                                        <input type="number" name="allowance_Payment#Get_All_Allowances.Allowance_ID#" id="payment#Get_All_Allowances.Allowance_ID#" class="form-input" autocomplete="off" value="#Get_All_Allowances.Payment#" onChange="CheckValue(this)" >
+                            
+                             </cfif>
+                    </cfloop>
+            
                 </div>
 
                  <button class="form-btn">Submit</button>
@@ -447,7 +445,7 @@
          </div>
 
     </cfoutput>
-<!---
+
 <script>
 
     // $(function() 
@@ -458,7 +456,8 @@
     //     })
     // });
     
-    function hideInput(check,elm){
+    function hideInput(check,elm)
+    {
         if(check.checked){
             $(elm).show(); 
         }else{
@@ -467,9 +466,20 @@
         console.log("hiii");
         console.log(elm);
     }
+
+
+    function CheckValue(check)
+    {
+       const inputValue = check.value.trim();
+       console.log("inputValue");
+       if (inputValue.length === 0) 
+        {
+        alert("Payment Must be filled out");
+        }
+    }
+
 </script>
 
---->
 </body>
 
 

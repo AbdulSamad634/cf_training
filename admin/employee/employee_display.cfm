@@ -308,7 +308,7 @@ values (1,'PTI'),
                                 where allowance_id = "#get_allowance.allowance_id#"
                             </cfquery>
                              <!---    <cfdump var="#get_default_allowance#"> --->
-                            <cfset default_payment = "#get_default_allowance.payment#" >
+                            <cfset default_payment = "#evaluate("allowance_payment#get_allowance.allowance_id#")#" >
                             <cfquery name="Insert_Allowences_Record" datasource ="web_project" >
                                 insert into Allowances_Record(Employee_ID,Allowance_ID,Employee_Payment)
                                 values(#ID#,"#get_allowance.allowance_id#","#default_payment#")
@@ -322,7 +322,7 @@ values (1,'PTI'),
                             </cfquery>
                             <cfdump var="#get_default_allowance#">
                              <!---    <cfdump var="#get_default_allowance#"> --->
-                            <cfset default_payment = "#get_default_allowance.payment#" >
+                            <cfset default_payment = "#evaluate("allowance_payment#get_allowance.allowance_id#")#" >
                             #default_payment# dfd
                           
                             <cfquery name = "update_allowances" datasource="web_project">
@@ -361,7 +361,9 @@ values (1,'PTI'),
                     </cfif>
                 </cfif>    
             </cfloop>
-</cfif>            
+</cfif>          
+
+<cfdump var="#form#">
 
 
 <!---
